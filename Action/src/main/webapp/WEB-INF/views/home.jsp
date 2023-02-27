@@ -45,11 +45,19 @@
 <link rel="stylesheet"
 	href="${ pageContext.request.contextPath }/resources/css/responsive.css">
 
+<link rel="stylesheet"
+	href="${ pageContext.request.contextPath }/resources/css/movie_rank.css">
+<link rel="stylesheet"
+	href="${ pageContext.request.contextPath }/resources/css/movie_release.css">
+<link rel="stylesheet"
+	href="${ pageContext.request.contextPath }/resources/css/movie_query.css">
 <!-- Modernizer Script for old Browsers -->
 <script
 	src="${ pageContext.request.contextPath }/resources/js/vendor/modernizr-2.6.2.min.js"></script>
-
-
+<script
+	src="${ pageContext.request.contextPath }/resources/js/httpRequest.js"></script>
+<script
+	src="${ pageContext.request.contextPath }/resources/js/needDate.js"></script>
 <style type="text/css">
 body {
 	background-image:
@@ -115,7 +123,128 @@ body {
 	background-color: #121116a6;
 	padding-bottom: 90px;
 }
+
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: black;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(255, 255, 255, 0.9);
+	padding: 12px 16px;
+	z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}
 </style>
+<script>
+
+window.onload=function(){
+	load_boxOff_list();
+
+    //저장되있는 쿠키 출력
+    for(var i = 0; i < 3 ; i++){
+       var st = getCookie("id"+i);
+       if( st != undefined ){
+          document.getElementById("recent_query_data_"+i).value = st;
+          document.getElementById("recent_query_"+i).innerHTML = st;
+          document.getElementById("del_icon_"+i).style.display = "block";
+       }
+    }
+    
+    if( getCookie("check") == 'yes' ){
+       queryMovie();
+       deleteCookie("check");
+       
+    }
+ };
+ 
+ //날짜 생성 
+ var date = new Date();
+ var today = loadDate()-1; //1일에 문제될수있음 해결법 찾지 못함
+ var releaseStart = releaseDtStart();
+ var releaseEnd = releaseDtEnd();
+
+//------------------rank----------------------------------------------------------
+
+function loading_del(){
+    var loadingText = document.getElementById("loadingText");
+   if( loadingText.children[0] != undefined ){
+      loadingText.removeChild( loadingText.children[0] );                         
+   }
+}
+
+//박스오피스 호출
+function load_boxOff_list(){
+   var url ='http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json';
+   var param = 'key=a7c6bfb2e16d4d1ae14730f90bc6726a&targetDt='+today;
+   sendRequest( url, param, resultFnRank, "GET" );   
+}
+
+
+function resultFnRank(){
+   if( xhr.readyState == 4 && xhr.status == 200 ){
+      var data = xhr.responseText;
+      var json = eval("["+data+"]");   
+      var movie_list =document.getElementById("movie_list");
+      for(var i=0 ; i<json[0].boxOfficeResult.dailyBoxOfficeList.length ; i++){
+
+         var openDts = noFormDates(json[0].boxOfficeResult.dailyBoxOfficeList[i].openDt);
+         document.getElementById("movie_openDt_"+i).value=openDts;//영화 코드(영진위)
+         document.getElementById("movie_movieNm_"+i).value=json[0].boxOfficeResult.dailyBoxOfficeList[i].movieNm;//영화 제목에서 자르기(영진위)
+          document.getElementById("movie_rank_movieNm_"+i).innerHTML=json[0].boxOfficeResult.dailyBoxOfficeList[i].movieNm;;//영화 제목
+          document.getElementById("ticket"+i).href="ticketing.do?m_name="+json[0].boxOfficeResult.dailyBoxOfficeList[i].movieNm;
+          document.getElementById("movie_rank_rank_"+i).innerHTML=json[0].boxOfficeResult.dailyBoxOfficeList[i].rank+" 위";//순위
+          document.getElementById("movie_rank_salesShare_"+i).innerHTML="예매율 : "+json[0].boxOfficeResult.dailyBoxOfficeList[i].salesShare+" %";//예매율
+          document.getElementById("movie_rank_audiAcc_"+i).innerHTML="누적관객수 : "+json[0].boxOfficeResult.dailyBoxOfficeList[i].audiAcc+"명";//누적관객수
+          document.getElementById("movie_rank_openDt_"+i).innerHTML=json[0].boxOfficeResult.dailyBoxOfficeList[i].openDt+"개봉";//개봉일
+      }
+      load_poster();
+      loading_del();      
+   }      
+}
+
+//박스오피스의  DB에서 포스터 가져오기
+function load_poster(){
+   var url2 ="moviePosterLoad.do";
+   var param2 = "";
+   sendRequest( url2, param2 , resultFnPos, "GET");
+}
+
+function resultFnPos(){            
+   if( xhr.readyState == 4 && xhr.status == 200 ){
+      var data = xhr.responseText;
+      var json = eval(data);
+      
+      outer : for( var i = 0; i < json.length ; i++){
+         var jsonLoadMovieNm = json[i].movieNm.trim();
+         var jsonLoadPoster=json[i].posterNm;
+         var jsonLoadTrailer=json[i].trailerSrc;
+         for(var j = 0; j < 10 ; j++){
+             if( jsonLoadMovieNm == document.getElementById("movie_movieNm_"+j).value.trim() ){
+                document.getElementById("movie_rank_poster_"+j+"_img").src=jsonLoadPoster;
+                document.getElementById("movie_trailer_src_"+j).value=jsonLoadTrailer;
+                continue outer;
+             }               
+         }
+      }
+   }
+}
+
+
+function detailRank( releaseDts, title, trailer ){
+   return location.href="movieInfoDetailRank.do?releaseDts="+releaseDts+"&title="+encodeURIComponent(title)+"&trailer="+trailer;
+}
+
+
+
+</script>
 </head>
 <body>
 
@@ -148,14 +277,19 @@ body {
 				role="navigation">
 				<ul id="nav" class="nav navbar-nav">
 					<li class="current"><a href="<%=request.getContextPath()%>/">메인페이지</a></li>
-					<li><a href="#portfolio">영화소개</a></li>
+					<li class="dropdown"><a href="#portfolio">영화소개</a>
+						<div class="dropdown-content">
+							<a href="<%=request.getContextPath()%>/movieReleaseList.do" >영화 검색</a>
+						</div>
+					</li>
 					<li><a href="#pricing">예매페이지</a></li>
-					<li><a href="<%=request.getContextPath()%>/store/storeList">스토어</a></li>
+					<li><a href="#service">스토어</a></li>
 					<li><a href="#service-bottom">공지사항</a></li>
 					<li><a href="#contact">마이페이지</a></li>
 					<li><a href="<%=request.getContextPath()%>/test">테스트페이지</a></li>
 				</ul>
 			</nav>
+
 			<!-- /main nav -->
 		</div>
 
@@ -260,9 +394,10 @@ body {
 
 				<div class="section-title text-center wow fadeInUp">
 					<h1>
-						<strong>주간 영화 관람객 통계</strong>
+						<strong>현재 상영작 BEST4</strong>
 					</h1>
-					<p>주간 전국 영화관 통계입니다</p>
+					<p>전국 영화관 통계입니다</p>
+
 				</div>
 
 				<div class="about-us text-center wow fadeInDown">
@@ -275,55 +410,92 @@ body {
 
 		<!-- End #3  -->
 
-
 		<!--  #count -->
 
 		<section id="count">
 			<div class="container">
 				<div class="row">
+
+
 					<div class="counter-section clearfix">
-						<div class="col-md-3 col-sm-6 col-xs-12 wow fadeInLeft"
-							data-wow-delay="0.5s">
-							<div class="fact-item text-center">
-								<div class="fact-icon">
-									<i class="fa fa-check-square fa-lg"></i>
-								</div>
-								<span data-to="12210000">명</span>
-								<p>아바타:물의길</p>
-							</div>
-						</div>
-						<div class="col-md-3 col-sm-6 col-xs-12 wow fadeInLeft"
-							data-wow-delay="0.8s">
-							<div class="fact-item text-center">
-								<div class="fact-icon">
-									<i class="fa fa-users fa-lg"></i>
-								</div>
-								<span data-to="459239">0</span>
-								<p>범죄도시3</p>
-							</div>
-						</div>
-						<div class="col-md-3 col-sm-6 col-xs-12 wow fadeInLeft"
-							data-wow-delay="1.1s">
-							<div class="fact-item text-center last">
-								<div class="fact-icon">
-									<i class="fa fa-clock-o fa-lg"></i>
-								</div>
-								<span data-to="123225">0</span>
-								<p>슬램덩크</p>
-							</div>
-						</div>
-						<div class="col-md-3 col-sm-6 col-xs-12 wow fadeInLeft"
-							data-wow-delay="1.3s">
-							<div class="fact-item text-center last">
-								<div class="fact-icon">
-									<i class="fa fa-trophy fa-lg"></i>
-								</div>
-								<span data-to="1234412">0</span>
-								<p>서치2</p>
-							</div>
-						</div>
+						<ul id="movie_list">
+
+
+
+
+							<c:forEach var="n" begin="0" end="2" step="1">
+								<li id="movie_list_${n}">
+									<div id="movie_rank_box_one">
+										<input type="hidden" id="movie_openDt_${n}"> <input
+											type="hidden" id="movie_movieNm_${n}"> <input
+											type="hidden" id="ticket${n}">
+
+
+										<div id="movie_rank_poster_${n}">
+											<div class="poster_box">
+												<img id="movie_rank_poster_${n}_img">
+												<div class="poster_hover">
+													<div class="poster_hover_text">
+														<div class="poster_hover_text_1">
+															<a href="javascript:void(0);"
+																onclick="detailRank(movie_openDt_${n}.value, movie_movieNm_${n}.value, movie_trailer_src_${n}.value);">상세보기</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-6 col-sm-6 col-xs-12 wow fadeInLeft"
+											data-wow-delay="0.5s">
+											<div class="movie_title_box">
+												<div>
+													<c:choose>
+														<c:when test="${n eq 0 }">
+															<p style="width: 40px; float: left;"
+																id="movie_rank_rank_${n}"></p>
+															<img style="width: 25px; height: 32px;"
+																src="${ pageContext.request.contextPath }/resources/img/maedal_one.png">
+														</c:when>
+
+														<c:when test="${n eq 1 }">
+															<div style="width: 40px; float: left;"
+																id="movie_rank_rank_${n}"></div>
+															<img style="width: 25px; height: 32px;"
+																src="${ pageContext.request.contextPath }/resources/img/maedal_two.png">
+														</c:when>
+
+														<c:when test="${n eq 2 }">
+															<div style="width: 40px; float: left;"
+																id="movie_rank_rank_${n}"></div>
+															<img style="width: 25px; height: 32px;"
+																src="${ pageContext.request.contextPath }/resources/img/maedal_three.png">
+														</c:when>
+
+														<c:otherwise>
+															<div style="width: 40px; float: left;"
+																id="movie_rank_rank_${n}"></div>
+														</c:otherwise>
+													</c:choose>
+												</div>
+											</div>
+										</div>
+										<br> <br> <br> <br>
+										<div class="fact-item text-center">
+											<span id="movie_rank_movieNm_${n}" style="font-size: 25px;"></span>
+											<div class="movie_rank_infos">
+												<div id="movie_rank_salesShare_${n}"></div>
+												<div id="movie_rank_audiAcc_${n}"></div>
+											</div>
+											<input type="hidden" id="movie_rank_openDt_${n}"> <input
+												type="hidden" id="movie_trailer_src_${n}">
+										</div>
+									</div>
+								</li>
+							</c:forEach>
+						</ul>
 					</div>
 				</div>
+
+
 			</div>
 		</section>
 	</section>

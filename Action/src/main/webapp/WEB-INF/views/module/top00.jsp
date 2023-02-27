@@ -25,18 +25,22 @@
 			<!-- /logo -->
 		</div>
 		<!-- main nav -->
-		<nav class="collapse navigation navbar-collapse navbar-right" 
-			role="navigation">
-			<ul id="nav" class="nav navbar-nav">
-				<li><a href="<%=request.getContextPath()%>/">메인페이지</a></li>
-				<li><a href="#portfolio">영화소개</a></li>
-				<li><a href="#pricing">예매페이지</a></li>
-				<li><a href="#about">스토어</a></li>
-				<li><a href="#service">공지사항</a></li>
-				<li><a href="#">마이페이지</a></li>
-				<li><a href="#contact">테스트페이지</a></li>
-			</ul>
-		</nav>
+		<nav class="collapse navigation navbar-collapse navbar-right"
+				role="navigation">
+				<ul id="nav" class="nav navbar-nav">
+					<li class="current"><a href="<%=request.getContextPath()%>/">메인페이지</a></li>
+					<li class="dropdown"><a href="#portfolio">영화소개</a>
+						<div class="dropdown-content">
+							<a href="<%=request.getContextPath()%>/movieReleaseList.do" >영화 검색</a>
+						</div>
+					</li>
+					<li><a href="#pricing">예매페이지</a></li>
+					<li><a href="#service">스토어</a></li>
+					<li><a href="#service-bottom">공지사항</a></li>
+					<li><a href="#contact">마이페이지</a></li>
+					<li><a href="<%=request.getContextPath()%>/test">테스트페이지</a></li>
+				</ul>
+			</nav>
 	</div>
 </header>
 <br>

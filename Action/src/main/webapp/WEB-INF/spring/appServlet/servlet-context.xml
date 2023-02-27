@@ -42,7 +42,7 @@
 		 @Autowired: 의존관계 설정시 사용. 객체를 자동 주입. Spring 종속 애너테이션.org.springframework.beans.factory.annotation.Autowired
 		 @Inject : @Autowired와 유사. Spring에 종속적이지 않는 애너테이션. javax.inject.Inject 
 	 -->
-	<context:component-scan base-package="com.mycom.action" />
+	<context:component-scan base-package="com.mycom" />
 	
 	<!-- 기본생성자를 이용한 bean객체 생성 -->
 	<!-- bean요소
@@ -69,7 +69,7 @@
 	<interceptors>
 	<!-- <beans:bean class="패키지명.인터셉터클래스명"/> -->
 		<!-- <beans:bean class="com.mycom.app.interceptor.ExInterceptor"/> -->
-		<beans:bean class="com.mycom.action.interceptor.MonitoringInterceptor" />
+		<beans:bean class="com.mycom.interceptor.MonitoringInterceptor" />
 	</interceptors>
 	
 </beans:beans>

@@ -57,26 +57,6 @@ body {
 	background-color: #121116a6;
 	padding-bottom: 90px;
 }
-
-.dropdown {
-	position: relative;
-	display: inline-block;
-}
-
-.dropdown-content {
-	display: none;
-	position: absolute;
-	background-color: black;
-	min-width: 160px;
-	box-shadow: 0px 8px 16px 0px rgba(255, 255, 255, 0.9);
-	padding: 12px 16px;
-	z-index: 1;
-}
-
-.dropdown:hover .dropdown-content {
-	display: block;
-}
-</style>
 </style>
 
 </head>

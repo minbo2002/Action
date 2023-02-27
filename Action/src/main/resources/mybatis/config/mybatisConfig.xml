@@ -7,6 +7,5 @@
   	<typeAliases> 
   		<typeAlias type="java.lang.Integer" alias="Integer"/>
 		<typeAlias type="java.lang.String" alias="String"/>
-  		<typeAlias type="com.mycom.action.model.StoreVO" alias="StoreVO"/>
   	</typeAliases>
   </configuration>
