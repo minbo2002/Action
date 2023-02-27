@@ -30,6 +30,7 @@
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
+		<beans:property name="order" value="0"/>
 	</beans:bean>
 	
 		<!-- Controller파일의 위치를 설정 -->
@@ -53,7 +54,16 @@
 	<!-- com.mycom.app.emp.repository.EmpDAOImpl empDAO = new EmpDAOImpl(); -->
 	<!-- <beans:bean class="com.mycom.app.emp.repository.EmpDAOImpl" id="empDAO" /> -->
 	
-	<!-- 인터셉터(클래스)bean 등록 -->
+		<!-- 일반 파일 업로드 경로 -->
+	<resources location="/resources/imgUpload" mapping="/imgUpload/**"></resources>
+	
+	<beans:bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+		<!-- Encoding 설정 -->
+		<beans:property name="defaultEncoding" value="UTF-8" />
+		<!-- 파일 전체 최대 허용 크기 -->
+		<beans:property name="maxUploadSize" value="104857600" />
+	</beans:bean>
+	
 	
 		<!-- 인터셉터(클래스)bean 등록 -->
 	<interceptors>
