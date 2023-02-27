@@ -77,7 +77,7 @@ body {
 	display: block;
 }
 </style>
-</style>
+
 
 </head>
 <body>
