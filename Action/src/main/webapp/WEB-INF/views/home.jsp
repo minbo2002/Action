@@ -23,8 +23,8 @@ window.onload=function(){
     
     if( getCookie("check") == 'yes' ){
        queryMovie();
-       deleteCookie("check");
-       
+       deleteCookie("check"); 
+        	
     }
  };
  
