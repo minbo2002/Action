@@ -26,7 +26,7 @@ window.onload=function(){
        deleteCookie("check"); 
         	
     }
- };
+ }; 
  
  //날짜 생성 
  var date = new Date();
