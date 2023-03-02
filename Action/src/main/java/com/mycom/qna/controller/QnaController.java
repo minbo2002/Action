@@ -59,8 +59,9 @@ public class QnaController {
 								  HttpServletRequest request) throws Exception {
 
 		HttpSession session = request.getSession();
-		session.setAttribute("AUTHUSER", "adminid");
-		session.setAttribute("AUTHMAIL", "adminid@test.com");
+		session.setAttribute("MEM_NO", 15);
+		session.setAttribute("MEM_ID", "adminid");
+		session.setAttribute("EMAIL", "adminid@test.com");
 		
 		int count = qnaService.countQna();
 		System.out.println("게시물 총 개수 count = " + count);
@@ -108,11 +109,7 @@ public class QnaController {
 	// 글 등록폼
 	@GetMapping("/addForm")
 	public String addQnaForm(HttpServletRequest request) {
-		
-		HttpSession session = request.getSession();
-		session.setAttribute("AUTHUSER", "hongid");
-		session.setAttribute("AUTHMAIL", "adminid@test.com");
-		
+
 		return "qna/addForm";
 	}
 	
@@ -206,7 +203,7 @@ public class QnaController {
   	}
   	
   	// 화면단에 이미지 표현하는 방법1
-  	@RequestMapping(value = "/download1", method=RequestMethod.GET)
+  	@RequestMapping(value = "/download", method=RequestMethod.GET)
   	public void download1(@RequestParam("imageFileName") String imageFileName,
             HttpServletResponse response)throws Exception {
 

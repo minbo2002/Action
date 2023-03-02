@@ -84,36 +84,35 @@
 
 	<h3>detailView.jsp</h3>
 	
-	qnaDetail : ${qnaDetail} <br/>
-	qnaNo: ${qnaDetail.qnaNo}  <br/>
-	title: ${qnaDetail.title}   <br/>
-	content: ${qnaDetail.content}   <br/>
-	writerId: ${qnaDetail.writerId} <br/>
-	regDate: ${qnaDetail.regDate}   <br/>
-	answerStatus: ${qnaDetail.answerStatus} <br/>
-	memNo: ${qnaDetail.memNo}   <br/><br/>
+	qnaDetail : ${qnaDetail} <br/><br/>
+	
+	MEM_NO: ${MEM_NO} <br/>
+	MEM_ID: ${MEM_ID} <br/>
+	EMAIL:  ${EMAIL} <br/><br/>
+	
 	사진들 map: ${map.fileList}  <br/><br/>
-
-	AUTHUSER: ${AUTHUSER}  <br/>
-	AUTHMAIL: ${AUTHMAIL}  <br/>	  
+	  
 	<hr/><br/>
 
 	<c:forEach var="imageFileName" items="${map.fileList}">
-		일반이미지 <img src="${path}/article/download1?imageFileName=${imageFileName.modiFileName}" class="imgSize" />
+		<img src="${path}/qna/download?imageFileName=${imageFileName.fileName}" class="imgSize" />
 	</c:forEach>
 	<br/><br/>
-	
-	<c:forEach var="imageFileName" items="${map.fileList}">
-		썸네일 <img src="${path}/article/download2?imageFileName=${imageFileName.modiFileName}" />
-	</c:forEach>
-	<br/><br/>	
 
 	<hr/>
 
-	<table border="1" style="width: 300px;">
+	<table border="1" style="width: 600px;">
 		<tr>
 			<th>글번호</th>
 			<td>${qnaDetail.qnaNo}</td>
+		</tr>
+		<tr>
+			<th>작성자 아이디</th>
+			<td>${qnaDetail.writerId}</td>
+		</tr>
+		<tr>
+			<th>작성자 이메일</th>
+			<td>${qnaDetail.writerEmail}</td>
 		</tr>
 		<tr>
 			<th>제목</th>
@@ -124,18 +123,18 @@
 			<td>${qnaDetail.content}</td>  
 		</tr>
 		<tr>
-			<th>작성자</th>
-			<td>${qnaDetail.writerId}</td>
-		</tr>
-		<tr>
 			<th>등록일</th>
 			<td>${qnaDetail.regDate}</td>
+		</tr>
+		<tr>
+			<th>답변상태</th>
+			<td>${qnaDetail.answerStatus}</td>
 		</tr>
 		<tr id="i1">
      		<td colspan="2" style="text-align:center;">
      			<input type="button" value="글 수정화면 이동" id="btnUpdate">
 				<input type="button" value="목록" id="btnList">
-				<c:if test="${sessionScope.AUTHUSER eq 'adminid'}">
+				<c:if test="${sessionScope.MEM_ID eq 'adminid'}">
 					<input type="button" value="답변하기" id="btnAnswer">
 				</c:if>
      			<form action="${path}/qna/delete" method="post">

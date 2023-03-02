@@ -28,7 +28,9 @@
 </head>
 <body>
 
-	AUTHUSER:${AUTHUSER} <br/>
+	MEM_NO: ${MEM_NO} <br/>
+	MEM_ID: ${MEM_ID} <br/>
+	EMAIL:  ${EMAIL} <br/><br/>
 
 	map.list: ${map.list}  <br/>
 

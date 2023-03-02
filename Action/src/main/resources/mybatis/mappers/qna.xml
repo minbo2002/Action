@@ -8,7 +8,7 @@
 		<![CDATA[
 			select * from (
 							select rownum as rn, A.* 
-							from (select qna_no as qnaNo, title, content, WRITER_ID as writerId, REGDATE as regDate, ANSWER_STATUS as answerStatus ,mem_no as memNo from qna order by qna_no desc) A
+							from (select qna_no as qnaNo, title, content, WRITER_ID as writerId, WRITER_EMAIL as writerEmail, REGDATE as regDate, ANSWER_STATUS as answerStatus ,mem_no as memNo from qna order by qna_no desc) A
 						   ) where (rn between #{start} and #{end})
 		]]>
 	</select>
@@ -16,7 +16,7 @@
 	<!-- 특정 게시물 조회 -->
 	<select id="qnaDetail" parameterType="int" resultType="qnaDomain">
 		<![CDATA[
-			select qna_no as qnaNo, title, content, WRITER_ID as writerId, REGDATE as regDate, ANSWER_STATUS as answerStatus, mem_no as memNo  
+			select qna_no as qnaNo, title, content, WRITER_ID as writerId, WRITER_EMAIL as writerEmail, REGDATE as regDate, ANSWER_STATUS as answerStatus, mem_no as memNo  
 			from qna
 			where qna_no=#{no}
 		]]>
@@ -28,8 +28,8 @@
 			SELECT seq_qna_no.NEXTVAL FROM DUAL
 		</selectKey>
 		<![CDATA[
-			insert into qna (qna_no, title, content, WRITER_ID, mem_no)
-			values (#{qnaNo}, #{title}, #{content}, #{writerId}, #{memNo})
+			insert into qna (qna_no, title, content, WRITER_ID, WRITER_EMAIL, mem_no)
+			values (#{qnaNo}, #{title}, #{content}, #{writerId}, #{writerEmail}, #{memNo})
 		]]>
 	</insert>
 	

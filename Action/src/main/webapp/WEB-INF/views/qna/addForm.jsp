@@ -50,19 +50,23 @@
 </head>
 <body>
 
-	AUTHUSER:${AUTHUSER}
+	MEM_NO: ${MEM_NO} <br/>
+	MEM_ID: ${MEM_ID} <br/>
+	EMAIL:  ${EMAIL} <br/><br/>
 
 	<h3>addForm.jsp</h3>
 	<hr/>
 	
 	<form action="${path}/qna/addForm" id="addForm" method="post" enctype="multipart/form-data">
 
-		<input type="hidden" name="memberId" value="${sessionScope.AUTHUSER}" >
+		<input type="hidden" name="memNo" value="${sessionScope.MEM_NO}" >
+		<input type="hidden" name="writerId" value="${sessionScope.MEM_ID}" >
+		<input type="hidden" name="writerEmail" value="${sessionScope.EMAIL}" >
 		
 		<table border="1">
 			<tr>
 				<th>작성자 아이디</th>
-				<td>${sessionScope.AUTHUSER}</td>
+				<td>${sessionScope.MEM_ID}</td>
 				</tr>
 			<tr>
 				<th>제목</th>
@@ -92,7 +96,7 @@
 	     		</td>
 	    	</tr>	
 		</table>
-		<a style="">*주의사항 : 파일은 반드시 순서대로 등록해야합니다</a>
+		<a>*주의사항 : 파일은 반드시 순서대로 등록해야합니다</a>
 		
 		<!-- 업로드용 파일찾기 버튼이 동적으로 생성추가되는 영역 -->
 	    <div id="fileArea">
