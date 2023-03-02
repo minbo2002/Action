@@ -9,7 +9,6 @@
 <title>header</title>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css">
-
 <script	src="${ pageContext.request.contextPath }/resources/js/vendor/jquery-1.11.1.min.js"></script>
 <script	src="${ pageContext.request.contextPath }/resources/js/bootstrap.min.js"></script>
 <script	src="${ pageContext.request.contextPath }/resources/js/jquery.nav.js"></script>

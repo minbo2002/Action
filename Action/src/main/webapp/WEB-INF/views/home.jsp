@@ -1,149 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
 <!-- 모바일 유효 -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- 익스플로러 렌더링 엔진 -->
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<!-- 메타 키워드 -->
-<meta name="keywords"
-	content="one page, business template, single page, onepage, responsive, parallax, creative, business, html5, css3, css3 animation">
-<!-- 메타 캐릭터셋 -->
 <meta charset="utf-8">
 
-<!-- 타이틀 -->
 <title>Project</title>
-
-<!-- 폰트 -->
-<link
-	href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700"
-	rel="stylesheet" type="text/css">
-
-<!-- CSS -->
-<!-- Fontawesome -->
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/font-awesome.min.css">
-<!-- Bootstrap -->
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/bootstrap.min.css">
-<!-- Fancybox -->
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/jquery.fancybox.css">
-<!-- owl carousel -->
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/owl.carousel.css">
-<!-- Animate -->
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/animate.css">
-<!-- Main Stylesheet -->
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/main.css">
-<!-- Main Responsive -->
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/responsive.css">
-
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/movie_rank.css">
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/movie_release.css">
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/movie_query.css">
-<!-- Modernizer Script for old Browsers -->
-<script
-	src="${ pageContext.request.contextPath }/resources/js/vendor/modernizr-2.6.2.min.js"></script>
-<script
-	src="${ pageContext.request.contextPath }/resources/js/httpRequest.js"></script>
-<script
-	src="${ pageContext.request.contextPath }/resources/js/needDate.js"></script>
-<style type="text/css">
-body {
-	background-image:
-		url(${ pageContext.request.contextPath }/resources/img/m_list_bg.png);
-}
-
-.tg {
-	border-color: white;
-	border-collapse: collapse;
-	border-spacing: 0;
-	border-collapse: collapse;
-}
-
-.tg td {
-	border-color: border-color:white;
-	border-style: solid;
-	border-width: 1px;
-	font-size: 14px;
-	overflow: hidden;
-	padding: 10px 25px;
-	word-break: normal;
-}
-
-.tg th {
-	border-color: black;
-	border-style: solid;
-	border-width: 1px;
-	font-size: 14px;
-	font-weight: normal;
-	overflow: hidden;
-	padding: 15px 20px;
-	word-break: normal;
-}
-
-.tg .tg-ycr8 {
-	background-color: #ffffff;
-	text-align: left;
-	vertical-align: top
-}
-
-.tg .tg-falg {
-	background-color: #ecf4ff;
-	border-color: #efefef;
-	text-align: center;
-	vertical-align: top
-}
-
-.tg .tg-3xi5 {
-	background-color: #ffffff;
-	border-color: inherit;
-	text-align: center;
-	vertical-align: top
-}
-
-.tg .tg-4udq {
-	background-color: #ecf4ff;
-	border-color: #efefef;
-	text-align: left;
-	vertical-align: top
-}
-
-.bg {
-	background-color: #121116a6;
-	padding-bottom: 90px;
-}
-
-.dropdown {
-	position: relative;
-	display: inline-block;
-}
-
-.dropdown-content {
-	display: none;
-	position: absolute;
-	background-color: black;
-	min-width: 160px;
-	box-shadow: 0px 8px 16px 0px rgba(255, 255, 255, 0.9);
-	padding: 12px 16px;
-	z-index: 1;
-}
-
-.dropdown:hover .dropdown-content {
-	display: block;
-}
-</style>
 <script>
-
 window.onload=function(){
 	load_boxOff_list();
 
@@ -953,6 +817,7 @@ function detailRank( releaseDts, title, trailer ){
 	<!-- End #service-bottom -->
 
 	</section>
+	
 	<!--  End #Portfolio -->
 
 
@@ -1144,46 +1009,11 @@ function detailRank( releaseDts, title, trailer ){
 								value="SEND MESSAGE" id="msg-submit">
 						</form>
 					</div>
-					<!-- end .contact-form -->
 				</div>
-				<!-- .col-md-8 -->
 			</div>
 		</div>
 	</section>
-	<!-- End #5  -->
 
-	<!-- main jQuery -->
-	<script
-		src="${ pageContext.request.contextPath }/resources/js/vendor/jquery-1.11.1.min.js"></script>
-	<!-- Bootstrap -->
-	<script
-		src="${ pageContext.request.contextPath }/resources/js/bootstrap.min.js"></script>
-	<!-- jquery.nav -->
-	<script
-		src="${ pageContext.request.contextPath }/resources/js/jquery.nav.js"></script>
-	<!-- Portfolio Filtering -->
-	<script
-		src="${ pageContext.request.contextPath }/resources/js/jquery.mixitup.min.js"></script>
-	<!-- Fancybox -->
-	<script
-		src="${ pageContext.request.contextPath }/resources/js/jquery.fancybox.pack.js"></script>
-	<!-- Parallax sections -->
-	<script
-		src="${ pageContext.request.contextPath }/resources/js/jquery.parallax-1.1.3.js"></script>
-	<!-- jQuery Appear -->
-	<script
-		src="${ pageContext.request.contextPath }/resources/js/jquery.appear.js"></script>
-	<!-- countTo -->
-	<script
-		src="${ pageContext.request.contextPath }/resources/js/jquery-countTo.js"></script>
-	<!-- owl carousel -->
-	<script
-		src="${ pageContext.request.contextPath }/resources/js/owl.carousel.min.js"></script>
-	<!-- WOW script -->
-	<script
-		src="${ pageContext.request.contextPath }/resources/js/wow.min.js"></script>
-	<!-- theme custom scripts -->
-	<script src="${ pageContext.request.contextPath }/resources/js/main.js"></script>
 </body>
 </html>
 
