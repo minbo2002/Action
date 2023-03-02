@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
@@ -7,44 +6,35 @@
 <head>
 <meta charset="UTF-8">
 <title>Action</title> 
-   <link
-	href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700"
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700"
 	rel="stylesheet" type="text/css">
 
-<!-- CSS -->
-<!-- Fontawesome -->
-<link rel="stylesheet"
-	href="<%=request.getContextPath() %>/resources/css/font-awesome.min.css">
-<!-- Bootstrap -->
-<link rel="stylesheet"
-	href="<%=request.getContextPath() %>/resources/css/bootstrap.min.css">
-<!-- Fancybox -->
-<link rel="stylesheet"
-	href="<%=request.getContextPath() %>/resources/css/jquery.fancybox.css">
-<!-- owl carousel -->
-<link rel="stylesheet"
-	href="<%=request.getContextPath() %>/resources/css/owl.carousel.css">
-<!-- Animate -->
-<link rel="stylesheet"
-	href="<%=request.getContextPath() %>/resources/css/animate.css">
-<!-- Main Stylesheet -->
-<link rel="stylesheet"
-	href="<%=request.getContextPath() %>/resources/css/main.css">
-<!-- Main Responsive -->
-<link rel="stylesheet"
-	href="<%=request.getContextPath() %>/resources/css/responsive.css">
-
-<!-- Modernizer Script for old Browsers -->
-<script
-	src="<%=request.getContextPath() %>/resources/js/vendor/modernizr-2.6.2.min.js"></script>
-   
-   <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/movie_rank.css">
-   <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/movie_release.css">
-   <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/movie_query.css">
-   <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-   <style type="text/css">
-       
-    body {
+<script	src="${ pageContext.request.contextPath }/resources/js/vendor/jquery-1.11.1.min.js"></script>
+<script	src="${ pageContext.request.contextPath }/resources/js/bootstrap.min.js"></script>
+<script	src="${ pageContext.request.contextPath }/resources/js/jquery.nav.js"></script>
+<script src="${ pageContext.request.contextPath }/resources/js/jquery.mixitup.min.js"></script>
+<script	src="${ pageContext.request.contextPath }/resources/js/jquery.fancybox.pack.js"></script>
+<script	src="${ pageContext.request.contextPath }/resources/js/jquery.parallax-1.1.3.js"></script>
+<script	src="${ pageContext.request.contextPath }/resources/js/jquery.appear.js"></script>
+<script	src="${ pageContext.request.contextPath }/resources/js/jquery-countTo.js"></script>
+<script	src="${ pageContext.request.contextPath }/resources/js/owl.carousel.min.js"></script>
+<script	src="${ pageContext.request.contextPath }/resources/js/wow.min.js"></script>
+<script src="${ pageContext.request.contextPath }/resources/js/main.js"></script>
+<script	src="${ pageContext.request.contextPath }/resources/js/vendor/modernizr-2.6.2.min.js"></script>
+<script	src="${ pageContext.request.contextPath }/resources/js/httpRequest.js"></script>
+<script	src="${ pageContext.request.contextPath }/resources/js/needDate.js"></script>
+<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/font-awesome.min.css">
+<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/bootstrap.min.css">
+<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/jquery.fancybox.css">
+<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/owl.carousel.css">
+<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/animate.css">
+<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/main.css">
+<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/responsive.css">
+<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_rank.css">
+<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_release.css">
+<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_query.css">
+<style type="text/css">
+body {
 	background-image:
 		url(${ pageContext.request.contextPath }/resources/img/m_list_bg.png);
 }
@@ -52,14 +42,13 @@
 	background-color: #121116a6;
 	padding-bottom: 90px;
 }
-       
-		#back-top {
+#back-top {
 			position: fixed;
 			bottom: 30px;
 			margin-left: -150px;
 		}
 
-		#back-top a {
+#back-top a {
 			width: 108px;
 			display: block;
 			text-align: center;
@@ -67,8 +56,6 @@
 			text-transform: uppercase;
 			text-decoration: none;
 			color: #bbb;
-			
-			/* transition */
 			-webkit-transition: 1s;
 			-moz-transition: 1s;
 			transition: 1s;
@@ -76,33 +63,26 @@
 		#back-top a:hover {
 			color: #000;
 		}
-		
-		/* arrow icon (span tag) */
-		#back-top span {
+#back-top span {
 			width: 108px;
 			height: 108px;
 			display: block;
 			margin-bottom: 7px;
 			background: #ddd url(up-arrow.png) no-repeat center center;
-			
-			/* rounded corners */
 			-webkit-border-radius: 15px;
 			-moz-border-radius: 15px;
 			border-radius: 15px;
-			
-			/* transition */
 			-webkit-transition: 1s;
 			-moz-transition: 1s;
 			transition: 1s;
 		}
-		#back-top a:hover span {
+#back-top a:hover span {
 			background-color: #777;
 		}
-        
-        #header .nav > h2 > img{ width:100%; height:70px;   
+ #header .nav > h2 > img{ width:100%; height:70px;   
 			animation: main_bg 0.7s linear infinite;
 			animation-iteration-count: 2;}
-		@keyframes main_bg{
+@keyframes main_bg{
 		    50% {opacity:0.2;}
 		    100% {opacity:1;}
 		}
@@ -126,10 +106,6 @@
 	display: block;
 }
 </style>
-   </style>
-   
-   <script type="text/javascript" src="${ pageContext.request.contextPath }/resources/js/httpRequest.js"></script>
-   <script type="text/javascript" src="${ pageContext.request.contextPath }/resources/js/needDate.js"></script>
    <script type="text/javascript">
    
       window.onload=function(){
@@ -202,7 +178,6 @@
       
       //상영 예정작 목록을 가져오는 함수
       function load_release_list(){
-         //192.168.1.101:9090/vs/list.do
          var url ='http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp';
          var param = 'collection=kmdb_new2&detail=Y&ServiceKey=U8ECM752YKB763PI62AV&releaseDts='+releaseStart+'&releaseDte='+releaseEnd+'&listCount=32';
          console.log(releaseStart + "/"+releaseEnd+"/");
@@ -259,7 +234,7 @@
       
       //영화 코드 컨트롤러로 넘기기(영화 상세보기 위해서)
       function detail( movieId, movieSeq, m_name ){
-         return location.href="movieInfoDetail.do?movieId="+movieId+"&movieSeq="+movieSeq+"&m_name="+encodeURIComponent(m_name);
+         return location.href="movieInfoDetail?movieId="+movieId+"&movieSeq="+movieSeq+"&m_name="+encodeURIComponent(m_name);
       }
       
       //------------------rank----------------------------------------------------------
@@ -272,7 +247,6 @@
       
       //박스오피스를 가져오는 함수
       function load_boxOff_list(){
-         //192.168.1.101:9090/vs/list.do
          var url ='http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json';
          var param = 'key=a7c6bfb2e16d4d1ae14730f90bc6726a&targetDt='+today;
          sendRequest( url, param, resultFnRank, "GET" );   
@@ -328,8 +302,8 @@
          }
       }
       
-      function detailRank( releaseDts, title, trailer ){
-         return location.href="movieInfoDetailRank.do?releaseDts="+releaseDts+"&title="+encodeURIComponent(title)+"&trailer="+trailer;
+      function detailRank( releaseDts, titlㅋ ){
+         return location.href="movieInfoDetailRank?releaseDts="+releaseDts+"&title="+encodeURIComponent(title)+"&trailer="+trailer;
       }
       //---------------------query---------------------------------------------------
       //쿠키 생성
@@ -481,7 +455,7 @@
    </script> 
 </head>
 <body>
-   	<%@ include file="../module/top00.jsp"%>
+  
     <div id="container">
 		<div id="container_inner" style="margin-top:5%;">
 			<div id="page_title">전체 영화</div>
@@ -781,6 +755,5 @@
 
    </div>
    
-<%@ include file="../module/bottom00.jsp"%>
 </body>
 </html>

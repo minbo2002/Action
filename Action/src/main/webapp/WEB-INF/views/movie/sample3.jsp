@@ -1,8 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@page import="kr.or.kobis.kobisopenapi.consumer.soap.comm.CodeAPIServiceImplService"%>
+<%-- 
+<%@page import="kr.or.kobis.kobisopenapi.consumer.soap.comm.CodeAPIServiceImplService"%> 
 <%@page import="kr.or.kobis.kobisopenapi.consumer.soap.comm.CodeResultVO"%>
-<%@page import="kr.or.kobis.kobisopenapi.consumer.soap.boxoffice.BoxOfficeAPIServiceImplService"%>
-<%@page import="kr.or.kobis.kobisopenapi.consumer.soap.boxoffice.DailyBoxOfficeResult"%>
+<%@page import="kr.or.kobis.kobisopenapi.consumer.soap.boxoffice.BoxOfficeAPIServiceImplService"%> 
+<%@page import="kr.or.kobis.kobisopenapi.consumer.soap.boxoffice.DailyBoxOfficeResult"%> 
+--%>
 <%@page import="java.util.List"%>
 <%@page import="org.codehaus.jackson.map.ObjectMapper"%>
 <%@page import="java.util.Map"%>
@@ -17,6 +19,7 @@
 
 -->
     <%
+/*
     // 파라메터 설정
 	String targetDt = request.getParameter("targetDt")==null?"20120101":request.getParameter("targetDt");			//조회일자
 	String itemPerPage = request.getParameter("itemPerPage")==null?"10":request.getParameter("itemPerPage");		//결과row수
@@ -34,7 +37,10 @@
 	// KOBIS 오픈 API SOAP Client를 통해 코드 서비스 호출
 	List<CodeResultVO>  codeList = new CodeAPIServiceImplService().getCodeAPIServiceImplPort().searchCodeList(key,"0105000000");
 	request.setAttribute("codeList",codeList);
+	
+*/
     %>
+<!-- 
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -84,3 +90,4 @@
 	</form>
 </body>
 </html>
+ -->

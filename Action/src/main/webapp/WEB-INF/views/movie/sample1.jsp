@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@page import="kr.or.kobis.kobisopenapi.consumer.rest.KobisOpenAPIRestService"%>
+<%-- <%@page import="kr.or.kobis.kobisopenapi.consumer.rest.KobisOpenAPIRestService"%> --%>
 <%@page import="org.codehaus.jackson.map.ObjectMapper"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.HashMap"%>
@@ -11,14 +11,16 @@
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+ 
     <%
+/*
     // 파라메터 설정
 	String targetDt = request.getParameter("targetDt")==null?"20230223":request.getParameter("targetDt");			//조회일자
 	String itemPerPage = request.getParameter("itemPerPage")==null?"10":request.getParameter("itemPerPage");		//결과row수
 	String multiMovieYn = request.getParameter("multiMovieYn")==null?"":request.getParameter("multiMovieYn");		//“Y” : 다양성 영화 “N” : 상업영화 (default : 전체)
 	String repNationCd = request.getParameter("repNationCd")==null?"":request.getParameter("repNationCd");			//“K: : 한국영화 “F” : 외국영화 (default : 전체)
 	String wideAreaCd = request.getParameter("wideAreaCd")==null?"":request.getParameter("wideAreaCd");				//“0105000000” 로서 조회된 지역코드
-
+	
 	// 발급키
 	String key = "5399d2710a38d6a3a4adae22268fff63";
 	// KOBIS 오픈 API Rest Client를 통해 호출
@@ -37,7 +39,9 @@
 	String codeResponse = service.getComCodeList(true,"0105000000");
 	HashMap<String,Object> codeResult = mapper.readValue(codeResponse, HashMap.class);
 	request.setAttribute("codeResult",codeResult);
+	*/
     %>
+     <!--  
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -105,3 +109,4 @@
 	</form>
 </body>
 </html>
+-->

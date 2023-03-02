@@ -61,7 +61,6 @@ body {
 
 </head>
 <body>
-	<%@ include file="../module/top00.jsp"%>
 	
 	
 <section class="bg">
@@ -106,6 +105,5 @@ body {
 	<br>
 	<hr>
 	</section>	
-	<%@ include file="../module/bottom00.jsp"%>
 </body>
 </html>

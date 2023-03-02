@@ -5,27 +5,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>영화 그 이상의 감동. CGW</title>
-
-	<link rel="stylesheet"
-		href="${ pageContext.request.contextPath }/resources/css/movie_detail.css">
-	<style type="text/css">
-		body {
-			background-image: url(${ pageContext.request.contextPath }/resources/img/m_list_bg.png);
-			background-repeat: repeat-y;
-			background-size: 100%;
-		}
-		#header .nav > h2 > img { width:100%; height:70px;   
-			animation: main_bg 0.7s linear infinite;
-			animation-iteration-count: 2;
-			}
-		@keyframes main_bg {
-		    50% {opacity:0.2;}
-		    100% {opacity:1;}
-		}
-	</style>
-
-	<script type="text/javascript" src="${ pageContext.request.contextPath }/resources/js/httpRequest.js"></script>
+<title>detail</title>
+<link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/movie_detail.css">
+<script type="text/javascript" src="${ pageContext.request.contextPath }/resources/js/httpRequest.js"></script>
+<script src="https://code.jquery.com
+/jquery-2.2.4.min.js"></script>
+<style type="text/css">
+body {
+	background-image: url(${ pageContext.request.contextPath }/resources/img/m_list_bg.png);
+	background-repeat: repeat-y;
+	background-size: 100%;
+}
+#header .nav > h2 > img { width:100%; height:70px;   
+	animation: main_bg 0.7s linear infinite;
+	animation-iteration-count: 2;
+	}
+@keyframes main_bg {
+    50% {opacity:0.2;}
+    100% {opacity:1;}
+}
+</style>
 	<script type="text/javascript">
    
       if (self.name != 'reload') {
@@ -196,147 +195,18 @@
       }
       
       
-      //--------------요서부터 review.jsp 합치기 시작--------------------
-      //페이지 한 번만 새로고침 => return history.back(); 일케 돌아오면 새로고침 해줘야 아이디 뜸
-   
-      
-      //로그인했는지 했으면 리뷰를 작성했는지 안했는지
-      function check( ){
-         var id = document.getElementById("id").value.trim();
-         /* var totalTitle = document.getElementById("m_name").value.trim(); */
-         var url ="checkLogin.do?id="+id+"&m_name="+totalTitle.trim();
-         sendRequest(url, null, resultFnReview, "GET");
-      }
-      
-      function resultFnReview(){
-         if(xhr.readyState == 4 && xhr.status == 200){
-            
-            var data = xhr.responseText;
-            
-            if(data == 'no'){
-               alert("로그인 후 이용하세요");   
-               location.href="login_form.do?seat=2";
-            }else if(data == 'already'){
-               alert("이미 리뷰를 작성 하셨습니다.");
-               return;
-               
-               /* movieId=${movieId}&movieSeq=${movieSeq} */
-            }else{
-               if( "${type}" == "1" ){
-                  var totalVar1 = "${movieId}";
-                  var totalVar2 = "${movieSeq}";
-               } else {
-                  //( "${type}" == "2" )
-                  var totalVar1 = "${title}";
-                  var totalVar2 = "${releaseDts}";
-               }
-               window.open('insert_form.do?id='+data+"&m_name="+totalTitle+"&type=${type}&totalVar1="+totalVar1 +"&totalVar2="+totalVar2, '', 'width=665px, height=660px, left=370px,top=50px');         
-            }      
-         }
-      }
-      
-      //...누르면 확인해서 수정or신고 판단
-      function dotcheck(id){
-         var id_u = document.getElementById("id").value.trim();
-         var user = document.getElementById("user_"+id);
-         var user2 = document.getElementById("user2_"+id);
-         var di = document.getElementById("di_" + id);
-         
-         if(id == id_u){
-            user.style.display = 'block';
-            return;
-         }
-         user2.style.display = 'block';
-      }
-      
-      //수정
-      function modify(){
-         var id = document.getElementById("id").value.trim();
-         if( "${type}" == "1" ){
-            var totalVar1 = "${movieId}";
-            var totalVar2 = "${movieSeq}";
-         } else if("${type}" == "2"){
-            //( "${type}" == "2" )
-            var totalVar1 = "${title}";
-            var totalVar2 = "${releaseDts}";
-         }
-         window.open("modify_form.do?id="+id+"&m_name="+totalTitle+"&type=${type}&totalVar1="+totalVar1+"&totalVar2="+totalVar2, "수정하기", "width=665px, height=660px, left=370px, top=50px");
-      }
-      
-      //리뷰 지우고 돌아오기
-      function del(){
-         var id = document.getElementById("id").value.trim();
-         
-         if(!confirm("정말 삭제 하시겠습니까?")){
-            return;
-         }
-         
-         var url = "delete.do";
-         var param = "id=" + id + "&m_name=" + totalTitle;
-         
-         sendRequest(url, param, resultFnReview2, "POST");   
-      }
-      function resultFnReview2(){
-         if(xhr.readyState == 4 && xhr.status == 200){
-            var data = xhr.responseText;
-            
-            if(data == 'no'){
-               alert("삭제 실패");
-            }
-            alert("삭제 성공");
-            location.href = location.href;
-         }
-      }
-      
-      //x누르면 닫게
-      function cancle(id){
-         var user = document.getElementById("user_"+id);
-         var user2 = document.getElementById("user2_"+id);
-         
-         user.style.display="none";
-         user2.style.display="none";
-      }
-    
-
+      //--------------요서부터 리뷰 추가 예정--------------------
+        
+ 
     
    </script>
 
 
 </head>
 <body>
-	<div id="moviewrap">
-		<!-- header -->
-		<div id="header" style="z-index:3;">
-			<div class="gnb">
-				<ul>
-					<c:if test="${empty sessionScope.user}">
-						<li><a href="login_form.do?seat=0">로그인</a></li>
-						<li><a href="register_form.do">회원가입</a></li>
-					</c:if>
-					
-					<c:if test="${not empty sessionScope.user}">
-						<li style='color:white;'><span style='font-weight: bold;'>${ sessionScope.user.name }</span> 님 환영합니다.</li>
-						<li><a href="logout.do">로그아웃</a></li>
-						<li><a href="mypage.do?l_idx=${ sessionScope.user.l_idx }">마이페이지</a></li>
-					</c:if>
-				</ul>
-			</div>
-			
-			<div class="nav">
-				<h1 id="nav_left"><img src="${ pageContext.request.contextPath }/resources/img/logo_test.png" onclick="location.href='/movie/'"></h1>
-				<h2><img src="${ pageContext.request.contextPath }/resources/img/nav_logo.png" onclick="location.href='/movie/'"></h2>
-				<ul>
-					<li><a href="movieReleaseList.do">영화</a></li>
-					<li><a href="ticketing.do">예매</a></li>
-					<li><a href="location.do">영화관</a></li>
-					<li><a href="review.do">커뮤니티</a></li>				
-				</ul>
-				<h1 id="nav_right"><img src="${ pageContext.request.contextPath }/resources/img/logo_test2.png"></h1>
-			</div>
-		</div>
-		<!-- header 끝 -->
 
-		<div id="container">
+
+		<div id="container" style="width: 57%;">
 
 			<div id="contents">
 				<div id="movie_chart">
@@ -405,9 +275,7 @@
 
 						<c:if test="${type eq '2'}">
 							<div id="movie_trailer_box">
-								<iframe id="movie_trailer_frame" width="950" height="534"
-									frameborder="0"
-									allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"allowfullscreen
+								<iframe id="movie_trailer_frame" width="950" height="534" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
 									style="margin-left:71px;"></iframe>
 							</div>
 						</c:if>
@@ -416,187 +284,10 @@
 
 				</div>
 			</div>
-
-			<!-- 여기서 부터 review -->
-			
-			<div id="review_box">
-            <div id="main" align="center">
-
-               <input type="hidden" action="checkLogin.do" method="GET" name="id"id="id" value="${sessionScope.user.id }">
-               
-               <div id="review_title" style="margin-top:20px; padding-left:230px; width:200px">
-                	  실관람 평점<br>
-                  <a id="starno">★</a>
-                  <h3>${avg_f2}</h3>
-                  <h5>/ 5</h5>
-                  <div style="background:url(${pageContext.request.contextPath}/resources/img/circle_black.png); 
-                           background-repeat:no-repeat; background-size:80px;
-                           background-position:64px;
-                           padding-left:6px;
-                           padding-top:7px;">
-                  <h1 class="back_c" style="color:white;">${avg}</h1></div>
-               </div>
-               <div id="review_title2" style="margin-top:87px;">
-                  <c:choose>
-                     <c:when test="${count eq 0}">
-                     <c:if test="${empty title}">아직 ${m_name}에 대한 관람평이 없습니다.</c:if>
-                     <c:if test="${empty m_name}">아직 ${title}에 대한 관람평이 없습니다.</c:if>
-                     </c:when>
-                  
-                     <c:otherwise>
-                        <c:if test="${empty title}">${m_name}에 대한</c:if>
-                           <c:if test="${empty m_name}">${title}에 대한</c:if>
-                           <a id="review_count">${count}</a>개의 이야기가 있어요!
-                        </c:otherwise>
-                     </c:choose>
-                  </div>
-
-               <table width="950px" align="center">
-                  <tr>
-                     <c:choose>
-                        <c:when test="${ empty sessionScope.user }">
-                           <td width="80" align="center">
-                           <img id="no_login_logo" src="${ pageContext.request.contextPath }/resources/img/logo_test.png">
-                           </td>
-                           
-                           <td width="2" class="td_b">
-                           <img src="${pageContext.request.contextPath}/resources/img/td_bg_01.gif">
-                           </td>
-                           
-                           <td align="center">
-                           <a id="review_movie_name">
-                              <c:if test="${empty title}">${m_name}</c:if>
-                                       <c:if test="${empty m_name}">${title}</c:if>
-                           </a>
-                           <a id="review_nono"> 영화는 재미있게 보셨나요? 영화의 어떤 점이 좋았는지 이야기해주세요.</a></td>
-                        </c:when>
-
-                        <c:otherwise>
-                           <td width="80" align="center">${sessionScope.user.id }</td>
-                           <td width="2" class="td_b"><img
-                              src="${pageContext.request.contextPath}/resources/img/td_bg_01.gif">
-                           </td>
-                           <td align="center"><b>${sessionScope.user.id }</b>님, <b>
-                                 <c:if test="${empty title}">
-                                        ${m_name}
-                                     </c:if> <c:if test="${empty m_name}">
-                                 ${title}
-                              </c:if>
-                           </b> 영화는 재미있게 보셨나요? 영화의 어떤 점이 좋았는지 이야기해주세요.</td>
-                        </c:otherwise>
-                     </c:choose>
-
-                     <!-- <td width="120" onclick="write();"> -->
-                     <td width="120" class="new" onclick="check();">
-                        <!-- <td width="120" onclick="location.href='insert_form.do'"> -->
-                        <img src="${pageContext.request.contextPath}/resources/img/write1.png" class="write"> 관람평쓰기
-                     </td>
-                  </tr>
-               </table>
-
-
-					<table width="950" align="center">
-						<tr class="table_head">
-
-							<th width="76" align="center">아이디</th>
-
-							<th width="260" align="center" >영화</th>
-
-							<th width="40" class="td_b" align="center">평점</th>
-
-
-							<th width="600" class="td_b" align="center">관람평</th><!-- <pre>관람평</pre> -->
-
-							<th width="76" class="td_b" align="center"></th>
-
-						</tr>
-
-						<c:forEach var="vo" items="${ list }">
-							<tr>
-								<td colspan="11" align="right">
-									<div class="user" id="user_${vo.id}" align="right"
-										style="position: absolute; left:830px;  background:url(${pageContext.request.contextPath}/resources/img/text.png); background-size:200px 100px;
-                        				background-position:center; background-repeat: no-repeat; display:none;">
-										<input width="15" height="15" type="image" name="button"
-											class="close" src="${pageContext.request.contextPath}/resources/img/close.png"
-											onclick="cancle('${vo.id}');">
-										&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>&nbsp&nbsp&nbsp&nbsp&nbsp
-										<input type="button" value="수정" onclick="modify();">
-										<input type="button" value="삭제" onclick="del();">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>
-										<br>
-									</div>
-
-									<div name="no" class="user2" id="user2_${vo.id}"
-										style="background:url(${pageContext.request.contextPath}/resources/img/text.png); background-size:320px 110px;
-                        				background-position:center; background-repeat: no-repeat; font-size:12px; position: absolute; left:760px; text-align:center; display:none;">
-										<br> &nbsp&nbsp&nbsp스포일러 및 욕설/비방하는
-										<input width="15" height="15" type="image" name="button" class="close"
-											src="${pageContext.request.contextPath}/resources/img/close.png"
-											onclick="cancle('${vo.id}');">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>
-											&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp내용이 있습니까? &nbsp
-										<a href="#">신고</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>
-										<br>
-									</div>
-								</td>
-							</tr>
+</div>
+			<!-- 여기서 부터 review 추가 예정 -->
 	
-							<tr class="table_box">
-								<td width="76" align="center">${vo.id }</td>
-								
-								<td width="260" align="center">${vo.m_name }</td>
-	
-								<td width="40" class="td_b" align="center">${vo.scope }</td>
 
-								<td width="600" overflow:hidden; class="td_b" align="center">${vo.content }</td>
-
-								<td width="76" class="td_b" align="center">
-								<input width="15"
-									height="15" type="image" name="button"
-									src="${pageContext.request.contextPath}/resources/img/dot.png"
-									onclick="dotcheck('${vo.id}');"> <br>
-								</td>
-							</tr>
-					
-							<tr>
-								<td colspan="11" align="right">${vo.regdate}</td>
-							</tr>
-
-							<tr></tr>
-							<tr></tr>
-
-						</c:forEach>
-						
-
-						<tr>
-							<td colspan="11" align="center">${ pageMenu }</td>
-						</tr>
-
-						<tr height="20"></tr>
-
-					</table>
-				</div>
-			</div>
-		</div>
-
-	</div>
-	
-	<!-- footer -->
-	<div id="footer">
-		<div class="f_bg">
-			<img
-				src="${ pageContext.request.contextPath }/resources/img/footer_bg.png">
-		</div>
-		<div class="f_txt">
-			<p class="f_logo">
-				<img src="${ pageContext.request.contextPath }/resources/img/logo_test.png">
-			</p>
-			<address>서울특별시 마포구 서강로 136 아이비티워 2층,3층</address>
-			<p class="team1">2조 Spring Project Movie</p>
-			<p class="team2">민형, 성수, 우성, 선영, 원경, 유진</p>
-		</div>
-	</div>
-
-	<!-- footer 끝 -->
 
 </body>
 </html>

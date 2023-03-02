@@ -81,14 +81,10 @@ body {
 
 </head>
 <body>
-	<%@ include file="../module/top00.jsp"%>
-	
-	
+
 <section class="bg">
 	<hr>
-	
 	<br>
-	<h1>1. <pre>상대경로 = ${pageContext.request.requestURI}</pre></h1>
 	<br>
 	<h1>2.</h1>
 	<br>
@@ -126,6 +122,5 @@ body {
 	<br>
 	<hr>
 	</section>	
-	<%@ include file="../module/bottom00.jsp"%>
 </body>
 </html>
