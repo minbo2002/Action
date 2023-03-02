@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="<%=request.getContextPath()%>"></c:set>     
 <!DOCTYPE html>
 <html>
@@ -24,26 +25,29 @@
 		listReply("1");  // 기존의 댓글을 나오게하기
 		
 		$("#btnUpdate").click(function(no) {
-
 			location.href = "${path}/qna/updateForm?qnaNo=${qnaDetail.qnaNo}";
-
 		});
 		
 		$("#btnList").click(function(no) {
-
 			location.href = "${path}/qna/list";
-
 		});
 		
 		$("#btnDelete").click(function() {
-			
-			location.href = "${path}/qna/delete";
+			let d = confirm('삭제하시겠습니까?');
+			if(d){
+				$("#deleteFrm").submit();
+			}else{
+				return false;
+			}
 		});
 		
 		$("#btnAnswer").click(function() {
-			
-			location.href = "${path}/qna/sendEmail";
-			
+			let a = confirm('답변하시겠습니까?');
+			if(a){
+				$("#answerFrm").submit();
+			}else{
+				return false;
+			}
 		});
 
 		$("#btnReply").click(function() {
@@ -124,7 +128,7 @@
 		</tr>
 		<tr>
 			<th>등록일</th>
-			<td>${qnaDetail.regDate}</td>
+			<td><fmt:formatDate value="${qnaDetail.regDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 		</tr>
 		<tr>
 			<th>답변상태</th>
@@ -132,14 +136,24 @@
 		</tr>
 		<tr id="i1">
      		<td colspan="2" style="text-align:center;">
-     			<input type="button" value="글 수정화면 이동" id="btnUpdate">
-				<input type="button" value="목록" id="btnList">
-				<c:if test="${sessionScope.MEM_ID eq 'adminid'}">
-					<input type="button" value="답변하기" id="btnAnswer">
+     			<c:choose>
+     				<c:when test="${qnaDetail.answerStatus eq 'N' && sessionScope.MEM_ID eq 'adminid'}">
+     					<form action="${path}/qna/sendEmail" method="get" id="answerFrm">
+							<input type="hidden" name="writerEmail" value="${qnaDetail.writerEmail}">
+							<input type="button" id="btnAnswer" value="답변하기">
+						</form> 
+     				</c:when>
+     				<c:when test="${qnaDetail.answerStatus eq 'Y'}">
+     					<input type="button" value="답변완료" readonly="readonly" style="color: red;" />
+     				</c:when>
+     			</c:choose>
+				<c:if test="${qnaDetail.answerStatus eq 'N'}">
+					<input type="button" value="글 수정화면 이동" id="btnUpdate">
 				</c:if>
-     			<form action="${path}/qna/delete" method="post">
+				<input type="button" value="목록으로 이동" id="btnList">
+     			<form action="${path}/qna/delete" method="post" id="deleteFrm">
 					<input type="hidden" name="qnaNo" value="${qnaDetail.qnaNo}">
-					<input type="submit" value="삭제">
+					<input type="button" id="btnDelete" value="삭제">
 				</form>
      		</td>
 	    </tr>	
