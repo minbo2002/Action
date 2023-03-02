@@ -302,7 +302,7 @@ body {
          }
       }
       
-      function detailRank( releaseDts, titlㅋ ){
+      function detailRank( releaseDts, title, trailer ){
          return location.href="movieInfoDetailRank?releaseDts="+releaseDts+"&title="+encodeURIComponent(title)+"&trailer="+trailer;
       }
       //---------------------query---------------------------------------------------
