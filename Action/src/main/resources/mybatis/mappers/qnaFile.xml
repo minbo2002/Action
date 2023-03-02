@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.qnaFile">
+
+	<select id="qnaFileList" parameterType="int" resultType="qnaFileDomain">
+		<![CDATA[
+			select FILE_NO as fileNo, FILE_ORI_NAME as fileOriName, FILE_NAME as fileName, 
+			FILE_SIZE as fileSize, REGDATE as regDate, QNA_NO as qnaNo
+			from QNA_FILE 
+			where QNA_NO=#{no}
+		]]>
+	</select>
+
+</mapper>
