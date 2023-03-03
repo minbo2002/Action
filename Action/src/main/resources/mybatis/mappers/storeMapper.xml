@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="storeMapper">
+	<!-- 스토어 -->
+	<delete id="storeDelete" parameterType="StoreVO">
+		delete from store	
+		where store_num=#{store_num}
+	</delete>
+
+  	<update id="storeUpdate" parameterType="StoreVO">
+  		update store
+  		set store_name=#{store_name}, store_price=#{store_price}, store_note=#{store_note}, store_package=#{store_package}, store_img=#{store_img}, store_thumbimg=#{store_thumbimg}
+  		where store_num=#{store_num}
+  	</update>
+  	
+  	<insert id="storeWrite" parameterType="StoreVO">
+  		insert into store
+  		values(seq_store.nextval, #{store_name}, #{store_price},0,#{store_note}, #{store_package}, #{store_img}, #{store_thumbimg})
+  	</insert>
+  	
+  	<select id="storeSelect" resultType="StoreVO" parameterType="StoreVO">
+  		select * from store
+  		where store_num=#{store_num}
+  	</select>
+  	
+  	<select id="storeList" resultType="StoreVO" parameterType="StoreVO">
+  		select * from store
+  		where store_package=#{store_package}
+  		order by store_num
+  	</select>
+</mapper>

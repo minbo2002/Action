@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- 루트컨텍스트 설정 : 모든  Servlets and Filters가 공유할 수 있는 루트 스프링 컨테이너 설정
+		  주로 공통 bean(Service, DAO, Log등), 기타 설정-->	
+</beans>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!-- 컨트롤러 매핑 설정 
+	 예) @Controller, @RequestMapping와 같은 애너테이션을 사용할 때 필요한 빈 객체들을 자동으로 등록-->
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+
+<!-- 정적자원들 설정(이미지들,css파일,js파일들) 
+	     mapping="/resources/**"  실제web문서상의 소스부분
+	     location="/resources/"   정적자원들이 위치하는 경로  -->
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<!-- view설정 
+		 - 컨트롤러에서 설정한 view이름으로  실제 사용할 뷰를 선택하는 ViewResolver객체를 설정
+		   prefix+view명+suffix
+		 - 예) 컨트롤러에서 설정한 view이름이 "home"이라면
+		 	   prefix+view명+suffix  -->
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+		<beans:property name="order" value="2"/>
+	</beans:bean>
+	
+	
+		<!-- tiles 관련 bean 등록 -->
+	<beans:bean id="viewResolver"
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView" />
+		<beans:property name="order" value="1" />
+	</beans:bean>
+	
+	
+	<!-- tiles설정 -->
+	<beans:bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+		<beans:property name="definitions">
+			<beans:list>
+				<beans:value>classpath:tiles/*.xml</beans:value>
+			</beans:list>
+		</beans:property>
+		<beans:property name="preparerFactoryClass" value="org.springframework.web.servlet.view.tiles2.SpringBeanPreparerFactory" />
+	</beans:bean>
+	
+		<!-- Controller파일의 위치를 설정 -->
+	<!-- 참고   component-scan요소가 자동으로 인식하는 애너테이션
+		 @Controller : Controller역할
+		 @Service : Service역할
+		 @Repository : DB작업 
+		 @Required : 필수 property임을 명시
+		 @Autowired: 의존관계 설정시 사용. 객체를 자동 주입. Spring 종속 애너테이션.org.springframework.beans.factory.annotation.Autowired
+		 @Inject : @Autowired와 유사. Spring에 종속적이지 않는 애너테이션. javax.inject.Inject 
+	 -->
+	<context:component-scan base-package="com.mycom" />
+	
+	<!-- 기본생성자를 이용한 bean객체 생성 -->
+	<!-- bean요소
+		 class="패키지명.클래스명"
+		 id="id명" -->
+	<!-- com.mycom.app.emp.service.EmpService EmpServier empService = new EmpServiceImpl(); -->
+	<!-- <beans:bean class="com.mycom.app.emp.service.EmpServiceImpl" id="empService"/> -->
+	
+	<!-- com.mycom.app.emp.repository.EmpDAOImpl empDAO = new EmpDAOImpl(); -->
+	<!-- <beans:bean class="com.mycom.app.emp.repository.EmpDAOImpl" id="empDAO" /> -->
+	
+		<!-- 일반 파일 업로드 경로 -->
+	<resources location="/resources/imgUpload" mapping="/imgUpload/**"></resources>
+	
+	<beans:bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+		<!-- Encoding 설정 -->
+		<beans:property name="defaultEncoding" value="UTF-8" />
+		<!-- 파일 전체 최대 허용 크기 -->
+		<beans:property name="maxUploadSize" value="104857600" />
+	</beans:bean>
+	
+	
+		<!-- 인터셉터(클래스)bean 등록 -->
+	<interceptors>
+	<!-- <beans:bean class="패키지명.인터셉터클래스명"/> -->
+		<!-- <beans:bean class="com.mycom.app.interceptor.ExInterceptor"/> -->
+		<beans:bean class="com.mycom.interceptor.MonitoringInterceptor" />
+	</interceptors>
+	
+</beans:beans>
