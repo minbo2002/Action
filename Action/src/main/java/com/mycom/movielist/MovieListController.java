@@ -18,7 +18,7 @@ public class MovieListController {
 	HttpServletResponse response;
 
 	
-	@RequestMapping ("/movieReleaseList" )
+	@RequestMapping ("/movieReleaseList" ) 
 	public String movieReleaseList() {
 		return "movie/movie_list";
 	}
