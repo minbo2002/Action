@@ -17,10 +17,10 @@
 							where 1=1
 						</when>
 						<when test="search_option == 'all'">
-							where ${search_option} like '%'||#{keyword}||'%'
+							where (writer_id like '%'||#{keyword}||'%' or content like '%'||#{keyword}||'%' or title like '%'||#{keyword}||'%')
 						</when>
 						<when test="search_option == 'writer_id'">
-							where (writer_id like '%'||#{keyword}||'%' or content like '%'||#{keyword}||'%' or title like '%'||#{keyword}||'%')
+							where writer_id like '%'||#{keyword}||'%'
 						</when>
 						<when test="search_option == 'title'">
 							where title like '%'||#{keyword}||'%'
@@ -98,10 +98,10 @@
 					where 1=1
 				</when>
 				<when test="search_option == 'all'">
-					where ${search_option} like '%'||#{keyword}||'%'
+					where (writer_id like '%'||#{keyword}||'%' or content like '%'||#{keyword}||'%' or title like '%'||#{keyword}||'%')
 				</when>
 				<when test="search_option == 'writer_id'">
-					where (writer_id like '%'||#{keyword}||'%' or content like '%'||#{keyword}||'%' or title like '%'||#{keyword}||'%')
+					where writer_id like '%'||#{keyword}||'%'
 				</when>
 				<when test="search_option == 'title'">
 					where title like '%'||#{keyword}||'%'
