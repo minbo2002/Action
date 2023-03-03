@@ -33,8 +33,6 @@
 		<input type="hidden" value="${list.store_num}" class="input_num">
 		<input type="hidden" value="1" id="input_camount${list.store_num}">
 		
-		<div class="hover_wrap"></div>
-		<a class="btn_category_product_cart">장바구니</a>
 		
 		<div class="hover_wrap hover_wrap2"></div>
 		<a class="btn_category_product_buy" id="btn_buy${list.store_num}">바로구매</a>

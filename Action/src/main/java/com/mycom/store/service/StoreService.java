@@ -27,6 +27,7 @@ public class StoreService {
 /////* 스토어 */////////////////////////////////////////////////
 	//상품삭제
 	public int storeDelete(StoreVO storeVO, HttpServletRequest request) throws Exception {
+		
 		String realPath = request.getSession().getServletContext().getRealPath("resources/upload/store");
 		StoreVO storeVO2 = storeDAO.storeSelect(storeVO);
 		
