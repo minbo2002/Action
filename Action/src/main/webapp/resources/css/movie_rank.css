@@ -37,8 +37,13 @@
 #movie_rank_box_one{
    margin-top:20px;
    margin-right:45px;
+<<<<<<< HEAD
    width:230px;
    height:450px;
+=======
+   width:345px;
+   height:200px;
+>>>>>>> branch 'main' of https://github.com/DoyoSaee/Action
    float:left;
 
 }
