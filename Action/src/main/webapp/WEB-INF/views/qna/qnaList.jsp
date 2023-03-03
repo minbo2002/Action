@@ -14,14 +14,15 @@
 	
 	<script>
 		$(document).ready(function() {
-			
 			$("#btnWrite").click(function() {
 				location.href="${path}/qna/addForm";
 			});
 		});	
 		
 		function list(page) {  // 요청한 page 번호
-			location.href="${path}/qna/list?curPage="+page;
+			location.href="${path}/qna/list?curPage="+page
+													 +"&search_option=${map.search_option}"
+													 +"&keyword=${map.keyword}";
 		}
 	</script>
 	
@@ -34,12 +35,61 @@
 	EMAIL:  ${EMAIL} <br/><br/>
 
 	map.list: ${map.list}  <br/>
+	map.search_option: ${map.search_option}  <br/>
+	
+	<form name="form1" method="post" action="${path}/qna/list">
+		<select name="search_option">
+			<c:choose>
+				<c:when test="${map.search_option == ''}">
+					<option value="" selected> 선택없음 </option>
+					<option value="all"> 작성자Id+내용+제목 </option>
+					<option value="writer_id"> 작성자Id </option>
+					<option value="title"> 제목 </option>
+					<option value="content"> 내용 </option>
+				</c:when>
+				<c:when test="${map.search_option == 'all'}">
+					<option value=""> 선택없음 </option>
+					<option value="all" selected> 작성자Id+내용+제목 </option>
+					<option value="writer_id"> 작성자Id </option>
+					<option value="title"> 제목 </option>
+					<option value="content"> 내용 </option>
+				</c:when>
+				<c:when test="${map.search_option == 'writer_id'}">
+					<option value=""> 선택없음 </option>
+					<option value="all"> 작성자Id+내용+제목 </option>
+					<option value="writer_id" selected> 작성자Id </option>
+					<option value="title"> 제목 </option>
+					<option value="content"> 내용 </option>
+				</c:when>
+				<c:when test="${map.search_option == 'title'}">
+					<option value=""> 선택없음 </option>
+					<option value="all"> 작성자Id+내용+제목 </option>
+					<option value="writer_id"> 작성자Id </option>
+					<option value="title" selected> 제목 </option>
+					<option value="content"> 내용 </option>
+				</c:when>
+				<c:when test="${map.search_option == 'content'}">
+					<option value="all"> 작성자Id+내용+제목 </option>
+					<option value="writer_id"> 작성자Id </option>
+					<option value="title"> 제목 </option>
+					<option value="content" selected> 내용 </option>
+				</c:when>
+			</c:choose>
+		</select>
+		
+		<input name="keyword" value="${map.keyword}">
+		<input type="submit" value="조회">
+	</form>
+	</br></br>
+	
+	현재  ${map.count}개의 문의글이 있습니다.
+	<input type="button" value="글쓰기" id="btnWrite">  
 
 	<table border="1" style="width: 600px;">    
 		<tr>  
 			<td>게시판번호</td>  
 			<td>제목</td>  
-			<td>작성자</td>  
+			<td>작성자ID</td>  
 			<td>작성일</td>
 			<td>답변여부</td>
 		</tr>   
@@ -50,10 +100,13 @@
 				<c:if test="${row.secret eq 'Y'}">
 					<c:choose>
 						<c:when test="${MEM_GRADE eq '999' || row.writerId eq MEM_ID}">
-							<td><a href="${path}/qna/detail?qnaNo=${row.qnaNo}&curPage=${map.pager.curPage}">${row.title}</a></td>
+							<td><a href="${path}/qna/detail?qnaNo=${row.qnaNo}
+											&curPage=${map.pager.curPage}
+											&search_option=${map.search_option}
+											&keyword=${map.keyword}">${row.title}</a></td>
 						</c:when>
 						<c:otherwise> 
-							<td>비밀글은 작성자와 관리자만 볼 수 있습니다.</td>						
+							<td>비밀글은 작성자와 관리자만 볼 수 있습니다.</td>
 						</c:otherwise>
 					</c:choose>
 				</c:if>
@@ -98,7 +151,6 @@
 			</td>
 		</tr>
 	</table>
-	<input type="button" value="글쓰기" id="btnWrite">  
 
 </body>
 </html>

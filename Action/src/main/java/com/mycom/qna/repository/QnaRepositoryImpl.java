@@ -17,16 +17,31 @@ public class QnaRepositoryImpl implements QnaRepository {
 
 	private final SqlSessionTemplate sqlSession;
 	
+//	@Override
+//	public List<Qna> list(int start, int end) {
+//		
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		map.put("start", start);
+//		map.put("end", end);
+////		map.put("qna", qna);
+//		
+//		return sqlSession.selectList("mapper.qna.qnaList", map);
+//	}
+	
+
 	@Override
-	public List<Qna> list(int start, int end, Qna qna) {
+	public List<Qna> list(int start, int end, String search_option, String keyword) {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("start", start);
 		map.put("end", end);
-		map.put("qna", qna);
+		map.put("search_option", search_option);
+		map.put("keyword", keyword);
+//		map.put("qna", qna);
 		
 		return sqlSession.selectList("mapper.qna.qnaList", map);
 	}
+
 
 	@Override
 	public Qna getQnaDetail(int no) {
@@ -53,9 +68,13 @@ public class QnaRepositoryImpl implements QnaRepository {
 	}
 
 	@Override
-	public int countQna() {
+	public int countQna(String search_option, String keyword) {
 		
-		return sqlSession.selectOne("mapper.qna.countQna");
+		Map<String, String> map = new HashMap<>();
+		map.put("search_option", search_option);
+		map.put("keyword", keyword);
+		
+		return sqlSession.selectOne("mapper.qna.countQna", map);
 	}
 
 	@Override

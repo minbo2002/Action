@@ -23,7 +23,7 @@
 	$(function() {
 
 		$("#btnUpdate").click(function() {
-			location.href = "${path}/qna/updateForm?qnaNo=${qnaDetail.qnaNo}";
+			location.href = "${path}/qna/updateForm?qnaNo=${qnaDetail.qnaNo}&curPage=${curPage}";
 		});
 		
 		$("#btnList").click(function() {

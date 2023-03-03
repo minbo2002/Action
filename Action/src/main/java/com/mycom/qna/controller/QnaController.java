@@ -51,12 +51,58 @@ public class QnaController {
 	private final Logger logger = LoggerFactory.getLogger(QnaController.class);
 	private static final String IMAGE_REPO_PATH = "C:\\upload\\tmp";  
 	
+	/*
 	// 전체 list
 	@RequestMapping("/list")
 	public String getQnaList(@RequestParam(defaultValue="1") int curPage,
-								  Qna qna, 
-								  Model model,
-								  HttpServletRequest request) throws Exception {
+							 Model model,
+							 HttpServletRequest request) throws Exception {
+
+		HttpSession session = request.getSession();
+
+//			session.setAttribute("MEM_NO", 15);
+//			session.setAttribute("MEM_ID", "adminid");
+//			session.setAttribute("EMAIL", "adminid@abc.com");
+//			session.setAttribute("MEM_GRADE", 999);
+		session.setAttribute("MEM_NO", 16);
+		session.setAttribute("MEM_ID", "hongid");
+		session.setAttribute("EMAIL", "hongid@abc.com");
+		session.setAttribute("MEM_GRADE", 0);
+//			session.setAttribute("MEM_NO", 17);
+//			session.setAttribute("MEM_ID", "kimid");
+//			session.setAttribute("EMAIL", "kimid@abc.com");
+//			session.setAttribute("MEM_GRADE", 0);
+		
+		int count = qnaService.countQna();
+		System.out.println("게시물 총 개수 count = " + count);
+		
+		Pager pager = new Pager(count, curPage);
+		
+		int start=pager.getPageBegin();
+		int end=pager.getPageEnd();
+		System.out.println("start="+start+",  end="+end);
+		
+		List<Qna> list = qnaService.list(start, end);
+		System.out.println("list="+list.toString());
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("list", list);
+		map.put("count", count);
+		map.put("pager", pager);
+		
+		model.addAttribute("map", map);
+		
+		return "qna/qnaList";
+	}
+	*/
+
+	// 전체 list
+	@RequestMapping(value="/list", method = {RequestMethod.GET, RequestMethod.POST})
+	public String getQnaList(@RequestParam(defaultValue="1") int curPage,
+							 @RequestParam(defaultValue="") String search_option,
+							 @RequestParam(defaultValue="") String keyword,
+							 Model model,
+							 HttpServletRequest request) throws Exception {
 
 		HttpSession session = request.getSession();
 
@@ -73,32 +119,34 @@ public class QnaController {
 //		session.setAttribute("EMAIL", "kimid@abc.com");
 //		session.setAttribute("MEM_GRADE", 0);
 		
-		int count = qnaService.countQna();
+		int count = qnaService.countQna(search_option, keyword);
 		System.out.println("게시물 총 개수 count = " + count);
 		
 		Pager pager = new Pager(count, curPage);
 		
 		int start=pager.getPageBegin();
 		int end=pager.getPageEnd();
+		System.out.println("start="+start+",  end="+end+",   search_option="+search_option+",   keyword="+keyword);
 		
-		List<Qna> list = qnaService.list(start, end, qna);
+		List<Qna> list = qnaService.list(start, end, search_option, keyword);
 		System.out.println("list="+list.toString());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("list", list);
 		map.put("count", count);
+		map.put("search_option", search_option);
+		map.put("keyword", keyword);
 		map.put("pager", pager);
 		
 		model.addAttribute("map", map);
 		
 		return "qna/qnaList";
 	}
-	
+		
 	// 게시판 상세내용 조회
 	@GetMapping("/detail")
 	public String getQnaDetail(@RequestParam("qnaNo") int no, 
-							   @RequestParam int curPage,	
-			Model model) throws Exception {
+							   @RequestParam int curPage, Model model) throws Exception {
 		
 		// 게시판 상세내용 조회
 		Qna qnaDetail = qnaService.getQnaDetail(no);
@@ -250,7 +298,8 @@ public class QnaController {
 	
 	// 글 수정폼
 	@GetMapping("/updateForm")
-	public String updateQnaForm(@RequestParam("qnaNo") int no, Model model) throws Exception {
+	public String updateQnaForm(@RequestParam("qnaNo") int no, 
+								@RequestParam int curPage, Model model) throws Exception {
 		
 		// 특정 게시물 조회
 		Qna qnaDetail = qnaService.getQnaDetail(no);
@@ -265,7 +314,7 @@ public class QnaController {
 		map.put("fileList", fileList);
 
 		model.addAttribute("map", map);
-		
+		model.addAttribute("curPage", curPage);
 		model.addAttribute("qnaDetail", qnaDetail);
 		
 		return "qna/updateForm";

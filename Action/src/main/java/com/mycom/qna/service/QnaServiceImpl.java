@@ -15,11 +15,19 @@ public class QnaServiceImpl implements QnaService {
 
 	private final QnaRepository qnaRepository;
 	
+//	@Override
+//	public List<Qna> list(int start, int end) throws Exception {
+//		
+//		return qnaRepository.list(start, end);
+//	}
+	
+
 	@Override
-	public List<Qna> list(int start, int end, Qna qna) throws Exception {
+	public List<Qna> list(int start, int end, String search_option, String keyword) throws Exception {
 		
-		return qnaRepository.list(start, end, qna);
+		return qnaRepository.list(start, end, search_option, keyword);
 	}
+
 
 	@Override
 	public Qna getQnaDetail(int no) throws Exception {
@@ -46,9 +54,9 @@ public class QnaServiceImpl implements QnaService {
 	}
 
 	@Override
-	public int countQna() {
+	public int countQna(String search_option, String keyword) {
 		
-		return qnaRepository.countQna();
+		return qnaRepository.countQna(search_option, keyword);
 	}
 
 	@Override

@@ -26,7 +26,7 @@
 	$(function() {
 		$("#btnlist").click(function(no) {
 
-			location.href = "${path}/qna/list";
+			location.href = "${path}/qna/list?curPage=${curPage}";
 
 		});
 	});
@@ -91,7 +91,7 @@
 	     		<td colspan="2" style="text-align:center;">
 	     			<input type="reset" value="취소">
 	     			<input type="submit" value="수정하기" />
-	     			<input type="button" value="목록" id="btnlist">
+	     			<input type="button" value="목록으로 이동" id="btnlist">
 	     		</td>
 	    	</tr>
 		</table>

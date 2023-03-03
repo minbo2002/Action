@@ -21,7 +21,7 @@ public class Pager {
 	// [이전] blockBegin 42 43 44 45 46 47 48 49 blockEnd [다음]
 	private int blockBegin;  // 현재 페이지 블록의 시작번호
 	private int blockEnd;	  // 현재 페이지 블록의 끝번호
-	
+
 	// 생성자
 	public Pager(int count, int curPage) {  // Pager(레코드 개수, 현재 페이지 번호)
 		
