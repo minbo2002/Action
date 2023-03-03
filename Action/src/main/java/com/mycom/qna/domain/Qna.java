@@ -18,5 +18,6 @@ public class Qna {
 	private String writerEmail;   // 작성자 이메일
 	private Date regDate;		  // 등록날짜	
 	private String answerStatus;  // 답변상태
+	private String secret;		  // 비공개글 여부	
 	private String memNo;  		  // (FK)	
 }

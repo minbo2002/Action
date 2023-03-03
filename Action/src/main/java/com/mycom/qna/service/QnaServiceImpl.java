@@ -66,4 +66,10 @@ public class QnaServiceImpl implements QnaService {
 		qnaRepository.fileUpload(fileMap);
 		
 	}
+
+	@Override
+	public int updateStatus(int qnaNo) throws Exception {
+
+		return qnaRepository.updateStatus(qnaNo);
+	}
 }

@@ -20,4 +20,6 @@ public interface QnaRepository {
 	public int countQna();  // 게시판 전체개수
 	
 	public void fileUpload(Map<String, Object> fileMap);  // 파일등록
+	
+	public int updateStatus(int qnaNo) throws Exception;  // 답변상태 변경
 }

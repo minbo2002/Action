@@ -59,9 +59,19 @@ public class QnaController {
 								  HttpServletRequest request) throws Exception {
 
 		HttpSession session = request.getSession();
-		session.setAttribute("MEM_NO", 15);
-		session.setAttribute("MEM_ID", "adminid");
-		session.setAttribute("EMAIL", "adminid@test.com");
+
+//		session.setAttribute("MEM_NO", 15);
+//		session.setAttribute("MEM_ID", "adminid");
+//		session.setAttribute("EMAIL", "adminid@abc.com");
+//		session.setAttribute("MEM_GRADE", 999);
+		session.setAttribute("MEM_NO", 16);
+		session.setAttribute("MEM_ID", "hongid");
+		session.setAttribute("EMAIL", "hongid@abc.com");
+		session.setAttribute("MEM_GRADE", 0);
+//		session.setAttribute("MEM_NO", 17);
+//		session.setAttribute("MEM_ID", "kimid");
+//		session.setAttribute("EMAIL", "kimid@abc.com");
+//		session.setAttribute("MEM_GRADE", 0);
 		
 		int count = qnaService.countQna();
 		System.out.println("게시물 총 개수 count = " + count);
@@ -86,7 +96,9 @@ public class QnaController {
 	
 	// 게시판 상세내용 조회
 	@GetMapping("/detail")
-	public String getQnaDetail(@RequestParam("qnaNo") int no, Model model) throws Exception {
+	public String getQnaDetail(@RequestParam("qnaNo") int no, 
+							   @RequestParam int curPage,	
+			Model model) throws Exception {
 		
 		// 게시판 상세내용 조회
 		Qna qnaDetail = qnaService.getQnaDetail(no);
@@ -101,6 +113,7 @@ public class QnaController {
 		map.put("fileList", fileList);
 
 		model.addAttribute("map", map);
+		model.addAttribute("curPage", curPage);
 		model.addAttribute("qnaDetail", qnaDetail);
 		
 		return "qna/detailView";
@@ -260,8 +273,9 @@ public class QnaController {
 	
 	// 글 수정 데이터 처리
 	@PostMapping("/update")
-	public ModelAndView updateQna(ModelAndView mav, Qna qna, Model model) throws Exception {
+	public ModelAndView updateQna(Qna qna, ModelAndView mav, Model model) throws Exception {
 		
+		System.out.println("update PostMapping진입");
 		/* ModelAndView에서의 view지정하기	
 	    	mv.setView("redirect용 view명");
 	    	mv.setViewName("일반view");
@@ -270,7 +284,7 @@ public class QnaController {
 		System.out.println("update POST 요청");
 		
 		int updateCnt = qnaService.updateQna(qna);
-		
+		System.out.println("글수정 횟수 = " + updateCnt);
 		
 		if(updateCnt==1) {
 			mav.setViewName("redirect:/qna/list");

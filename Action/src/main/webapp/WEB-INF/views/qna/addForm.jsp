@@ -33,7 +33,7 @@
 				count=3;
 				return; //함수종료
 			}
-   			let tr = "<tr><th>첨부파일</th><td>";
+   			let tr = "<tr><th>첨부파일"+count+"</th><td>";
     			tr+= "<input type='file' name='file"+count+"' id='files"+count+"'/></td></tr>";
    
 			//id가 "i1"요소의 바로 앞에 위치한 형제(자매)붙인다
@@ -63,22 +63,29 @@
 		<input type="hidden" name="writerId" value="${sessionScope.MEM_ID}" >
 		<input type="hidden" name="writerEmail" value="${sessionScope.EMAIL}" >
 		
-		<table border="1">
+		<table border="1" style="width: 600px;">
 			<tr>
 				<th>작성자 아이디</th>
 				<td>${sessionScope.MEM_ID}</td>
-				</tr>
+			</tr>
+			<tr>
+				<td colspan="2" style="text-align: center;">
+					<input type="radio" name="secret" id="secret" value="N" class="radio" required="required"><span>공개</span>
+					<input type="radio" name="secret" id="secret" value="Y" class="radio"><span>비공개</span>
+				</td>
+			</tr>
 			<tr>
 				<th>제목</th>
 				<td><input type="text" name="title" required="required"></td>
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td><input type="text" name="content" required="required"></td>
+				<td>
+					<textarea cols="50" rows="10" name="content" required="required"></textarea>
+				</td>
 			</tr>
 			<tr>
-				<th>파일첨부</th>
-			    <td>
+			    <td colspan="2" style="text-align: center;">
 			        <input type="button" value="파일추가" id="btnAddFile"/>
 			    	<input type="button" value="파일삭제" id="btnDelFile"/>
 				</td>

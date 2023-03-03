@@ -15,6 +15,9 @@
 		height: 200px;
 		background-size: cover;
 	}
+	tr, td, th {
+		align-items: center;
+	}
 	</style>
 
 	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
@@ -38,6 +41,7 @@
 	
 	MEM_NO: ${MEM_NO} <br/>
 	MEM_ID: ${MEM_ID} <br/>
+	MEM_GRADE: ${MEM_GRADE} <br/>
 	EMAIL:  ${EMAIL} <br/><br/>
 	
 	사진들 map: ${map.fileList}  <br/><br/>
@@ -49,10 +53,10 @@
 	</c:forEach>
 	<br/><br/>
 
-	<form action="${path}/article/update" method="post">
+	<form action="${path}/qna/update" method="post">
 
-		<input type="hidden" name="memberId" value="${sessionScope.AUTHUSER}" >
-		<input type="hidden" name="articleNo" value="${articleDetail.articleNo}" >
+		<input type="hidden" name="memId" value="${MEM_ID}" >
+		<input type="hidden" name="qnaNo" value="${qnaDetail.qnaNo}" >
 		
 		<table border="1" style="width: 600px;">
 			<tr>

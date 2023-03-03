@@ -60,7 +60,13 @@ public class QnaRepositoryImpl implements QnaRepository {
 
 	@Override
 	public void fileUpload(Map<String, Object> fileMap) {
-		sqlSession.insert("mapper.qna.uploadFile", fileMap);
 		
+		sqlSession.insert("mapper.qna.uploadFile", fileMap);
+	}
+
+	@Override
+	public int updateStatus(int qnaNo) throws Exception {
+		
+		return sqlSession.update("mapper.qna.answerStatus", qnaNo);
 	}
 }

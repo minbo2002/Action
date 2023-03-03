@@ -21,4 +21,6 @@ public interface QnaService {
 		public void fileUpload(String originalFilename, 
 				   String storedFileName, 
 				   long fileSize, int qnaNo ) throws IOException;  // 파일 등록
+		
+		public int updateStatus(int qnaNo) throws Exception;    // 답변상태 변경
 }

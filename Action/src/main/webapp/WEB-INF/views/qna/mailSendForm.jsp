@@ -14,7 +14,7 @@
 	$(function() {
 
 		$("#sendEmail").click(function() {
-			let s = confirm('전송하시겠습니까?');
+			let s = confirm('답변 하시겠습니까?');
 			if(s) {
 				$("#sendEmailFrm").submit();
 			}else {
@@ -27,11 +27,13 @@
 	
 </head>
 <body>
-
-	writerEmail: ${writerEmail}
+	qnaNo:   ${qnaNo}  <br/>
+	writerEmail:  ${writerEmail} <br/>
 	<hr/>
 
 	<form action="${path}/sendMail" method="post" id="sendEmailFrm">
+		<input type="hidden" name="qnaNo" value="${qnaNo}" >
+	
 		<input type="text" name="to" value="${writerEmail}" >  <br/>
 		<input type="text" name="title" placeholder="제목을 입력하세요">   <br/>
 		<input type="text" name="content" placeholder="내용을 입력하세요"> <br/>

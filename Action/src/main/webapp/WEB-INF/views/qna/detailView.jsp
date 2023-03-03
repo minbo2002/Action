@@ -22,14 +22,12 @@
 	<script>
 	$(function() {
 
-		listReply("1");  // 기존의 댓글을 나오게하기
-		
-		$("#btnUpdate").click(function(no) {
+		$("#btnUpdate").click(function() {
 			location.href = "${path}/qna/updateForm?qnaNo=${qnaDetail.qnaNo}";
 		});
 		
-		$("#btnList").click(function(no) {
-			location.href = "${path}/qna/list";
+		$("#btnList").click(function() {
+			location.href = "${path}/qna/list?curPage=${curPage}";
 		});
 		
 		$("#btnDelete").click(function() {
@@ -49,11 +47,6 @@
 				return false;
 			}
 		});
-
-		$("#btnReply").click(function() {
-			reply();
-		});
-
 	});
 	
 	function reply() {
@@ -92,7 +85,9 @@
 	
 	MEM_NO: ${MEM_NO} <br/>
 	MEM_ID: ${MEM_ID} <br/>
+	MEM_GRADE: ${MEM_GRADE} <br/>
 	EMAIL:  ${EMAIL} <br/><br/>
+	pager.curPage: ${map.pager.curPage} <br/><br/>
 	
 	사진들 map: ${map.fileList}  <br/><br/>
 	  
@@ -102,8 +97,6 @@
 		<img src="${path}/qna/download?imageFileName=${imageFileName.fileName}" class="imgSize" />
 	</c:forEach>
 	<br/><br/>
-
-	<hr/>
 
 	<table border="1" style="width: 600px;">
 		<tr>
@@ -137,9 +130,10 @@
 		<tr id="i1">
      		<td colspan="2" style="text-align:center;">
      			<c:choose>
-     				<c:when test="${qnaDetail.answerStatus eq 'N' && sessionScope.MEM_ID eq 'adminid'}">
+     				<c:when test="${qnaDetail.answerStatus eq 'N' && MEM_GRADE eq '999'}">
      					<form action="${path}/qna/sendEmail" method="get" id="answerFrm">
 							<input type="hidden" name="writerEmail" value="${qnaDetail.writerEmail}">
+							<input type="hidden" name="qnaNo" value="${qnaDetail.qnaNo}">
 							<input type="button" id="btnAnswer" value="답변하기">
 						</form> 
      				</c:when>
@@ -147,29 +141,23 @@
      					<input type="button" value="답변완료" readonly="readonly" style="color: red;" />
      				</c:when>
      			</c:choose>
-				<c:if test="${qnaDetail.answerStatus eq 'N'}">
+     			
+				<c:if test="${qnaDetail.answerStatus eq 'N' && qnaDetail.writerId eq MEM_ID}">
 					<input type="button" value="글 수정화면 이동" id="btnUpdate">
 				</c:if>
-				<input type="button" value="목록으로 이동" id="btnList">
-     			<form action="${path}/qna/delete" method="post" id="deleteFrm">
-					<input type="hidden" name="qnaNo" value="${qnaDetail.qnaNo}">
-					<input type="button" id="btnDelete" value="삭제">
-				</form>
+				
+					<input type="button" value="목록으로 이동" id="btnList">
+     			
+     			<c:if test="${qnaDetail.writerId eq MEM_ID}">
+	     			<form action="${path}/qna/delete" method="post" id="deleteFrm">
+						<input type="hidden" name="qnaNo" value="${qnaDetail.qnaNo}">
+						<input type="button" id="btnDelete" value="삭제">
+					</form>
+     			</c:if>
      		</td>
 	    </tr>	
 	</table>
 	<br/>
 	
-	
-	<!--댓글 쓰기 -->
-	<div style="width: 700px; text-align: center;">
-		<c:if test="${sessionScope.AUTHUSER != null}">
-			<textarea rows="5" cols="80" id="replyContent" placeholder="댓글을 작성하세요"></textarea> <br>
-			<button type="button" id="btnReply">댓글쓰기</button>
-		</c:if>
-	</div>
-	<!--댓글 목록  -->
-	<div id="listReply"></div>
-
 </body>
 </html>

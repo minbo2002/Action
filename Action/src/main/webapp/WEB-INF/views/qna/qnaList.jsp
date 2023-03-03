@@ -30,15 +30,15 @@
 
 	MEM_NO: ${MEM_NO} <br/>
 	MEM_ID: ${MEM_ID} <br/>
+	MEM_GRADE: ${MEM_GRADE} <br/>
 	EMAIL:  ${EMAIL} <br/><br/>
 
 	map.list: ${map.list}  <br/>
 
-	<table border="1">    
+	<table border="1" style="width: 600px;">    
 		<tr>  
 			<td>게시판번호</td>  
 			<td>제목</td>  
-			<td>내용</td>
 			<td>작성자</td>  
 			<td>작성일</td>
 			<td>답변여부</td>
@@ -46,8 +46,21 @@
 		<c:forEach var="row" items="${map.list}">  
 			<tr>
 				<td>${row.qnaNo}</td>
-				<td><a href="${path}/qna/detail?qnaNo=${row.qnaNo}&curPage=${map.pager.curPage}"> ${row.title} </a></td>
-				<td>${row.content}</td>
+				
+				<c:if test="${row.secret eq 'Y'}">
+					<c:choose>
+						<c:when test="${MEM_GRADE eq '999' || row.writerId eq MEM_ID}">
+							<td><a href="${path}/qna/detail?qnaNo=${row.qnaNo}&curPage=${map.pager.curPage}">${row.title}</a></td>
+						</c:when>
+						<c:otherwise> 
+							<td>비밀글은 작성자와 관리자만 볼 수 있습니다.</td>						
+						</c:otherwise>
+					</c:choose>
+				</c:if>
+				<c:if test="${row.secret eq 'N'}">
+						<td><a href="${path}/qna/detail?qnaNo=${row.qnaNo}&curPage=${map.pager.curPage}"> ${row.title} </a></td>
+				</c:if>
+				
 				<td>${row.writerId}</td>  
 				<td><fmt:formatDate value="${row.regDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 				<td>${row.answerStatus}</td> 
@@ -56,7 +69,7 @@
 		  
 		<!--페이지 네비게이션  -->
 		<tr>
-			<td colspan="6" align="center">
+			<td colspan="5" align="center">
 				<c:if test="${map.pager.curBlock > 1}">
 					<a href="javascript:list('1')">[처음]</a>
 				</c:if>
