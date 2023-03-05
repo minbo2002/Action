@@ -33,6 +33,7 @@
 <link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_rank.css">
 <link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_release.css">
 <link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_query.css">
+
 </head>
 
 <style type="text/css">

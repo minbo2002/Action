@@ -201,10 +201,7 @@ function detailRank( releaseDts, title, trailer ){
 	<br>
 	<br>
 	<!--  #3 -->
-	<section class="bg">
-		<div class="container">
-			<div class="row">
-
+	<section id="count">
 				<div class="section-title text-center wow fadeInUp">
 					<h1>
 						<strong>현재 상영작 BEST4</strong>
@@ -213,37 +210,21 @@ function detailRank( releaseDts, title, trailer ){
 
 				</div>
 
-				<div class="about-us text-center wow fadeInDown">
-					<img
-						src="${ pageContext.request.contextPath }/resources/img/about.png"
-						alt="About Us" class="img-responsive">
-				</div>
-			</div>
-		</div>
-
 		<!-- End #3  -->
 
 		<!--  #count -->
 
-		<section id="count">
+		
 			<div class="container">
-				<div class="row">
-
-
-					<div class="counter-section clearfix">
+				<div class="row" style="height: 50%;">
+					<div class="counter-section clearfix"  style="height: 600px;">
 						<ul id="movie_list">
-
-
-
-
 							<c:forEach var="n" begin="0" end="2" step="1">
 								<li id="movie_list_${n}">
 									<div id="movie_rank_box_one">
 										<input type="hidden" id="movie_openDt_${n}"> <input
 											type="hidden" id="movie_movieNm_${n}"> <input
 											type="hidden" id="ticket${n}">
-
-
 										<div id="movie_rank_poster_${n}">
 											<div class="poster_box">
 												<img id="movie_rank_poster_${n}_img">
@@ -291,9 +272,9 @@ function detailRank( releaseDts, title, trailer ){
 												</div>
 											</div>
 										</div>
-										<br> <br> <br> <br>
+										<br>
 										<div class="fact-item text-center">
-											<span id="movie_rank_movieNm_${n}" style="font-size: 25px;"></span>
+											<span id="movie_rank_movieNm_${n}" style="font-size: 20px;"></span>
 											<div class="movie_rank_infos">
 												<div id="movie_rank_salesShare_${n}"></div>
 												<div id="movie_rank_audiAcc_${n}"></div>
@@ -307,10 +288,7 @@ function detailRank( releaseDts, title, trailer ){
 						</ul>
 					</div>
 				</div>
-
-
 			</div>
-		</section>
 	</section>
 	<!-- End #count  -->
 	<br>
@@ -798,10 +776,9 @@ function detailRank( releaseDts, title, trailer ){
 				<img data-wow-delay="0.2s"
 					class="img-responsive black  wow fadeInLeftBig"
 					src="${ pageContext.request.contextPath }/resources/img/icons/팝콘.png"
-					alt="iPhone Black"> <img data-wow-delay="0.5s"
+					style=" margin-top: -22%; margin-left: -10%"> <img data-wow-delay="0.5s"
 					class="img-responsive white  wow fadeInLeftBig"
-					src="${ pageContext.request.contextPath }/resources/img/icons/배경.png"
-					alt="iPhone White">
+					src="${ pageContext.request.contextPath }/resources/img/icons/배경.png">
 			</div>
 			<div class="service-features wow fadeInRight">
 				<h1>공지사항</h1>

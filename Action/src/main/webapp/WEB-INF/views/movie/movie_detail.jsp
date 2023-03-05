@@ -6,10 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>detail</title>
-<link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/movie_detail.css">
-<script type="text/javascript" src="${ pageContext.request.contextPath }/resources/js/httpRequest.js"></script>
-<script src="https://code.jquery.com
-/jquery-2.2.4.min.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<link rel="stylesheet"  href="${ pageContext.request.contextPath }/resources/css/movie_detail.css">
 <style type="text/css">
 body {
 	background-image: url(${ pageContext.request.contextPath }/resources/img/m_list_bg.png);
@@ -24,8 +22,8 @@ body {
     50% {opacity:0.2;}
     100% {opacity:1;}
 }
-</style>
-	<script type="text/javascript">
+	</style>
+<script type="text/javascript">
    
       if (self.name != 'reload') {
          self.name = 'reload';

@@ -6,33 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Action</title> 
-<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700"
-	rel="stylesheet" type="text/css">
-
-<script	src="${ pageContext.request.contextPath }/resources/js/vendor/jquery-1.11.1.min.js"></script>
-<script	src="${ pageContext.request.contextPath }/resources/js/bootstrap.min.js"></script>
-<script	src="${ pageContext.request.contextPath }/resources/js/jquery.nav.js"></script>
-<script src="${ pageContext.request.contextPath }/resources/js/jquery.mixitup.min.js"></script>
-<script	src="${ pageContext.request.contextPath }/resources/js/jquery.fancybox.pack.js"></script>
-<script	src="${ pageContext.request.contextPath }/resources/js/jquery.parallax-1.1.3.js"></script>
-<script	src="${ pageContext.request.contextPath }/resources/js/jquery.appear.js"></script>
-<script	src="${ pageContext.request.contextPath }/resources/js/jquery-countTo.js"></script>
-<script	src="${ pageContext.request.contextPath }/resources/js/owl.carousel.min.js"></script>
-<script	src="${ pageContext.request.contextPath }/resources/js/wow.min.js"></script>
-<script src="${ pageContext.request.contextPath }/resources/js/main.js"></script>
-<script	src="${ pageContext.request.contextPath }/resources/js/vendor/modernizr-2.6.2.min.js"></script>
-<script	src="${ pageContext.request.contextPath }/resources/js/httpRequest.js"></script>
-<script	src="${ pageContext.request.contextPath }/resources/js/needDate.js"></script>
-<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/font-awesome.min.css">
-<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/bootstrap.min.css">
-<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/jquery.fancybox.css">
-<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/owl.carousel.css">
-<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/animate.css">
-<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/main.css">
-<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/responsive.css">
-<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_rank.css">
-<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_release.css">
-<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_query.css">
 <style type="text/css">
 body {
 	background-image:
@@ -48,7 +21,7 @@ body {
 			margin-left: -150px;
 		}
 
-#back-top a {
+		#back-top a {
 			width: 108px;
 			display: block;
 			text-align: center;
@@ -56,6 +29,8 @@ body {
 			text-transform: uppercase;
 			text-decoration: none;
 			color: #bbb;
+			
+			/* transition */
 			-webkit-transition: 1s;
 			-moz-transition: 1s;
 			transition: 1s;
@@ -63,26 +38,33 @@ body {
 		#back-top a:hover {
 			color: #000;
 		}
-#back-top span {
+		
+		/* arrow icon (span tag) */
+		#back-top span {
 			width: 108px;
 			height: 108px;
 			display: block;
 			margin-bottom: 7px;
 			background: #ddd url(up-arrow.png) no-repeat center center;
+			
+			/* rounded corners */
 			-webkit-border-radius: 15px;
 			-moz-border-radius: 15px;
 			border-radius: 15px;
+			
+			/* transition */
 			-webkit-transition: 1s;
 			-moz-transition: 1s;
 			transition: 1s;
 		}
-#back-top a:hover span {
+		#back-top a:hover span {
 			background-color: #777;
 		}
- #header .nav > h2 > img{ width:100%; height:70px;   
+        
+        #header .nav > h2 > img{ width:100%; height:70px;   
 			animation: main_bg 0.7s linear infinite;
 			animation-iteration-count: 2;}
-@keyframes main_bg{
+		@keyframes main_bg{
 		    50% {opacity:0.2;}
 		    100% {opacity:1;}
 		}
@@ -179,7 +161,7 @@ body {
       //상영 예정작 목록을 가져오는 함수
       function load_release_list(){
          var url ='http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp';
-         var param = 'collection=kmdb_new2&detail=Y&ServiceKey=U8ECM752YKB763PI62AV&releaseDts='+releaseStart+'&releaseDte='+releaseEnd+'&listCount=32';
+         var param = 'collection=kmdb_new2&detail=Y&ServiceKey=U8ECM752YKB763PI62AV&releaseDts='+releaseStart+'&releaseDte=2'+releaseEnd+'&listCount=10';
          console.log(releaseStart + "/"+releaseEnd+"/");
          sendRequest( url, param, resultFnRel, "GET" );
       }
@@ -237,7 +219,7 @@ body {
          return location.href="movieInfoDetail?movieId="+movieId+"&movieSeq="+movieSeq+"&m_name="+encodeURIComponent(m_name);
       }
       
-      //------------------rank----------------------------------------------------------
+//------------------rank----------------------------------------------------------
       function loading_del(){
           var loadingText = document.getElementById("loadingText");
          if( loadingText.children[0] != undefined ){
@@ -277,7 +259,7 @@ body {
       
       //박스오피스의  DB에서 포스터 가져오기
       function load_poster(){
-         var url2 ="moviePosterLoad.do";
+         var url2 ="moviePosterLoad";
          var param2 = "";
          sendRequest( url2, param2 , resultFnPos, "GET");
       }
@@ -302,7 +284,7 @@ body {
          }
       }
       
-      function detailRank( releaseDts, titlㅋ ){
+      function detailRank( releaseDts, title ){
          return location.href="movieInfoDetailRank?releaseDts="+releaseDts+"&title="+encodeURIComponent(title)+"&trailer="+trailer;
       }
       //---------------------query---------------------------------------------------
@@ -457,15 +439,18 @@ body {
 <body>
   
     <div id="container">
-		<div id="container_inner" style="margin-top:5%;">
+		<div id="container_inner" >
 			<div id="page_title">전체 영화</div>
       
       <div id="movie_list_nav">
-         <div class="movie_list_nav1"><a href="javascript:void(0);" onclick="boxOfficeView();">박스오피스</a></div><!-- /movie/movieRankList.do -->
-         <div class="movie_list_nav2"><a href="javascript:void(0);" onclick="scheduledScreenView();">상영 예정작</a></div><!-- /movie/movieReleaseList.do -->
-         <div class="movie_list_nav3"><a href="javascript:void(0);" onclick="queryMovie();">영화 검색</a></div><!-- /movie/movieQuery.do -->
+         <div class="movie_list_nav1"><a href="javascript:void(0);" onclick="boxOfficeView();">박스오피스</a></div><!-- /movie/movieRankList -->
+         <div class="movie_list_nav2"><a href="javascript:void(0);" onclick="scheduledScreenView();">상영 예정작</a></div><!-- /movie/movieReleaseList-->
+         <div class="movie_list_nav3"><a href="javascript:void(0);" onclick="queryMovie();">영화 검색</a></div><!-- /movie/movieQuery -->
       </div>
       
+      
+<!--    상영예정작    -->
+
       <div id="contents_release">
          <div id="movie_chart_release">
             <div id="select_movie_lists_release">
@@ -611,13 +596,13 @@ body {
             </div>
          </div>
       </div>
-      
+<!-- 상영예정작 끝       -->
+
+
+<!-- 현재 상영작 -->
       <div id="contents_rank">
-         <div id="contents_rank_title">현재 상영작 <span>TOP 10</span></div>
-         <div id="loadingText"><h3>Loading...</h3></div>
          <div id="select_movie_list">
             <ul id="movie_list">
-            
               
                <c:forEach var="n" begin="0" end="5" step="1">
                   <li id="movie_list_${n}">
@@ -631,7 +616,7 @@ body {
                               <img id="movie_rank_poster_${n}_img">
                               <div class="poster_hover">
                                  <div class="poster_hover_text">
-                                    <div class="poster_hover_text_2"><a id="ticket${n}">예매하기</a></div>      
+                                   <input type="hidden" id="ticket${n}" >   
                                     <div class="poster_hover_text_1"><a href="javascript:void(0);" onclick="detailRank(movie_openDt_${n}.value, movie_movieNm_${n}.value, movie_trailer_src_${n}.value);">상세보기</a></div>
                                  </div>   
                               </div>
@@ -642,22 +627,22 @@ body {
                         <div>
                         <c:choose>
 	                        <c:when test="${n eq 0 }">
-	                        <div style="width:35px; float:left;" id="movie_rank_rank_${n}"></div>
-	                        <img style="width:25px; height:32px;" src="${ pageContext.request.contextPath }/resources/img/maedal_one.png">
+	                        <div style="width:60px; float:left;" id="movie_rank_rank_${n}"></div>
+	                        <img style="width:25px; height:32px;" src="${ pageContext.request.contextPath }/resources/img/maedal_one.png"><br>
 	                        </c:when>
 	                        
 	                         <c:when test="${n eq 1 }">
-	                        <div style="width:35px; float:left;" id="movie_rank_rank_${n}"></div>
-	                        <img style="width:25px; height:32px;" src="${ pageContext.request.contextPath }/resources/img/maedal_two.png">
+	                        <div style="width:60px; float:left;" id="movie_rank_rank_${n}"></div>
+	                        <img style="width:25px; height:32px;" src="${ pageContext.request.contextPath }/resources/img/maedal_two.png"><br>
 	                        </c:when>
 	                        
 	                         <c:when test="${n eq 2 }">
-	                        <div style="width:35px; float:left;" id="movie_rank_rank_${n}"></div>
-	                        <img style="width:25px; height:32px;" src="${ pageContext.request.contextPath }/resources/img/maedal_three.png">
+	                        <div style="width:60px; float:left;" id="movie_rank_rank_${n}"></div>
+	                        <img style="width:25px; height:32px;" src="${ pageContext.request.contextPath }/resources/img/maedal_three.png"><br>
 	                        </c:when>
 	                        
 	                        <c:otherwise>
-	                        <div style="width:35px; float:left;" id="movie_rank_rank_${n}"></div>
+	                        <div style="width:60px; float:left;" id="movie_rank_rank_${n}"></div><br>
 	                        </c:otherwise>
 	                    </c:choose>
                         </div>
@@ -674,13 +659,14 @@ body {
                   </li>
                </c:forEach>
             </ul>
-            
-
-
-            
          </div>
       </div>
       
+<!--    현재상영작 끝    -->
+      
+      
+      
+<!--   영화검색     -->
       <div id="contents_query">
          
          <div id="question_box" style="z-index:3;">
@@ -751,8 +737,11 @@ body {
             </ul>
          </div>
       	</div>
-      </div>
+      	
+      	
+<!--       	영화검색끝 -->
 
+      </div>
    </div>
    
 </body>
