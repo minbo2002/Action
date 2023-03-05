@@ -217,19 +217,18 @@
 										if(confirm_val){
 											
 											var array_check = new Array();
-											
 											array_check.push($('#checkbox'+${storeList.store_num}).val());
 											
 											$.ajax({
-												url: "<%=request.getContextPath()%>/admin/admin_storeDelete",
+												url: "admin_storeDelete",
 												type: "post",
 												data: { list: array_check },
 												success: function(result) {
 													if(result == 1){
-														alert("삭제되었습니다.");
+														alert("삭제 완료.");
 														location.href = "admin_storeList";
 													}else {
-														alert("삭제 실패");
+														alert("삭제 실패.");
 														location.href = "admin_storeList";
 													}
 												},
@@ -294,15 +293,15 @@
 								
 								
 								$.ajax({
-									url: "../admin/admin_storeDelete",
+									url: "admin_storeDelete",
 									type: "post",
 									data: { list: array_check},
 									success: function(result) {
 										if(result == 1){
-											alert("삭제되었습니다.");
+											alert("삭제 완료.");
 											location.href = "admin_storeList";
 										}else {
-											alert("삭제 실패");
+											alert("삭제 실패.");
 											location.href = "admin_storeList";
 										}
 									},

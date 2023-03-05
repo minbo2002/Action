@@ -236,6 +236,13 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		
+		<!--  Jackson 라이브러리 -->
+		<dependency>
+    		<groupId>com.fasterxml.jackson.core</groupId>
+    		<artifactId>jackson-databind</artifactId>
+   			<version>2.12.5</version>
+		</dependency>
 
 		<!-- 데이터소스 관련 라이브러리 등록 -->
 		<!-- https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils -->
