@@ -8,5 +8,8 @@
   		<typeAlias type="java.lang.Integer" alias="Integer"/>
 		<typeAlias type="java.lang.String" alias="String"/>
 		<typeAlias type="com.mycom.store.model.StoreVO" alias="StoreVO"/>
+		<typeAlias type="com.mycom.notice.domain.Notice" alias="notice"/>
+		<typeAlias type="com.mycom.event.domain.Event" alias="event"/>
   	</typeAliases>
+  	
   </configuration>

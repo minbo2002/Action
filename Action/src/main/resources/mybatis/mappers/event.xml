@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+          "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="mapper.event">
+ 
+	<resultMap type="event"  
+				id="eventResult">
+		<!-- <result property="필드명"  column="컬럼명"/>	 -->
+		<result property="eventNo"  column="eventno"/>	
+		<result property="title"  column="title"/>	
+		<result property="content"  column="content"/>	
+		<result property="writeDate"  column="writedate"/>	
+		<result property="memberId"  column="memberid"/>	
+	</resultMap>
+	
+	<!-- 전체 게시물수 조회 /검색기능 -->
+	<select id="totalCnt" resultType="Integer" parameterType="string">
+	  <![CDATA[		
+		select count(*) from event
+	  ]]>
+	  <where>
+	     <if test="value != null and value != ''">  
+		and (title like ('%'||#{keyword}||'%') or content like ('%'||#{keyword}||'%'))  
+		</if>    
+	  </where>
+	</select>
+	
+	<!-- 상세보기  -->
+	<select id="eventDetail"
+			resultType="event"
+	        parameterType="Integer">
+	  <![CDATA[	
+	select * from event where eventno=#{no}
+	  ]]>
+	</select>
+	
+	<!-- 전체목록조회 -->
+	<select id="eventAllList"  resultType="event" parameterType="string">
+
+		select * from event
+	<where>	
+		<if test="value != null and value != ''">  
+			and (title like ('%'||#{keyword}||'%') or content like ('%'||#{keyword}||'%'))
+		</if> 
+	</where>
+	order by eventno desc
+		
+	</select>
+	
+	<!-- 저장하기  -->
+	<insert id="insertEvent"  parameterType="event">
+		<![CDATA[
+		insert into event(eventno,title,content,writeDate,memberId)
+		values(seq_event.nextval,#{title},#{content},sysdate,#{memberId})
+		]]>
+	</insert>
+	
+	<!-- 수정하기 -->
+	<update id="updateEvent" parameterType="event">
+		<![CDATA[
+		update event 
+		set title=#{title},content=#{content} 
+		where eventno=#{eventNo}
+		]]>
+	</update>
+	
+	<!-- 삭제 -->
+	<delete id="deleteEvent" parameterType="Integer">
+		<![CDATA[
+		delete from event
+		where eventno=#{eventNo}
+		]]>
+	</delete>
+	
+	<!--   -->
+	<!-- 글등록:event테이블에 등록 -->
+	<insert id="insertNewEvent" parameterType="java.util.Map">
+		<selectKey resultType="String" keyProperty="event_id" order="BEFORE">
+	    	select seq_event.nextval from dual
+	    </selectKey>
+	<![CDATA[
+	 insert into event(eventno,title,content,writeDate,memberId)
+	 values(#{event_id},#{title},#{content},sysdate-100,#{memberId})	
+	]]>
+	</insert>
+	
+	<!-- 첨부파일:event_image테이블에 등록  -->
+	<insert id="insertEventImageFile" 
+	        parameterType="com.mycom.event.domain.ImageFileVO">
+	   <selectKey resultType="int" keyProperty="image_id" order="BEFORE"> 
+ 		select seq_eventImage.nextval from dual
+	   </selectKey>
+	<![CDATA[
+	 insert into event_image(image_id,eventno,filename,memberid,credate)
+	 values(#{image_id},#{event_id},#{fileName},#{reg_id},sysdate-100)	
+	]]>
+	</insert>
+	
+
+	
+</mapper>    
+
+
+
+      
+
+
+
+
+
+
+
+
+
+
+
