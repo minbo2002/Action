@@ -1066,4 +1066,3 @@ function detailRank( releaseDts, title, trailer ){
 
 </body>
 </html>
-

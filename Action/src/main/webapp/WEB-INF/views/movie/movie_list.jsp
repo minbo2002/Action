@@ -6,6 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Action</title> 
+<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_rank.css">
+<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_release.css">
+<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_query.css">
 <style type="text/css">
 body {
 	background-image:

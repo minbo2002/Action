@@ -8,6 +8,9 @@
 <title>detail</title>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <link rel="stylesheet"  href="${ pageContext.request.contextPath }/resources/css/movie_detail.css">
+<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_rank.css">
+<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_release.css">
+<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_query.css">
 <style type="text/css">
 body {
 	background-image: url(${ pageContext.request.contextPath }/resources/img/m_list_bg.png);
