@@ -45,7 +45,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="${pageContext.request.contextPath}/admin/adminMain">
+        <a class="nav-link" href="${pageContext.request.contextPath}/admin/admin_storeList?store_package=1">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>ADMIN</span></a>
       </li>
@@ -232,7 +232,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>2019 CGV</span>
+            <span>2023 Project</span>
           </div>
         </div>
       </footer>

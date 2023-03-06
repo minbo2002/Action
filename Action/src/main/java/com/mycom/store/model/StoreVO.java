@@ -5,6 +5,7 @@ public class StoreVO {
 	private int store_num;
 	private String store_name;
 	private int store_price;
+	private int store_sale;
 	private String store_note;
 	private int store_package;
 	private String store_img;
@@ -47,6 +48,13 @@ public class StoreVO {
 	public void setStore_price(int store_price) {
 		this.store_price = store_price;
 	}
+	public int getStore_sale() {
+		return store_sale;
+	}
+	
+	public void setStore_sale(int store_sale) {
+		this.store_sale = store_sale;
+	}
 	public String getStore_note() {
 		return store_note;
 	}
@@ -79,6 +87,8 @@ public class StoreVO {
 				+ ", store_note=" + store_note + ", store_package=" + store_package + ", store_img=" + store_img
 				+ ", store_thumbimg=" + store_thumbimg + "]";
 	}
+
+
 	
 	
 }

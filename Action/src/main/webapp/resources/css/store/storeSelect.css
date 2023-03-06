@@ -180,12 +180,6 @@ img {
     text-align: center;
     background-color: #373e46;
 }
-.btn_wrap a.btn_cart {
-	width: 60px;
-    font-size: 0;
-    background: #fb4357 url("../../img/store/shopping-cart_white.png") center center no-repeat;
-    background-size: 30px;
-}
 .btn_wrap a.btn_list {
 	width: 60px;
     font-size: 0;
@@ -193,7 +187,7 @@ img {
     background-size: 30px;
 }
 .btn_buy {
-    width: 310px;
+    width: 360px;
     height: 60px;
     margin-left: 10px;
     font-weight: 500;

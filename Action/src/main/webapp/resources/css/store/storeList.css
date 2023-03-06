@@ -173,9 +173,6 @@ a.product_btn .molthum:before {
 
 
 
-
-
-
 .hover_wrap {
 	display: none;
 	background-color: black;
@@ -190,7 +187,8 @@ a.product_btn .molthum:before {
     z-index: 5;
 }
 .hover_wrap2 {
-	left: 175px;
+	/* left: 175px; */
+	left:41.5%
 }
 .product_molist li:hover
 .hover_wrap {
@@ -198,39 +196,12 @@ a.product_btn .molthum:before {
 }
 
 .product_molist li
-a.btn_category_product_cart {
-	font-size: 0;
-	display: none;
-}
-.product_molist li:hover
-a.btn_category_product_cart {
-	display: block;
-	background: url("../../img/store/shopping-cart_white.png") center center no-repeat;
-	z-index: 10;
-	width: 30px;
-    height: 30px;
-    position: absolute;
-    color: white;
-    top: 152px;
-    left: 90px;
-    font-size: 0;
-    background-size: 30px 30px;
-}
-.product_molist li:hover
-a.btn_category_product_cart:hover {
-	background: none;
-	font-size: 14px;
-	top: 147.5px;
-    left: 90px;
-    font-weight: bold;
-    cursor: pointer;
-}
-.product_molist li
 a.btn_category_product_buy {
 	display: none;
 	font-size: 0;
+	
 }
-.product_molist li:hover
+.product_molist li:hover 
 a.btn_category_product_buy {
 	display: block;
 	background: url("../../img/store/shopping-bag_white.png") center center no-repeat;
@@ -240,7 +211,8 @@ a.btn_category_product_buy {
     position: absolute;
     color: white;
     top: 150px;
-    left: 184.5px;
+   /*  //left: 184.5px; */
+    left:45%;
     font-size: 0;
     background-size: 30px 30px;
 }
@@ -249,7 +221,8 @@ a.btn_category_product_buy:hover {
 	background: none;
 	font-size: 14px;
 	top: 147px;
-    left: 184px;
+   /*  left: 184px; */
+   left:45%;
     font-weight: bold;
     cursor: pointer;
 }

@@ -68,6 +68,29 @@
         </div>
       </li>
       
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+      STORE LiST
+      </div>
+      
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsefive" aria-expanded="true" aria-controls="collapsefive">
+          <i class="fas fa-fw fa-cog"></i>
+          <span class="active">스토어 목록</span>
+        </a>
+        
+        <div id="collapsefive" class="collapse show" aria-labelledby="headingfive" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+           <h6 class="collapse-header">STORE</h6>
+            <a class="collapse-item active" href="${pageContext.request.contextPath}/store/storeList">스토어 메뉴</a>
+          </div>
+        </div>
+      </li>
+
 
       
       
@@ -186,17 +209,15 @@
 										<a href="#none" class="btn_product_del${storeList.store_num}">삭제</a>
 									</div>
 									
+								<!-- 상품 삭제 -->
 								<script type="text/javascript">
 									$('.btn_product_del'+${storeList.store_num}).click(function() {
-										var confirm_val = confirm("선택하신 상품을 삭제하시겠습니까?");
+										var confirm_val = confirm("상품을 삭제하시겠습니까?");
 										
 										if(confirm_val){
+											
 											var array_check = new Array();
-											
-											//alert($('#checkbox'+${storeList.store_num}).val());
 											array_check.push($('#checkbox'+${storeList.store_num}).val());
-											
-											//alert(array_check);
 											
 											$.ajax({
 												url: "admin_storeDelete",
@@ -204,14 +225,16 @@
 												data: { list: array_check },
 												success: function(result) {
 													if(result == 1){
-														alert("삭제되었습니다.");
+														alert("삭제 완료.");
 														location.href = "admin_storeList";
 													}else {
-														alert("삭제 실패");
+														alert("삭제 실패.");
+														location.href = "admin_storeList";
 													}
 												},
 												error: function() {
 													alert("error");
+													location.href = "admin_storeList";
 												}
 											});
 										}
@@ -268,22 +291,23 @@
 									array_check.push($(this).val());
 								});
 								
-								//alert(array_check);
 								
 								$.ajax({
-									url: "../admin/admin_storeDelete",
+									url: "admin_storeDelete",
 									type: "post",
 									data: { list: array_check},
 									success: function(result) {
 										if(result == 1){
-											alert("삭제되었습니다.");
+											alert("삭제 완료.");
 											location.href = "admin_storeList";
 										}else {
-											alert("삭제 실패");
+											alert("삭제 실패.");
+											location.href = "admin_storeList";
 										}
 									},
 									error: function() {
 										alert("error");
+										location.href = "admin_storeList";
 									}
 								});
 								

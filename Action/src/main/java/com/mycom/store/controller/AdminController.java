@@ -28,7 +28,6 @@ public class AdminController {
 	 private StoreService storeService;
 
 	 
-////////////////////////////////스토어/////////////////////////////////////////////	
 	//관리자 : 상품 삭제
 	 @ResponseBody
 		@PostMapping("admin_storeDelete")
@@ -71,6 +70,5 @@ public class AdminController {
 		
 		model.addAttribute("storeList", list);
 	}
-////////////////////////////////스토어/////////////////////////////////////////////	
 
 }
