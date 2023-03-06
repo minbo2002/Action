@@ -19,19 +19,22 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @EnableAsync
 @RequiredArgsConstructor
+@RequestMapping("/qna/*")
 public class MailController {
 
 	private final MailService mailService;
 	private final QnaService qnaService;
 	
-	@RequestMapping(value = "/qna/sendEmail")
+	@RequestMapping(value = "/sendMailForm")
 	public String sendMail(HttpServletRequest request, Model model) {
 		
 		String qnaNo = request.getParameter("qnaNo");
 		String writerEmail = request.getParameter("writerEmail");
-		System.out.println("qnaNo="+qnaNo+",   writerEmail="+writerEmail);
+		String curPage = request.getParameter("curPage");
+		System.out.println("qnaNo="+qnaNo+",   writerEmail="+writerEmail+",    curPage="+curPage);
 		
 		model.addAttribute("qnaNo", qnaNo);
+		model.addAttribute("curPage", curPage);
 		model.addAttribute("writerEmail", writerEmail);
 		
 		return "qna/mailSendForm";

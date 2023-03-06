@@ -58,8 +58,8 @@ function resultFnRank(){
       var movie_list =document.getElementById("movie_list");
       for(var i=0 ; i<json[0].boxOfficeResult.dailyBoxOfficeList.length ; i++){
 
-         var openDts = noFormDates(json[0].boxOfficeResult.dailyBoxOfficeList[i].openDt);
-         document.getElementById("movie_openDt_"+i).value=openDts;//영화 코드(영진위)
+         var openDts = noFormDates(json[0].nboxOfficeResult.dailyBoxOfficeList[i].openDt);
+         document.getElementById("movie_opeDt_"+i).value=openDts;//영화 코드(영진위)
          document.getElementById("movie_movieNm_"+i).value=json[0].boxOfficeResult.dailyBoxOfficeList[i].movieNm;//영화 제목에서 자르기(영진위)
           document.getElementById("movie_rank_movieNm_"+i).innerHTML=json[0].boxOfficeResult.dailyBoxOfficeList[i].movieNm;;//영화 제목
           document.getElementById("ticket"+i).href="ticketing.do?m_name="+json[0].boxOfficeResult.dailyBoxOfficeList[i].movieNm;

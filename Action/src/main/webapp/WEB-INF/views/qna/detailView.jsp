@@ -9,11 +9,41 @@
 	<meta charset="UTF-8">
 	<title>상세보기</title>
 	
-	<style type="text/css">
+	<style>
 	.imgSize {
-		width: 200px;
-		height: 200px;
+		width: 300px;
+		height: 300px;
 		background-size: cover;
+	}
+	.imgSpan {
+		margin: 0px auto;
+	}
+	table {
+	  border-collapse: separate;
+	  border-spacing: 0;
+	  width: 1200px;
+	  margin: auto;
+	}
+	th,	td {
+	  padding: 6px 15px;
+	}
+	th {
+	  background: #42444e;
+	  color: #fff;
+	  text-align: center;
+	}
+	#waringSpan {
+		position: relative;
+		left:250px;
+		color: red;
+	}
+	#btns {
+		text-align: center;
+		color: black;
+	}
+	.answerDiv {
+		position: relative;
+		left: 1270px;
 	}
 	</style>
 	
@@ -48,57 +78,51 @@
 			}
 		});
 	});
-	
-	function reply() {
-		var replyContent = $("#replyContent").val();  // 댓글내용
-		var articleno = "${articleDetail.articleNo}";					// 원글 번호
-		var param = {"replyContent" : replyContent, "articleno" : articleno};  // 파라미터 형식
-		$.ajax({
-			type: "post",
-			url: "${path}/reply/insert",
-			data: param,
-			success: function() {
-				alert("댓글이 등록되었습니다");
-				listReply("1");  // 댓글 페이지 나누기
-			}
-		});
-	}
-	
-	function listReply(num) {
-		$.ajax({
-			type: "post",
-			url: "${path}/reply/list?articleno=${articleDetail.articleNo}&curPage="+num,
-			success: function(result) {
-				console.log(result);
-				$("#listReply").html(result);
-			}
-		});
-	}
 	</script>
 	
 </head>
 <body>
-
-	<h3>detailView.jsp</h3>
 	
+	<section class="bg">
+	
+	<!--  
 	qnaDetail : ${qnaDetail} <br/><br/>
 	
 	MEM_NO: ${MEM_NO} <br/>
 	MEM_ID: ${MEM_ID} <br/>
 	MEM_GRADE: ${MEM_GRADE} <br/>
 	EMAIL:  ${EMAIL} <br/><br/>
-	pager.curPage: ${map.pager.curPage} <br/><br/>
+	curPage: ${curPage} <br/><br/>
 	
 	사진들 map: ${map.fileList}  <br/><br/>
-	  
-	<hr/><br/>
+	-->
+	
+	<br/>
 
 	<c:forEach var="imageFileName" items="${map.fileList}">
-		<img src="${path}/qna/download?imageFileName=${imageFileName.fileName}" class="imgSize" />
+			<span class="imgSpan">
+			<img src="${path}/qna/imageFile?imageFileName=${imageFileName.fileName}" class="imgSize" />
+			</span>
 	</c:forEach>
 	<br/><br/>
 
-	<table border="1" style="width: 600px;">
+	<span class="answerDiv">
+	<c:choose>
+	   <c:when test="${qnaDetail.answerStatus eq 'N' && MEM_GRADE eq '999'}">
+		   <form action="${path}/qna/sendMailForm" method="get" id="answerFrm">
+			   <input type="hidden" name="writerEmail" value="${qnaDetail.writerEmail}">
+			   <input type="hidden" name="qnaNo" value="${qnaDetail.qnaNo}">
+			   <input type="hidden" name="curPage" value="${curPage}">
+			   <input type="button" id="btnAnswer" value="답변하기" style="background-color:#8B4513; color:black;">
+		   </form> 
+	   </c:when>
+	   <c:when test="${qnaDetail.answerStatus eq 'Y'}">
+		   <input type="button" value="답변완료" readonly="readonly" style="background-color:#8B4513; color: red;" />
+	   </c:when>
+    </c:choose>
+	</span>
+
+	<table border="1" style="width: 1200px;">
 		<tr>
 			<th>글번호</th>
 			<td>${qnaDetail.qnaNo}</td>
@@ -113,11 +137,12 @@
 		</tr>
 		<tr>
 			<th>제목</th>
-			<td>${qnaDetail.title}</td>
+			<td style="width: 950px;">${qnaDetail.title}</td>
 		</tr>
 		<tr>
 			<th>내용</th>
-			<td>${qnaDetail.content}</td>  
+			<td><textarea cols="90" rows="10" name="content" style="background-color:black; color:white;" 
+				readonly="readonly">${qnaDetail.content}</textarea></td>  		  
 		</tr>
 		<tr>
 			<th>등록일</th>
@@ -127,37 +152,24 @@
 			<th>답변상태</th>
 			<td>${qnaDetail.answerStatus}</td>
 		</tr>
-		<tr id="i1">
+		<tr>
      		<td colspan="2" style="text-align:center;">
-     			<c:choose>
-     				<c:when test="${qnaDetail.answerStatus eq 'N' && MEM_GRADE eq '999'}">
-     					<form action="${path}/qna/sendEmail" method="get" id="answerFrm">
-							<input type="hidden" name="writerEmail" value="${qnaDetail.writerEmail}">
-							<input type="hidden" name="qnaNo" value="${qnaDetail.qnaNo}">
-							<input type="button" id="btnAnswer" value="답변하기">
-						</form> 
-     				</c:when>
-     				<c:when test="${qnaDetail.answerStatus eq 'Y'}">
-     					<input type="button" value="답변완료" readonly="readonly" style="color: red;" />
-     				</c:when>
-     			</c:choose>
-     			
+     			<span id="btns"> 			
 				<c:if test="${qnaDetail.answerStatus eq 'N' && qnaDetail.writerId eq MEM_ID}">
-					<input type="button" value="글 수정화면 이동" id="btnUpdate">
+					<input type="button" value="수정" id="btnUpdate">
 				</c:if>
-				
-					<input type="button" value="목록으로 이동" id="btnList">
-     			
-     			<c:if test="${qnaDetail.writerId eq MEM_ID}">
-	     			<form action="${path}/qna/delete" method="post" id="deleteFrm">
-						<input type="hidden" name="qnaNo" value="${qnaDetail.qnaNo}">
-						<input type="button" id="btnDelete" value="삭제">
-					</form>
-     			</c:if>
-     		</td>
-	    </tr>	
+					<input type="button" value="목록" id="btnList">
+				</span>
+				<c:if test="${qnaDetail.writerId eq MEM_ID}">
+					<form action="${path}/qna/delete" method="post" id="deleteFrm">
+					   <input type="hidden" name="qnaNo" value="${qnaDetail.qnaNo}">
+					   <input type="button" id="btnDelete" value="삭제" style="background:#B22222; color:#FF4500;">
+				    </form>
+				</c:if>
+			</td>
+		</tr>
 	</table>
-	<br/>
-	
+
+	</section>
 </body>
 </html>

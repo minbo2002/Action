@@ -6,6 +6,31 @@
 <html>
 <head>
 
+	<style>
+	table {
+	  border-collapse: separate;
+	  border-spacing: 0;
+	  width: 1200px;
+	  margin: auto;
+	}
+	th,	td {
+	  padding: 6px 15px;
+	}
+	th {
+	  background: #42444e;
+	  color: #fff;
+	  text-align: center;
+	}
+	#waringSpan {
+		position: relative;
+		left:250px;
+		color: red;
+	}
+	#btns {
+		text-align: center;
+	}
+	</style>
+
 	<meta charset="UTF-8">
 	<title>글등록</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
@@ -50,44 +75,50 @@
 </head>
 <body>
 
+	<!--
 	MEM_NO: ${MEM_NO} <br/>
 	MEM_ID: ${MEM_ID} <br/>
 	EMAIL:  ${EMAIL} <br/><br/>
+	-->
 
-	<h3>addForm.jsp</h3>
-	<hr/>
+	<section class="bg">
+	<br/><br/>
 	
-	<form action="${path}/qna/addForm" id="addForm" method="post" enctype="multipart/form-data">
+	<div id="tableDiv">
+	<form action="${path}/qna/add" id="addForm" method="post" enctype="multipart/form-data">
 
 		<input type="hidden" name="memNo" value="${sessionScope.MEM_NO}" >
 		<input type="hidden" name="writerId" value="${sessionScope.MEM_ID}" >
 		<input type="hidden" name="writerEmail" value="${sessionScope.EMAIL}" >
-		
-		<table border="1" style="width: 600px;">
+
+		<table border="1" >
 			<tr>
 				<th>작성자 아이디</th>
 				<td>${sessionScope.MEM_ID}</td>
 			</tr>
 			<tr>
-				<td colspan="2" style="text-align: center;">
-					<input type="radio" name="secret" id="secret" value="N" class="radio" required="required"><span>공개</span>
-					<input type="radio" name="secret" id="secret" value="Y" class="radio"><span>비공개</span>
+				<th>글 공개여부</th>
+				<td>
+					<span><input type="radio" name="secret" id="secret" value="N" class="radio" required="required"> 공개</span>
+					<span><input type="radio" name="secret" id="secret" value="Y" class="radio"> 비공개</span>
 				</td>
 			</tr>
 			<tr>
 				<th>제목</th>
-				<td><input type="text" name="title" required="required"></td>
+				<td><input type="text" name="title" style="color: black; width: 950px;" required="required"></td>
 			</tr>
 			<tr>
 				<th>내용</th>
 				<td>
-					<textarea cols="50" rows="10" name="content" required="required"></textarea>
+					<textarea cols="90" rows="10" name="content" style="color: black;" required="required"></textarea>
 				</td>
 			</tr>
 			<tr>
-			    <td colspan="2" style="text-align: center;">
-			        <input type="button" value="파일추가" id="btnAddFile"/>
-			    	<input type="button" value="파일삭제" id="btnDelFile"/>
+				<td></td>
+			    <td>
+			        <input type="button" value="파일추가" id="btnAddFile" style="color: black; background-color: #8B4513;" />
+			    	<input type="button" value="파일삭제" id="btnDelFile" style="color: black; background-color:#8B4513;" />
+			    	<span id="waringSpan">*주의사항 : 파일은 반드시 순서대로 등록해야합니다</span>
 				</td>
 			</tr>
 			<tr>
@@ -97,17 +128,20 @@
 	     		</td>
 			</tr>	
 			<tr id="i1">
-	     		<td colspan="2" style="text-align:center;">
-	     			<input type="submit" value="글등록" />
-	     			<input type="button" value="목록" id="btnList">
+	     		<td colspan="2" style="text-align: center;">
+	     			<input type="submit" value="등록" style="color: black; background-color: #B8860B;" />
+	     			<input type="button" value="목록" id="btnList" style="color: black; background-color:	#B8860B;" />
 	     		</td>
 	    	</tr>	
 		</table>
-		<a>*주의사항 : 파일은 반드시 순서대로 등록해야합니다</a>
-		
-		<!-- 업로드용 파일찾기 버튼이 동적으로 생성추가되는 영역 -->
+
+		<!-- 업로드용 파일찾기 버튼이 동적으로 생성추가되는 영역
 	    <div id="fileArea">
 	    </div>
+	    -->
 	</form>
+	</div>
+	
+	</section>
 </body>
 </html>

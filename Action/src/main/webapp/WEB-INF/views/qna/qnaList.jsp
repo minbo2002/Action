@@ -2,13 +2,72 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>  
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="path" value="<%=request.getContextPath()%>"></c:set>       
+<c:set var="path" value="<%=request.getContextPath()%>"></c:set>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>       
 <!DOCTYPE html>
 <html>
 <head>
 
 	<meta charset="UTF-8">	
-	<title>Insert title here</title>
+	<title></title>
+	
+	<style type="text/css">
+	th{
+		width: 50px;
+	}
+	<style>
+	body {
+	  color: #666;
+	  font: 14px/24px "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Sans-Serif;
+	}
+	table {
+	  border-collapse: separate;
+	  border-spacing: 0;
+	  width: 100%;
+	  margin: auto;
+	}
+	th,	td {
+	  padding: 6px 15px;
+	}
+	th {
+	  background: #42444e;
+	  color: #fff;
+	  text-align: center;
+	}
+	tr:first-child th:first-child {
+	  border-top-left-radius: 6px;
+	}
+	tr:first-child th:last-child {
+	  border-top-right-radius: 6px;
+	}
+	td {
+	  border-right: 1px solid #c6c9cc;
+	  border-bottom: 1px solid #c6c9cc;
+	}
+	td:first-child {
+	  border-left: 1px solid #c6c9cc;
+	}
+	tr:nth-child(even) td {
+	  background:	#006400;
+	}
+	tr:last-child td:first-child {
+	  border-bottom-left-radius: 6px;
+	}
+	tr:last-child td:last-child {
+	  border-bottom-right-radius: 6px;
+	}
+	#searchDiv, #tableDiv {
+		text-align: center;
+	}
+	.writeSpan1 {
+		position: relative;
+		left: 160px;
+	}
+	.writeSpan2 {
+		position: relative;
+		left: 1010px;
+	}
+	</style>
 	
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	
@@ -28,7 +87,9 @@
 	
 </head>
 <body>
+	<section class="bg">
 
+	<!--  
 	MEM_NO: ${MEM_NO} <br/>
 	MEM_ID: ${MEM_ID} <br/>
 	MEM_GRADE: ${MEM_GRADE} <br/>
@@ -36,9 +97,12 @@
 
 	map.list: ${map.list}  <br/>
 	map.search_option: ${map.search_option}  <br/>
+	map.pager.curPage: ${map.pager.curPage}  <br/>
+	-->
 	
+	<div id="searchDiv">
 	<form name="form1" method="post" action="${path}/qna/list">
-		<select name="search_option">
+		<select name="search_option" style="color: black;">
 			<c:choose>
 				<c:when test="${map.search_option == ''}">
 					<option value="" selected> 선택없음 </option>
@@ -77,21 +141,29 @@
 			</c:choose>
 		</select>
 		
-		<input name="keyword" value="${map.keyword}">
-		<input type="submit" value="조회">
+		<input name="keyword" value="${map.keyword}" style="color: black;" />
+		<input type="submit" value="조회" style="color: black; background-color:	#8B4513;" />
 	</form>
-	</br></br>
+	</div>
+	</br>
 	
-	현재  ${map.count}개의 문의글이 있습니다.
-	<input type="button" value="글쓰기" id="btnWrite">  
-
-	<table border="1" style="width: 600px;">    
+	<span class="writeSpan1"> 
+		총 ${map.count}개의 문의글이 있습니다.   
+	</span>
+	<span class="writeSpan2"> 
+		<input type="button" value="글작성" id="btnWrite" style="color: black; background-color:	#8B4513;"> 
+	</span>
+	<br/>
+	
+	
+	<div id="tableDiv">
+	<table border="1" style="width: 1200px;">
 		<tr>  
-			<td>게시판번호</td>  
-			<td>제목</td>  
-			<td>작성자ID</td>  
-			<td>작성일</td>
-			<td>답변여부</td>
+			<th>글번호</th>  
+			<th style="width: 300px;">제목</th>  
+			<th>작성자ID</th>  
+			<th style="width: 100px;">작성일</th>
+			<th>답변</th>
 		</tr>   
 		<c:forEach var="row" items="${map.list}">  
 			<tr>
@@ -151,6 +223,8 @@
 			</td>
 		</tr>
 	</table>
-
+	</div>
+	
+	</section>	
 </body>
 </html>

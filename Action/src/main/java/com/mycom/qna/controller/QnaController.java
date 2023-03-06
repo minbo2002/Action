@@ -50,51 +50,6 @@ public class QnaController {
 	
 	private final Logger logger = LoggerFactory.getLogger(QnaController.class);
 	private static final String IMAGE_REPO_PATH = "C:\\upload\\tmp";  
-	
-	/*
-	// 전체 list
-	@RequestMapping("/list")
-	public String getQnaList(@RequestParam(defaultValue="1") int curPage,
-							 Model model,
-							 HttpServletRequest request) throws Exception {
-
-		HttpSession session = request.getSession();
-
-//			session.setAttribute("MEM_NO", 15);
-//			session.setAttribute("MEM_ID", "adminid");
-//			session.setAttribute("EMAIL", "adminid@abc.com");
-//			session.setAttribute("MEM_GRADE", 999);
-		session.setAttribute("MEM_NO", 16);
-		session.setAttribute("MEM_ID", "hongid");
-		session.setAttribute("EMAIL", "hongid@abc.com");
-		session.setAttribute("MEM_GRADE", 0);
-//			session.setAttribute("MEM_NO", 17);
-//			session.setAttribute("MEM_ID", "kimid");
-//			session.setAttribute("EMAIL", "kimid@abc.com");
-//			session.setAttribute("MEM_GRADE", 0);
-		
-		int count = qnaService.countQna();
-		System.out.println("게시물 총 개수 count = " + count);
-		
-		Pager pager = new Pager(count, curPage);
-		
-		int start=pager.getPageBegin();
-		int end=pager.getPageEnd();
-		System.out.println("start="+start+",  end="+end);
-		
-		List<Qna> list = qnaService.list(start, end);
-		System.out.println("list="+list.toString());
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("list", list);
-		map.put("count", count);
-		map.put("pager", pager);
-		
-		model.addAttribute("map", map);
-		
-		return "qna/qnaList";
-	}
-	*/
 
 	// 전체 list
 	@RequestMapping(value="/list", method = {RequestMethod.GET, RequestMethod.POST})
@@ -106,14 +61,14 @@ public class QnaController {
 
 		HttpSession session = request.getSession();
 
-//		session.setAttribute("MEM_NO", 15);
-//		session.setAttribute("MEM_ID", "adminid");
-//		session.setAttribute("EMAIL", "adminid@abc.com");
-//		session.setAttribute("MEM_GRADE", 999);
-		session.setAttribute("MEM_NO", 16);
-		session.setAttribute("MEM_ID", "hongid");
-		session.setAttribute("EMAIL", "hongid@abc.com");
-		session.setAttribute("MEM_GRADE", 0);
+		session.setAttribute("MEM_NO", 15);
+		session.setAttribute("MEM_ID", "adminid");
+		session.setAttribute("EMAIL", "adminid@abc.com");
+		session.setAttribute("MEM_GRADE", 999);
+//		session.setAttribute("MEM_NO", 16);
+//		session.setAttribute("MEM_ID", "hongid");
+//		session.setAttribute("EMAIL", "hongid@abc.com");
+//		session.setAttribute("MEM_GRADE", 0);
 //		session.setAttribute("MEM_NO", 17);
 //		session.setAttribute("MEM_ID", "kimid");
 //		session.setAttribute("EMAIL", "kimid@abc.com");
@@ -126,7 +81,7 @@ public class QnaController {
 		
 		int start=pager.getPageBegin();
 		int end=pager.getPageEnd();
-		System.out.println("start="+start+",  end="+end+",   search_option="+search_option+",   keyword="+keyword);
+		System.out.println("start="+start+",  end="+end+",   search_option="+search_option+",   keyword="+keyword+",    curPage="+pager.getCurPage());
 		
 		List<Qna> list = qnaService.list(start, end, search_option, keyword);
 		System.out.println("list="+list.toString());
@@ -146,7 +101,7 @@ public class QnaController {
 	// 게시판 상세내용 조회
 	@GetMapping("/detail")
 	public String getQnaDetail(@RequestParam("qnaNo") int no, 
-							   @RequestParam int curPage, Model model) throws Exception {
+							   @RequestParam(defaultValue="1") int curPage, Model model) throws Exception {
 		
 		// 게시판 상세내용 조회
 		Qna qnaDetail = qnaService.getQnaDetail(no);
@@ -160,6 +115,7 @@ public class QnaController {
 
 		map.put("fileList", fileList);
 
+		System.out.println("curPage="+curPage);
 		model.addAttribute("map", map);
 		model.addAttribute("curPage", curPage);
 		model.addAttribute("qnaDetail", qnaDetail);
@@ -175,10 +131,10 @@ public class QnaController {
 	}
 	
 	// 글 등록 데이터처리
-	@PostMapping("/addForm")
+	@PostMapping("/add")
 	public ModelAndView addQna(ModelAndView mav, MultipartHttpServletRequest multipartRequest,
 			@ModelAttribute Qna qna) throws Exception { 
-
+		
 		// 1. 게시판 데이터 저장하기
 		int insertQnaCnt = qnaService.insertQna(qna);
 		System.out.println("1) qna = "+qna);
@@ -264,7 +220,7 @@ public class QnaController {
   	}
   	
   	// 화면단에 이미지 표현하는 방법1
-  	@RequestMapping(value = "/download", method=RequestMethod.GET)
+  	@RequestMapping(value = "/imageFile", method=RequestMethod.GET)
   	public void download1(@RequestParam("imageFileName") String imageFileName,
             HttpServletResponse response)throws Exception {
 

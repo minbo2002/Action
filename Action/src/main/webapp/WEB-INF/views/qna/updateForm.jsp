@@ -9,25 +9,61 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-	<style type="text/css">
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+	<style>
 	.imgSize {
-		width: 200px;
-		height: 200px;
+		width: 300px;
+		height: 300px;
 		background-size: cover;
 	}
-	tr, td, th {
-		align-items: center;
+	.imgSpan {
+		margin: 0px auto;
+	}
+	table {
+	  border-collapse: separate;
+	  border-spacing: 0;
+	  width: 1200px;
+	  margin: auto;
+	}
+	th,	td {
+	  padding: 6px 15px;
+	}
+	th {
+	  background: #42444e;
+	  color: #fff;
+	  text-align: center;
+	}
+	#waringSpan {
+		position: relative;
+		left:250px;
+		color: red;
+	}
+	#btns {
+		text-align: center;
+		color: black;
+	}
+	.answerDiv {
+		position: relative;
+		left: 1300px;
 	}
 	</style>
 
-	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-	
 	<script>
 	$(function() {
-		$("#btnlist").click(function(no) {
+		$("#btnlist").click(function() {
 
 			location.href = "${path}/qna/list?curPage=${curPage}";
 
+		});
+		
+		$("#btnUpdate").click(function() {
+			let u = confirm('수정 하시겠습니까?');
+			if(u) {
+				$("#updateBoard").submit();
+			}else {
+				return false;
+			}
 		});
 	});
 	</script>
@@ -35,8 +71,9 @@
 </head>
 <body>
 
-	<h3>updateForm.jsp</h3>
-	
+	<section class="bg">
+
+	<!--
 	qnaDetail : ${qnaDetail} <br/><br/>
 	
 	MEM_NO: ${MEM_NO} <br/>
@@ -45,20 +82,20 @@
 	EMAIL:  ${EMAIL} <br/><br/>
 	
 	사진들 map: ${map.fileList}  <br/><br/>
-	  
-	<hr/><br/>
+	-->  
+	<br/>
 	
 	<c:forEach var="imageFileName" items="${map.fileList}">
-		<img src="${path}/qna/download?imageFileName=${imageFileName.fileName}" class="imgSize" />
+		<img src="${path}/qna/imageFile?imageFileName=${imageFileName.fileName}" class="imgSize" />
 	</c:forEach>
 	<br/><br/>
-
-	<form action="${path}/qna/update" method="post">
+	
+	<form action="${path}/qna/update" method="post" id="updateBoard">
 
 		<input type="hidden" name="memId" value="${MEM_ID}" >
 		<input type="hidden" name="qnaNo" value="${qnaDetail.qnaNo}" >
 		
-		<table border="1" style="width: 600px;">
+		<table border="1" style="width: 1200px;">
 			<tr>
 				<th>글번호</th>
 				<td>${qnaDetail.qnaNo}</td>
@@ -73,11 +110,13 @@
 			</tr>
 			<tr>
 				<th>제목</th>
-				<td><input type="text" name="title" value="${qnaDetail.title}" required="required"></td>
+				<td><input type="text" name="title" value="${qnaDetail.title}" 
+						style="width: 950px; color: black;" required="required">
+				</td>
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td><input type="text" name="content" value="${qnaDetail.content}" required="required"></td>
+				<td><textarea cols="90" rows="10" name="content" style="color: black;" required="required">${qnaDetail.content}</textarea></td>
 			</tr>
 			<tr>
 				<th>등록일</th>
@@ -89,14 +128,14 @@
 			</tr>
 			<tr id="i1">
 	     		<td colspan="2" style="text-align:center;">
-	     			<input type="reset" value="취소">
-	     			<input type="submit" value="수정하기" />
-	     			<input type="button" value="목록으로 이동" id="btnlist">
+	     			<input type="reset" value="취소" style="color: black;">
+	     			<button type="button" id="btnUpdate" style="color: black;">등록</button>
+	     			<input type="button" value="목록" id="btnlist" style="color: black;" />
 	     		</td>
 	    	</tr>
 		</table>
-		
 	</form>
 	
+	</section>
 </body>
 </html>

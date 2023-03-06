@@ -140,7 +140,7 @@ body {
 					<li><a href="#service">스토어</a></li>
 					<li><a href="#service-bottom">공지사항</a></li>
 					<li><a href="#contact">마이페이지</a></li>
-					<li><a href="<%=request.getContextPath()%>/test">테스트페이지</a></li>
+					<li><a href="<%=request.getContextPath()%>/qna/list">Q&A</a></li>
 				</ul>
 			</nav>
 <!-- /main nav -->
