@@ -14,13 +14,28 @@
 	</definition>
 	
 	<!-- 테스트 페이지 -->
-    <definition name="store/storeList" extends="baseLayout">
+    <definition name="test/test" extends="baseLayout">
         <put-attribute name="title" value="테스트페이지"/>
-        <put-attribute name="body" value="/WEB-INF/views/store/storeList.jsp"/>    
+        <put-attribute name="body" value="/WEB-INF/views/test/test.jsp"/>    
     </definition>
     
+    <!-- 메인 페이지 -->
+	<definition name="home" extends="baseLayout">
+        <put-attribute name="title" value="메인페이지"/>
+        <put-attribute name="body" value="/WEB-INF/views/home.jsp"/>    
+    </definition>
     
+    <!-- 영화 리스트페이지 -->
+    <definition name="movie/movie_list" extends="baseLayout">
+        <put-attribute name="title" value="영화리스트페이지"/>
+        <put-attribute name="body" value="/WEB-INF/views/movie/movie_list.jsp"/>  
+    </definition>
     
+    <!-- 영화 상세보기 -->
+    <definition name="movie/movie_detail" extends="baseLayout">
+        <put-attribute name="title" value="영화 상세보기"/>
+        <put-attribute name="body" value="/WEB-INF/views/movie/movie_detail.jsp"/> 
+    </definition>
     
 
 
