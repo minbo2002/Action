@@ -15,7 +15,6 @@
 		<result property="memberId"  column="memberid"/>	
 	</resultMap>
 	
-	
 	<!-- 전체 게시물수 조회 /검색기능 -->
 	<select id="totalCnt" resultType="Integer" parameterType="string">
 	  <![CDATA[		
@@ -27,8 +26,6 @@
 		</if>    
 	  </where>
 	</select>
-	
-	
 	
 	<!-- 특정글의 글번호 조회 -->
 	<select id="getNoticeNo" 
@@ -48,7 +45,7 @@
 	  ]]>
 	</select>
 	
-	<!-- 전체목록조회-->
+	<!-- 전체목록조회 -->
 	<select id="noticeAllList"  resultType="notice" parameterType="string">
 		
 		select * from notice
@@ -60,7 +57,7 @@
 		order by noticeno desc
 		
 	</select>
-	 
+	
 	<!-- 저장하기  -->
 	<insert id="insertNotice"  parameterType="notice">
 		<![CDATA[

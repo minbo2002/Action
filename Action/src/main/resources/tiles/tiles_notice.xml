@@ -34,7 +34,7 @@
     </definition>
     
         <!-- 공지사항 수정하기 -->
-    <definition name="notice/updateForm" extends="baseLayout">
+    <definition name="/notice/updateForm" extends="baseLayout">
         <put-attribute name="title" value="공지사항  수정하기"/>
         <put-attribute name="body" value="/WEB-INF/views/notice/updateForm.jsp"/> 
     </definition>

@@ -26,19 +26,5 @@ public interface NoticeService {
 	
 	//상세보기
 	public  Notice detailNotice(int noticeNo) throws Exception;
-	//----------------------------------
 
-
-
-	
-
-	
 }
-
-
-
-
-
-
-
-

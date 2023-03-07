@@ -6,6 +6,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_rank.css">
+<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_release.css">
+<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_query.css">
 <meta charset="UTF-8">
 <title>입력</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
@@ -48,12 +51,96 @@
   
  });
 </script>
+<style >
+
+
+td{
+	/* text-align: center; */
+	margin:20px;
+}
+input{
+	margin:5px;
+}
+
+
+
+<style type="text/css">
+   th{
+      width: 50px;
+   }
+  
+   body {
+     color: #666;
+     font: 14px/24px "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Sans-Serif;
+   }
+   table {
+     border-collapse: separate;
+     border-spacing: 0;
+     width: 100%;
+     margin: auto;
+     background-color: white;
+     
+   }
+   th,   td {
+     padding: 6px 15px;
+   }
+   th {
+     background: #42444e;
+     color: #fff;
+     text-align: center;
+   }
+   tr:first-child th:first-child {
+     border-top-left-radius: 6px;
+   }
+   tr:first-child th:last-child {
+     border-top-right-radius: 6px;
+   }
+   td {
+     border-right: 1px solid #c6c9cc;
+     border-bottom: 1px solid #c6c9cc;
+   }
+   td:first-child {
+     border-left: 1px solid #c6c9cc;
+   }
+   tr:nth-child(even) td {
+     background: white;
+   }
+   tr:last-child td:first-child {
+     border-bottom-left-radius: 6px;
+   }
+   tr:last-child td:last-child {
+     border-bottom-right-radius: 6px;
+   }
+   #searchDiv, #tableDiv {
+      text-align: center;
+   }
+   .writeSpan1 {
+      position: relative;
+      left: 160px;
+   }
+   .writeSpan2 {
+      position: relative;
+      left: 1010px;
+   }
+
+button{
+	display:inline;
+	text-align: center;
+	width:300px;
+
+
+}
+box{
+width:1000px;
+}
+</style>
 </head>
 <body>
-  <h3>이벤트 글등록</h3>
+<section id="bg">
+ 
   <form id="eventAddForm" 
   		method="post" enctype="multipart/form-data" action="/action/event/save">
-   	<table border="1">
+   	<table border="1" style=" width:800px; ">
  	  <tbody>
  		<tr>
  		 <th>작성자</th>
@@ -81,17 +168,19 @@
 	     <td>
 	     	<input type="file" name="file1" id="files1"/>
 	     </td>
-	    </tr>
+  		 </tr>
  		<tr id="i1">
- 		 <td colspan="2" style="text-align:center;">
- 		 <input type="submit" value="첨부파일upload하기"/>
- 		 <input type="reset" id="btnReset" value="취소"/>
- 		 	 <input type="button" id="btnBack" value="뒤로가기" onclick="location.href='list'" /> 
+ 		 <td colspan="2" 
+ 		 	style="text-align: center;">
+ 		 	<input type="button" id="btnBack" value="뒤로가기" onclick="location.href='list'" /> 
+ 		 	<input type="submit" value="글 등록하기"/>
+ 		 	<input type="reset" id="btnReset" value="취소"/>
  		 </td>	
  		</tr>
  	  </tbody>
   	</table>
   </form>
+</section>
 </body>
 </html>
 

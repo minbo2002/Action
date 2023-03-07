@@ -65,33 +65,10 @@ public class NoticeController extends  BaseController {
 		return "notice/list";
 	}
 	
-	/* ModelAndView 방식
-	 * //화면목록페이지
-	 * 
-	 * @GetMapping("/notice/list2") public ModelAndView list2(ModelAndView model,
-	 * 
-	 * @RequestParam(name="ano",required=false,defaultValue="1") int no,
-	 * 
-	 * @RequestParam(name="keyword", required=false )String keyword) throws
-	 * Exception {
-	 * 
-	 * //전체 게시물수 int totalCnt=noticeService.getTotalCnt(keyword);
-	 * 
-	 * //전체목록조회 List<Notice> list=noticeService.getNoticeAllList(keyword);
-	 * 
-	 * 
-	 * //3.Model model.addObject("totalCnt", totalCnt); model.addObject("list",
-	 * list); //전체목록 model.addObject("keyword", keyword);
-	 * 
-	 * model.setViewName("notice/list");
-	 * 
-	 * //4.View return model; }
-	 */
 	//입력폼 페이지이동
 	@GetMapping("/notice/addForm")
 	public String insertNoticeForm(HttpServletRequest request) {
-		//원칙적으로는 (로그인한 user가) 글입력 권한을 가진 사용자가 글입력해야지만
-		//여기에서는 임시로 세션에 정보를 저장하여 진행하겠다
+		
 		HttpSession session = request.getSession();
 		session.setAttribute("isLogOn",true);
 		session.setAttribute("AUTHUSER_ID", "adminid");//임시
@@ -116,8 +93,6 @@ public class NoticeController extends  BaseController {
 	 }
 	
 	//수정폼보여주기
-		//방식get
-		//요청주소 ~컨페/article/updateForm?ano=글번호
 		@GetMapping("/notice/updateForm")
 		public String updateNoticeForm(@RequestParam("noticeNo") int no,
 				Model model) throws Exception {
@@ -128,44 +103,26 @@ public class NoticeController extends  BaseController {
 		}
 		
 		//수정처리
-	//수정페이지에서 <form action="${contextPath}/article/updateForm" method="post">
 	    @PostMapping("/notice/updateForm")
 	    public ModelAndView submitUpdateForm(Notice notice, 
 	    		ModelAndView mv) throws Exception {
-	    /* ModelAndView에서의 view지정하기	
-	    	mv.setView("redirect용 view명");
-	    	mv.setViewName("일반view");
-	    	mv.setViewName("redirect:요청주소"); //redirect용 view */
-	    	//1.파라미터받기
-	    	//2.비즈니스로직수행
 	    	int cnt = noticeService.updateNotice(notice);
-	    	//update가 적용된 레코드수를 반환받는다
-	    	//여기에서는 1이면 수정성공, 0이면 실패
-	    	if(cnt==1) { //성공이면 목록보기(여기에서는 resultView)
-	    		/*아래는  요청메서드의 리턴유형이 String인경우의 redirect처리방법
-	    		 * return redirect:요청주소
-	    		   return "redirect:/article/req1";*/
+	    	
+	    	if(cnt==1) {
 	    		mv.setViewName("redirect:/notice/list"); //redirect용 view
-	    	}else { //실패이면 수정폼을 보여주기
-	    		/*아래는  요청메서드의 리턴유형이 String인경우의 redirect처리방법
-	    		 * return redirect:요청주소
-	    		   return "redirect:/article/updateForm?ano="+article.getArticleNo();*/
+	    	}else { 
 	    		mv.setViewName("redirect:/notice/updateForm?ano="+notice.getNoticeNo());
 	    	}
-	    	//3.Model //4.View
 	    	return mv;
 	    }
 		
 	    
 	    //삭제하기  
-	    //get방식,post방식
-	    //요청주소 ~컨페/article/delete?ano=글번호
 	    @RequestMapping(value="/notice/delete", 
 	    		        method= {RequestMethod.POST,RequestMethod.GET})
 		public ModelAndView deleteNotice(@RequestParam("noticeNo") int no) throws Exception {
 			int cnt=noticeService.deleteNotice(no);
 			System.out.println("cnt="+cnt);
-			//delete가 적용된 레코드수를 반환받는다
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("redirect:/notice/list");
 			return mv;

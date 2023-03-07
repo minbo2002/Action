@@ -6,6 +6,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_rank.css">
+<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_release.css">
+<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_query.css">
 <meta charset="UTF-8">
 <title>입력</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
@@ -52,7 +55,11 @@
 
 
 td{
-	text-align: center;
+	/* text-align: center; */
+	margin:20px;
+}
+input{
+	margin:5px;
 }
 
 
@@ -118,8 +125,8 @@ td{
 
 </style>
 </head>
-<section id="bg">
 <body>
+<section id="bg">
   
   <form id="noticeAddForm" 
   		method="post" enctype="multipart/form-data" action="/action/notice/save">
@@ -127,17 +134,47 @@ td{
  	  <tbody>
  		<tr>
  		 <th>작성자</th>
- 		 <td>${sessionScope.AUTHUSER_ID}
+ 		 <td>
+ 		 <div style="margin:5px;">${sessionScope.AUTHUSER_ID}</div> 
  		 <input type="hidden" name="memberId" value="${sessionScope.AUTHUSER_ID}"/>
  		 </td>
  		</tr>
  		<tr>
  		 <th>극장</th>
- 		 <td><input type="text" name="theater" id="theater" required="required"/></td>	
+ 		  <td>
+ 		 	<select name="theater" id="theater" required="required">
+				<option value="극장선택">--극장선택--</option>
+				<option value="강남대로(씨티)">강남대로(씨티)</option>
+	            <option value="강동">강동</option>
+	            <option value="군자">군자</option>
+	            <option value="더 부티크 목동현대백화점">더 부티크 목동현대백화점</option>
+	            <option value="동대문">동대문</option>
+	            <option value="마곡">마곡</option>
+	            <option value="목동">목동</option>
+	            <option value="상봉">상봉</option>
+	            <option value="상암월드컵경기장">상암월드컵경기장</option>
+	            <option value="성수">성수</option>
+	            <option value="센트럴">센트럴</option>
+	            <option value="송파파크하비오">송파파크하비오</option>
+	            <option value="신촌">신촌</option>
+	            <option value="이수">이수</option>
+	            <option value="창동">창동</option>
+	            <option value="코엑스">코엑스</option>
+	            <option value="홍대">홍대</option>
+	            <option value="화곡">화곡</option>
+	            <option value="ARTNINE">ARTNINE</option>
+			</select>
+ 		  </td>	
  		</tr>
  		<tr>
  		 <th>구분</th>
- 		 <td><input type="text" name="category" id="category" required="required"/></td>	
+ 		 <td>
+			<select name="category" id="category" required="required">
+			    <option value="없음">--없음--</option>
+			    <option value="전체">전체</option>
+			    <option value="라이프뷰잉">라이프뷰잉</option>
+			</select>
+ 		 </td>	
  		</tr>
  		<tr>
  		 <th>제목</th>
@@ -162,16 +199,16 @@ td{
 	    </tr>
  		<tr id="i1">
  		 <td colspan="2" style="text-align:center;">
- 		 <input type="submit" value="첨부파일upload하기"/>
- 		 <input type="reset" id="btnReset" value="취소"/>
- 		 <input type="button" id="btnBack" value="뒤로가기" onclick="location.href='list'" /> 		 
+ 		 	<input type="button" id="btnBack" value="뒤로가기" onclick="location.href='list'" /> 		 
+ 		 	<input type="submit" value="글 등록하기" />
+ 		 	<input type="reset" id="btnReset" value="취소"/>
  		 </td>	
  		</tr>
  	  </tbody>
   	</table>
   </form>
-</body>
 </section>
+</body>
 </html>
 
 

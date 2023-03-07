@@ -6,16 +6,100 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_rank.css">
+<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_release.css">
+<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_query.css">
 	<meta charset="UTF-8">
-	<title>상세보기</title>
+	<title>이벤트 상세보기</title>
+<style >
+
+td{
+	 text-align: center; 
 	
-	<style type="text/css">
-	.imgSize {
-		width: 200px;
-		height: 200px;
-		background-size: cover;
-	}
-	</style>
+}
+input{
+	margin:5px;
+}
+
+
+.searchmove{
+			position: relative;
+            left: 880px;
+            margin:20px;
+            }
+
+#tablediv{	
+		
+}
+
+
+<style type="text/css">
+   th{
+      width: 50px;
+   }
+  
+   body {
+     color: #666;
+     font: 14px/24px "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Sans-Serif;
+   }
+   table {
+     border-collapse: separate;
+     border-spacing: 0;
+     width: 100%;
+     margin: auto;
+     background-color: white;
+     
+   }
+   th,   td {
+     padding: 6px 1px;
+   }
+   th {
+     background: #42444e;
+     color: #fff;
+     text-align: center;
+   }
+   tr:first-child th:first-child {
+     border-top-left-radius: 6px;
+   }
+   tr:first-child th:last-child {
+     border-top-right-radius: 6px;
+   }
+   td {
+     border-right: 1px solid #c6c9cc;
+     border-bottom: 1px solid #c6c9cc;
+     
+   }
+   td:first-child {
+     border-left: 1px solid #c6c9cc;
+   }
+   tr:nth-child(even) td {
+     background: white;
+   }
+   tr:last-child td:first-child {
+     border-bottom-left-radius: 6px;
+   }
+   tr:last-child td:last-child {
+     border-bottom-right-radius: 6px;
+   }
+   #searchDiv, #tableDiv {
+      text-align: center;
+   }
+   .writeSpan1 {
+      position: relative;
+      left: 160px;
+   }
+   .writeSpan2 {
+      position: relative;
+      left: 1010px;
+   }
+
+button{
+	display:inline;
+	
+}
+
+</style>	
+	
 	
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	
@@ -35,10 +119,11 @@
 	
 </head>
 <body>
+<section id="bg">
 	
-	<h3>이벤트 상세보기</h3>
+	
 
-	<table border="1" style="width: 300px;">
+	<table border="1" style="width: 1000px; margin-top:50px;">
 		<tr>
 			<th>글번호</th>
 			<td>${detail.eventNo}</td>
@@ -64,20 +149,8 @@
 					<input type="submit" value="삭제">
 				</form>
      		</td>
-	    </tr>	
+	    </tr>		
 	</table>
-	<br/>
-	
-	
-	<!--댓글 쓰기 -->
-	<div style="width: 700px; text-align: center;">
-		<c:if test="${sessionScope.AUTHUSER != null}">
-			<textarea rows="5" cols="80" id="replyContent" placeholder="댓글을 작성하세요"></textarea> <br>
-			<button type="button" id="btnReply">댓글쓰기</button>
-		</c:if>
-	</div>
-	<!--댓글 목록  -->
-	<div id="listReply"></div>
-
+</section>
 </body>
 </html>

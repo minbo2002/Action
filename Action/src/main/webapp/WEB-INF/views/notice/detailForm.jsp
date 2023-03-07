@@ -6,11 +6,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_rank.css">
+<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_release.css">
+<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_query.css">
 	<meta charset="UTF-8">
 	<title>공지사항 상세보기</title>
 <style >
 
+td{
+	/* text-align: center; */
+	margin:20px;
+}
+input{
+	margin:5px;
+}
 
 td{
 	text-align: center;
@@ -44,7 +53,7 @@ td{
      
    }
    th,   td {
-     padding: 6px 15px;
+     padding: 6px 0px;
    }
    th {
      background: #42444e;
@@ -85,6 +94,10 @@ td{
       left: 1010px;
    }
 
+button{
+	display:inline;
+	
+}
 </style>
 	
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -104,8 +117,8 @@ td{
 	</script>	
 	
 </head>
-<section id="bg">
 <body>
+<section id="bg">
 
 	
 
@@ -113,6 +126,14 @@ td{
 		<tr>
 			<th>글번호</th>
 			<td>${detail.noticeNo}</td>
+		</tr>
+		<tr>
+			<th>극장</th>
+			<td>${detail.theater}</td>
+		</tr>
+		<tr>
+			<th>구분</th>
+			<td>${detail.category}</td>
 		</tr>
 		<tr>
 			<th>제목</th>
@@ -128,8 +149,8 @@ td{
 		</tr>
 		<tr id="i1">
      		<td colspan="2" style="text-align:center;">
-     			<input type="button" value="수정하기" id="btnUpdate"style="width:100px; height: 40px">
 				<input type="button" value="목록" id="btnList">
+     			<input type="button" value="글 수정하기" id="btnUpdate">
      			<form action="${path}/notice/delete" method="post" style="display:inline;">
 					<input type="hidden" name="noticeNo" value="${detail.noticeNo}">
 					<input type="submit" value="삭제">
@@ -137,19 +158,7 @@ td{
      		</td>
 	    </tr>	
 	</table>
-	<br/>
-	
-	
-	<!--댓글 쓰기 -->
-	<div style="width: 700px; text-align: center;">
-		<c:if test="${sessionScope.AUTHUSER != null}">
-			<textarea rows="5" cols="80" id="replyContent" placeholder="댓글을 작성하세요"></textarea> <br>
-			<button type="button" id="btnReply">댓글쓰기</button>
-		</c:if>
-	</div>
-	<!--댓글 목록  -->
-	<div id="listReply"></div>
 
-</body>
 </section>
+</body>
 </html>

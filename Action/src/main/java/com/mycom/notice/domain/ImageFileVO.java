@@ -2,13 +2,12 @@ package com.mycom.notice.domain;
 
 import java.util.Date;
 
-//article테이블에  첨부되는 이미지파일들용 객체
 public class ImageFileVO {
 	
 	private int image_id;	//이미지번호
 	private int notice_id;	//글번호.articleno컬럼 (article.articleno fk)
 	private String fileName;//이미지파일명
-	private String reg_id;//글등록자id memberid컬럼
+	private String reg_id;  //글등록자id memberid컬럼
 	private Date creDate;	//등록일
 	
 	public ImageFileVO() {}

@@ -36,7 +36,7 @@ public class NoticeServiceImpl implements NoticeService{
 		noticeRepository.insertNotice(notice);
 	}
 	
-	//특정글 수정
+	//수정하기
 	public int updateNotice(Notice notice) throws Exception{
 		return noticeRepository.updateNotice(notice);
 	}
@@ -53,18 +53,4 @@ public class NoticeServiceImpl implements NoticeService{
 		 
 	}
 
-
-
-
-		
-	
-	
 }
-
-
-
-
-
-
-
-

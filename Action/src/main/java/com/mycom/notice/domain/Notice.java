@@ -3,13 +3,13 @@ package com.mycom.notice.domain;
 import java.util.Date;
 
 public class Notice {
-	private int noticeNo; 
-	private String theater; 
-	private String category; 
-	private String title; 
-	private String content; 
-	private Date writeDate;      
-	private String memberId;
+	private int    noticeNo; 	//공지사항번호
+	private String theater;  	//극장
+	private String category; 	//구분
+	private String title; 		//제목
+	private String content; 	//내용
+	private Date   writeDate;   //날짜  
+	private String memberId;	//회원ID
 	
 	public Notice() {}
 

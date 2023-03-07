@@ -30,9 +30,7 @@
 <link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/animate.css">
 <link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/main.css">
 <link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/responsive.css">
-<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_rank.css">
-<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_release.css">
-<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_query.css">
+
 
 </head>
 
@@ -139,7 +137,13 @@ body {
 					</li>
 					<li><a href="#pricing">예매페이지</a></li>
 					<li><a href="#service">스토어</a></li>
-					<li><a href="<%=request.getContextPath()%>/notice/list">공지사항</a></li>
+					<li class="dropdown"><a href="<%=request.getContextPath()%>/notice/list">공지사항</a>
+						<div class="dropdown-content">
+						<a href="<%=request.getContextPath()%>/notice/list">공지사항</a>
+						</br></br>
+							<a href="<%=request.getContextPath()%>/event/list" >이벤트</a>
+						</div>
+					</li>
 					<li><a href="#contact">마이페이지</a></li>
 					<li><a href="<%=request.getContextPath()%>/test">테스트페이지</a></li>
 				</ul>
