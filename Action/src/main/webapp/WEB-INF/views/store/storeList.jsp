@@ -12,7 +12,7 @@
 <body>
 <!-- section -->
 <section>
-<form id="frm" method="post" action="../pay/marketPay">
+<form id="frm" method="post" action="">
 	<div id="container">
 		<div id="content">
 			<!-- 상단이미지 -->

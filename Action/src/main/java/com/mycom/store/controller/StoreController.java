@@ -39,7 +39,7 @@ public class StoreController {
 			msg = "상품 삭제 성공";
 		}
 		mv.addObject("msg", msg);
-		mv.addObject("path", "../admin/admin_storeList");
+		mv.addObject("path", "/admin/admin_storeList?store_package=1");
 		mv.setViewName("store/common_result");
 		
 		return mv;
@@ -61,7 +61,7 @@ public class StoreController {
 		msg = "상품 업데이트 실패";
 		}
 		mv.addObject("msg", msg);
-		mv.addObject("path", "../admin/admin_storeList");
+		mv.addObject("path", "/admin/admin_storeList?store_package=1");
 		mv.setViewName("store/common_result");
 		
 		return mv;
@@ -91,7 +91,7 @@ public class StoreController {
 		msg = "상품 등록 실패";
 		}
 		mv.addObject("msg", msg);
-		mv.addObject("path", "../admin/admin_storeList");
+		mv.addObject("path", "/admin/admin_storeList?store_package=1");
 		mv.setViewName("store/common_result");
 		
 		return mv;
