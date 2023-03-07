@@ -136,7 +136,10 @@ input{
 			<select name="category" id="category" value="${notice.category}">
 			    <option value="${notice.category}">${notice.category}</option>
 			    <option value="전체">전체</option>
+			    <option value="공지">공지</option>
+			    <option value="이벤트">이벤트</option>
 			    <option value="라이프뷰잉">라이프뷰잉</option>
+			    <option value="클래식중계">클래식중계</option>
 			</select>
  		 </td>	
  		<tr>
