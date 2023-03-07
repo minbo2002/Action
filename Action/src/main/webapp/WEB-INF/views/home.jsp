@@ -5,6 +5,8 @@
 <head>
 <!-- 모바일 유효 -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_rank.css">
+
 <meta charset="utf-8">
 
 <title>Project</title>
@@ -123,9 +125,9 @@ function detailRank( releaseDts, title, trailer ){
 			<!--/.carousel-indicators-->
 
 			<div class="carousel-inner"
-				style="height: 750px; width: 88%; margin: auto">
+				style="height: 900px; width: 88%; margin: auto">
 
-				<div class="item active">
+				<div class="item active" style="height: 105%;">
 				<video autoplay="autoplay" muted="muted" style="margin-top: 6%;  height: 100%;">
 				<source src="http://h.vod.cgv.co.kr/vodCGVa/86814/86814_212670_1200_128_960_540.mp4" type="video/mp4" >
 			    </video>
@@ -140,7 +142,7 @@ function detailRank( releaseDts, title, trailer ){
 					</div>
 				</div>
 
-				<div class="item">
+				<div class="item" style="height: 105%;">
 				<video autoplay="autoplay" muted="muted" style="margin-top: 6%;  height: 100%;">
 				<source src="http://h.vod.cgv.co.kr/vodCGVa/86839/86839_212434_1200_128_960_540.mp4" type="video/mp4" >
 			    </video>
@@ -158,7 +160,7 @@ function detailRank( releaseDts, title, trailer ){
 
 				
 			    
-				<div class="item" >
+				<div class="item" style="height: 105%;">
 				<video autoplay="autoplay" muted="muted" style="margin-top: 6%;  height: 100%;">
 				<source src="https://adimg.cgv.co.kr/images/202302/Suzume/Suzume_1080x608.mp4" type="video/mp4" >
 			    </video>
@@ -199,7 +201,7 @@ function detailRank( releaseDts, title, trailer ){
 	<br>
 	<br>
 	<!--  #3 -->
-	<section id="count">
+	<section id="count" style=" height: 900px;">
 		<div class="section-title text-center wow fadeInUp">
 			<h1>
 				<strong>현재 상영작 BEST3</strong>
@@ -215,7 +217,6 @@ function detailRank( releaseDts, title, trailer ){
 
 		<div class="container">
 			<div class="row" style="height: 50%;">
-				<div class="counter-section clearfix" style="height: 600px;">
 					<ul id="movie_list">
 						<c:forEach var="n" begin="0" end="2" step="1">
 							<li id="movie_list_${n}">
@@ -228,7 +229,7 @@ function detailRank( releaseDts, title, trailer ){
 											<div id="movie_rank_poster_${n}">
 												<div class="poster_box">
 													<img id="movie_rank_poster_${n}_img"
-														src="http://file.koreafilm.or.kr/poster/99/17/95/DPK020222_01.jpg">
+														src="http://file.koreafilm.or.kr/poster/99/17/95/DPK020222_01.jpg" style="height: 400px;">
 												</div>
 											</div>
 											<div class="col-md-6 col-sm-6 col-xs-12 wow fadeInLeft"
@@ -245,7 +246,7 @@ function detailRank( releaseDts, title, trailer ){
 											<div id="movie_rank_poster_${n}">
 												<div class="poster_box">
 												<img id="movie_rank_poster_${n}_img"
-														src="http://file.koreafilm.or.kr/poster/99/17/97/DPF026871_01.jpg">
+														src="http://file.koreafilm.or.kr/poster/99/17/97/DPF026871_01.jpg" style="height: 400px;">
 												</div>
 											</div>
 											<div class="col-md-6 col-sm-6 col-xs-12 wow fadeInLeft"
@@ -262,7 +263,7 @@ function detailRank( releaseDts, title, trailer ){
 											<div id="movie_rank_poster_${n}">
 												<div class="poster_box">
 													<img id="movie_rank_poster_${n}_img"
-														src="http://file.koreafilm.or.kr/poster/99/17/90/DPF026474_01.jpg">
+														src="http://file.koreafilm.or.kr/poster/99/17/90/DPF026474_01.jpg" style="height: 400px;">
 												</div>
 											</div>
 											<div class="col-md-6 col-sm-6 col-xs-12 wow fadeInLeft"
@@ -297,7 +298,6 @@ function detailRank( releaseDts, title, trailer ){
 		</c:forEach>
 		</li>
 		</ul>
-		</div>
 		</div>
 		</div>
 	</section>
@@ -653,197 +653,10 @@ function detailRank( releaseDts, title, trailer ){
 
 	<hr style="border: 0; height: 14px; background: #8b8b8b;">
 
-	<section class="bg">
-		<!--  #1  -->
-		<section id="service" style="margin-top: -6%;">
-			<br> <br> <br> <br> <br> <br> <br>
-			<br> <br> <br>
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="section-title text-center wow fadeInDown">
-							<h1>스토어</h1>
-							<p>5.마음만을 가지고 있어서는 안 된다. 반드시 실천하여야 한다.</p>
-
-						</div>
-					</div>
-				</div>
-				<div class="row">
-
-					<div class="col-md-6 col-sm-12 wow fadeInLeft">
-						<div class="media">
-							<a href="#" class="pull-left"> <img
-								src="${ pageContext.request.contextPath }/resources/img/icons/monitor.png"
-								class="media-object" alt="Monitor">
-							</a>
-							<div class="media-body">
-								<h3>Fontawesome.1</h3>
-								<p>오늘이라는 날은 두 번 다시 오지 않는다는 것을 잊지 말라.</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-sm-12 wow fadeInRight"
-						data-wow-delay="0.2s">
-						<div class="media">
-							<a href="#" class="pull-left"> <img
-								src="${ pageContext.request.contextPath }/resources/img/icons/cog.png"
-								alt="Cog">
-							</a>
-							<div class="media-body">
-								<h3>Fontawesome.2</h3>
-								<p>오늘이란 신어야 할 신발과 같은 것이다.</p>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-md-6 col-sm-12 wow fadeInLeft">
-						<div class="media">
-							<a href="#" class="pull-left"> <img
-								src="${ pageContext.request.contextPath }/resources/img/icons/ruler.png"
-								alt="Ruler">
-							</a>
-							<div class="media-body">
-								<h3>Fontawesome.3</h3>
-								<p>건강에 대한 지나친 걱정만큼 건강에 치명적인 것은 없다.</p>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-md-6 col-sm-12 wow fadeInRight"
-						data-wow-delay="0.2s">
-						<div class="media">
-							<a href="#" class="pull-left"> <img
-								src="${ pageContext.request.contextPath }/resources/img/icons/camera.png"
-								alt="Camera">
-							</a>
-							<div class="media-body">
-								<h3>Fontawesome.4</h3>
-								<p>아침에 상쾌한 기분으로 일찍 일어나는 사람은 드물다. 대부분의 사람들은 그냥 일찍 일어날 뿐이다.</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-sm-12 wow fadeInLeft">
-						<div class="media">
-							<a href="#" class="pull-left"> <img
-								src="${ pageContext.request.contextPath }/resources/img/icons/monitor.png"
-								class="media-object" alt="Monitor">
-							</a>
-							<div class="media-body">
-								<h3>Fontawesome.1</h3>
-								<p>오늘이라는 날은 두 번 다시 오지 않는다는 것을 잊지 말라.</p>
-							</div>
-						</div>
-
-					</div>
-
-					<div class="col-md-6 col-sm-12 wow fadeInRight"
-						data-wow-delay="0.2s">
-						<div class="media">
-							<a href="#" class="pull-left"> <img
-								src="${ pageContext.request.contextPath }/resources/img/icons/cog.png"
-								alt="Cog">
-							</a>
-							<div class="media-body">
-								<h3>Fontawesome.2</h3>
-								<p>오늘이란 신어야 할 신발과 같은 것이다.</p>
-							</div>
-						</div>
-
-					</div>
-
-					<div class="col-md-6 col-sm-12 wow fadeInLeft">
-						<div class="media">
-							<a href="#" class="pull-left"> <img
-								src="${ pageContext.request.contextPath }/resources/img/icons/ruler.png"
-								alt="Ruler">
-							</a>
-							<div class="media-body">
-								<h3>Fontawesome.3</h3>
-								<p>건강에 대한 지나친 걱정만큼 건강에 치명적인 것은 없다.</p>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-md-6 col-sm-12 wow fadeInRight"
-						data-wow-delay="0.2s">
-						<div class="media">
-							<a href="#" class="pull-left"> <img
-								src="${ pageContext.request.contextPath }/resources/img/icons/camera.png"
-								alt="Camera">
-							</a>
-							<div class="media-body">
-								<h3>Fontawesome.4</h3>
-								<p>아침에 상쾌한 기분으로 일찍 일어나는 사람은 드물다. 대부분의 사람들은 그냥 일찍 일어날 뿐이다.</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-sm-12 wow fadeInLeft">
-						<div class="media">
-							<a href="#" class="pull-left"> <img
-								src="${ pageContext.request.contextPath }/resources/img/icons/monitor.png"
-								class="media-object" alt="Monitor">
-							</a>
-							<div class="media-body">
-								<h3>Fontawesome.1</h3>
-								<p>오늘이라는 날은 두 번 다시 오지 않는다는 것을 잊지 말라.</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-sm-12 wow fadeInRight"
-						data-wow-delay="0.2s">
-						<div class="media">
-							<a href="#" class="pull-left"> <img
-								src="${ pageContext.request.contextPath }/resources/img/icons/cog.png"
-								alt="Cog">
-							</a>
-							<div class="media-body">
-								<h3>Fontawesome.2</h3>
-								<p>오늘이란 신어야 할 신발과 같은 것이다.</p>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-md-6 col-sm-12 wow fadeInLeft">
-						<div class="media">
-							<a href="#" class="pull-left"> <img
-								src="${ pageContext.request.contextPath }/resources/img/icons/ruler.png"
-								alt="Ruler">
-							</a>
-							<div class="media-body">
-								<h3>Fontawesome.3</h3>
-								<p>건강에 대한 지나친 걱정만큼 건강에 치명적인 것은 없다.</p>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-md-6 col-sm-12 wow fadeInRight"
-						data-wow-delay="0.2s">
-						<div class="media">
-							<a href="#" class="pull-left"> <img
-								src="${ pageContext.request.contextPath }/resources/img/icons/camera.png"
-								alt="Camera">
-							</a>
-							<div class="media-body">
-								<h3>Fontawesome.4</h3>
-								<p>아침에 상쾌한 기분으로 일찍 일어나는 사람은 드물다. 대부분의 사람들은 그냥 일찍 일어날 뿐이다.</p>
-							</div>
-						</div>
-					</div>
-				</div>
-
-			</div>
-		</section>
-	</section>
-	<!--  End #1 -->
-	<hr style="border: 0; height: 14px; background: #8b8b8b;">
 	<!-- #service-bottom  -->
-	<br>
-	<br>
-	<section id="service-bottom" style="margin-top: 10%">
-
-		<br> <br> <br> <br> <br> <br> <br>
+		<section id="service-bottom" style="margin-top: 9%"> 
 		<br>
-		<div class="container">
+		<div class="container" style=" margin-top: 5%;"> 
 			<div class="mobile-device">
 				<img data-wow-delay="0.2s"
 					class="img-responsive black  wow fadeInLeftBig"
