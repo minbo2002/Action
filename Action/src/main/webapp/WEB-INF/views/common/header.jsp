@@ -148,7 +148,7 @@ body {
 				</ul>
 			</nav>
 <!-- /main nav -->
-		</div>
+		</div> 
 	</header>
 </body>
 </html>
