@@ -2,7 +2,7 @@ package com.mycom.qna.service;
 
 public class Pager {
 
-	public static final int page_scale=10;	// 페이지당 게시물 수
+	public static final int page_scale=7;	// 페이지당 게시물 수
 	public static final int block_scale=3;	// 화면당 페이지 수
 	
 	private int curPage;	// 현재페이지

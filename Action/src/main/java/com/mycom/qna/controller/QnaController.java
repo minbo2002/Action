@@ -66,10 +66,10 @@ public class QnaController {
 
 		HttpSession session = request.getSession();
 		
-		session.setAttribute("memNo", 15);
-		session.setAttribute("memId", "adminid");
-		session.setAttribute("email", "adminid@abc.com");
-		session.setAttribute("memGrade", 999);
+//		session.setAttribute("memNo", 15);
+//		session.setAttribute("memId", "adminid");
+//		session.setAttribute("email", "adminid@abc.com");
+//		session.setAttribute("memGrade", 999);
 //		session.setAttribute("memNo", 16);
 //		session.setAttribute("memId", "hongid");
 //		session.setAttribute("email", "hongid@abc.com");
@@ -78,6 +78,11 @@ public class QnaController {
 //		session.setAttribute("memId", "kimid");
 //		session.setAttribute("email", "kimid@abc.com");
 //		session.setAttribute("memGrade", 0);
+		session.setAttribute("memNo", 22);
+		session.setAttribute("memId", "wp99138");
+		session.setAttribute("email", "wp99138@gmail.com");
+		session.setAttribute("memGrade", 0);
+
 		
 		int count = qnaService.countQna(search_option, keyword);
 		logger.info("게시물 총 개수 count = " + count);

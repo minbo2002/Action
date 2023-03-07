@@ -32,7 +32,7 @@
 	
 		$("#content").attr('required', 'required');	
 		
-		if($("#title").val().length=0) {
+		if($("#title").text=="") {
 			alert('제목을 입력하세요');
 			$("#title").focus();
 			return;
