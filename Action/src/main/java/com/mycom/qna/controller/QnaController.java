@@ -17,11 +17,16 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -60,31 +65,31 @@ public class QnaController {
 							 HttpServletRequest request) throws Exception {
 
 		HttpSession session = request.getSession();
-
-		session.setAttribute("MEM_NO", 15);
-		session.setAttribute("MEM_ID", "adminid");
-		session.setAttribute("EMAIL", "adminid@abc.com");
-		session.setAttribute("MEM_GRADE", 999);
-//		session.setAttribute("MEM_NO", 16);
-//		session.setAttribute("MEM_ID", "hongid");
-//		session.setAttribute("EMAIL", "hongid@abc.com");
-//		session.setAttribute("MEM_GRADE", 0);
-//		session.setAttribute("MEM_NO", 17);
-//		session.setAttribute("MEM_ID", "kimid");
-//		session.setAttribute("EMAIL", "kimid@abc.com");
-//		session.setAttribute("MEM_GRADE", 0);
+		
+		session.setAttribute("memNo", 15);
+		session.setAttribute("memId", "adminid");
+		session.setAttribute("email", "adminid@abc.com");
+		session.setAttribute("memGrade", 999);
+//		session.setAttribute("memNo", 16);
+//		session.setAttribute("memId", "hongid");
+//		session.setAttribute("email", "hongid@abc.com");
+//		session.setAttribute("memGrade", 0);
+//		session.setAttribute("memNo", 17);
+//		session.setAttribute("memId", "kimid");
+//		session.setAttribute("email", "kimid@abc.com");
+//		session.setAttribute("memGrade", 0);
 		
 		int count = qnaService.countQna(search_option, keyword);
-		System.out.println("게시물 총 개수 count = " + count);
-		
+		logger.info("게시물 총 개수 count = " + count);
+
 		Pager pager = new Pager(count, curPage);
 		
 		int start=pager.getPageBegin();
 		int end=pager.getPageEnd();
-		System.out.println("start="+start+",  end="+end+",   search_option="+search_option+",   keyword="+keyword+",    curPage="+pager.getCurPage());
+		logger.info("start="+start+",  end="+end+",   search_option="+search_option+",   keyword="+keyword+",    curPage="+pager.getCurPage());
 		
 		List<Qna> list = qnaService.list(start, end, search_option, keyword);
-		System.out.println("list="+list.toString());
+		logger.info("list="+list.toString());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("list", list);
@@ -105,17 +110,17 @@ public class QnaController {
 		
 		// 게시판 상세내용 조회
 		Qna qnaDetail = qnaService.getQnaDetail(no);
-		System.out.println("게시판 상세조회 qnaDetail = "+qnaDetail.toString());
+		logger.info("게시판 상세조회 qnaDetail = "+qnaDetail.toString());
 		
 		// 게시판 안의 파일들 조회
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		List<QnaFile> fileList = qnaFileService.fileList(no);
-		System.out.println("파일 정보 fileList = " + fileList.toString());
+		logger.info("파일 정보 fileList = " + fileList.toString());
 
 		map.put("fileList", fileList);
 
-		System.out.println("curPage="+curPage);
+		logger.info("curPage="+curPage);
 		model.addAttribute("map", map);
 		model.addAttribute("curPage", curPage);
 		model.addAttribute("qnaDetail", qnaDetail);
@@ -132,14 +137,30 @@ public class QnaController {
 	
 	// 글 등록 데이터처리
 	@PostMapping("/add")
-	public ModelAndView addQna(ModelAndView mav, MultipartHttpServletRequest multipartRequest,
-			@ModelAttribute Qna qna) throws Exception { 
+	public ModelAndView addQna(MultipartHttpServletRequest multipartRequest,
+			@Valid @ModelAttribute Qna qna, BindingResult bindingResult) throws Exception { 
+		
+		ModelAndView mav = new ModelAndView();
+		
+		if(bindingResult.hasErrors()) {
+
+            bindingResult.getAllErrors().forEach(objectError ->  {
+
+                FieldError field = (FieldError) objectError;
+                logger.info("문제가 있는 field : " + field.getField());
+
+                mav.addObject("badRequest", (HttpStatus.BAD_REQUEST).toString());
+                mav.setViewName("qna/addForm");
+            });
+
+			return mav;
+		}
 		
 		// 1. 게시판 데이터 저장하기
 		int insertQnaCnt = qnaService.insertQna(qna);
-		System.out.println("1) qna = "+qna);
-		System.out.println("2) 등록된 글 개수 = " + insertQnaCnt);
-
+		logger.info("1) qna = "+qna);
+		logger.info("2) 등록된 글 개수 = " + insertQnaCnt);
+		
 		MultipartFile file1 = multipartRequest.getFile("file1");
 		
 		if(!file1.isEmpty()) {
@@ -151,8 +172,8 @@ public class QnaController {
 			List<String> fileList = fileProc(multipartRequest, qna);
 			int size = fileList.size();
 			
-			System.out.println("7) 저장된 파일 개수 = " + size);
-			System.out.println("8) 저장된 랜점숫자+원본파일명 = " + fileList);
+			logger.info("7) 저장된 파일 개수 = " + size);
+			logger.info("8) 저장된 랜점숫자+원본파일명 = " + fileList);
 			
 			map.put("fileList", fileList);  //  <input type="file"> 으로 업로드된 파일의 정보들이 담긴다.
 			
@@ -160,10 +181,10 @@ public class QnaController {
 			mav.addObject("map", map);
 		}
 		
-//		mav.setViewName("file/result");
 		mav.setViewName("redirect:/qna/list");
 		
 		return mav;
+		
 	}
 	
 	// 첨부파일에 대한 정보  + upload
@@ -189,13 +210,13 @@ public class QnaController {
   			
   			// 원본파일명
   			String originalFilename = mfile.getOriginalFilename();
-  			System.out.println("3) 원본 파일명 originalFilename = " + originalFilename);
+  			logger.info("3) 원본 파일명 originalFilename = " + originalFilename);
   			// 랜덤숫자 + 원본파일명
   			String storedFileName = getRandomString() + originalFilename;
-  			System.out.println("4) 랜덤숫자 + 원본파일명 storedFileName = " + storedFileName);
+  			logger.info("4) 랜덤숫자 + 원본파일명 storedFileName = " + storedFileName);
   			// 파일사이즈
   			long fileSize = mfile.getSize();
-  			System.out.println("5) 파일 사이즈 = " + fileSize);
+  			logger.info("5) 파일 사이즈 = " + fileSize);
 
 			storedFileList.add(storedFileName);
 			
@@ -203,7 +224,7 @@ public class QnaController {
 			File file = new File(IMAGE_REPO_PATH+"\\" + storedFileName);
 			
 			if(!mfile.isEmpty()) { // 첨부파일이 존재한다면
-				System.out.println("6) 첨부파일이 존재한다");
+				logger.info("6) 첨부파일이 존재한다");
 				
 				if(!file.exists()) { // 지정한 경로에 이미 파일이 존재하지않는다면
 					if(file.getParentFile().mkdirs()) {  // 해당경로에 폴더를 생성한다 
@@ -219,12 +240,12 @@ public class QnaController {
 		return storedFileList;
   	}
   	
-  	// 화면단에 이미지 표현하는 방법1
+  	// 화면단에 이미지 표현
   	@RequestMapping(value = "/imageFile", method=RequestMethod.GET)
   	public void download1(@RequestParam("imageFileName") String imageFileName,
             HttpServletResponse response)throws Exception {
 
-		System.out.println("화면단에 이미지 출력");
+  		logger.info("화면단에 이미지 출력");
 		
 		OutputStream out = response.getOutputStream();
 		String downFile = IMAGE_REPO_PATH + "\\" + imageFileName;
@@ -259,13 +280,13 @@ public class QnaController {
 		
 		// 특정 게시물 조회
 		Qna qnaDetail = qnaService.getQnaDetail(no);
-		System.out.println("qnaDetail="+qnaDetail.toString());
+		logger.info("qnaDetail="+qnaDetail.toString());
 		
 		// 특정 게시물안의 파일들 조회
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		List<QnaFile> fileList = qnaFileService.fileList(no);
-		System.out.println("파일 정보 fileList = " + fileList.toString());
+		logger.info("파일 정보 fileList = " + fileList.toString());
 
 		map.put("fileList", fileList);
 
@@ -278,34 +299,39 @@ public class QnaController {
 	
 	// 글 수정 데이터 처리
 	@PostMapping("/update")
-	public ModelAndView updateQna(Qna qna, ModelAndView mav, Model model) throws Exception {
-		
-		System.out.println("update PostMapping진입");
-		/* ModelAndView에서의 view지정하기	
-	    	mv.setView("redirect용 view명");
-	    	mv.setViewName("일반view");
-	    	mv.setViewName("redirect:요청주소"); //redirect용 view */
-		
-		System.out.println("update POST 요청");
+	public ModelAndView updateQna(@RequestParam("qnaNo") int no, @RequestParam int curPage,
+								  @ModelAttribute @Valid Qna qna, BindingResult bindingResult, Model model) throws Exception {
+
+		ModelAndView mav = new ModelAndView();
+
+		if(bindingResult.hasErrors()) {
+
+            FieldError fieldError = bindingResult.getFieldError();
+            logger.info("field error 발생 = "+ fieldError.getDefaultMessage());
+            
+            mav.setViewName("redirect:/qna/updateForm?qnaNo="+no+"&curPage="+curPage);
+            
+			return mav;
+		}
 		
 		int updateCnt = qnaService.updateQna(qna);
-		System.out.println("글수정 횟수 = " + updateCnt);
+		logger.info("글수정 횟수 = " + updateCnt);
 		
 		if(updateCnt==1) {
 			mav.setViewName("redirect:/qna/list");
 		}else {
-			mav.setViewName("redirect:/qna/updateForm?qnaNo="+qna.getQnaNo());
+			mav.setViewName("redirect:/qna/updateForm?qnaNo="+no+"&curPage="+curPage);
 		}
 		
 		return mav;
 	}
-	
+
 	// 글 삭제
 	@PostMapping("/delete")
 	public ModelAndView delteQna(ModelAndView mav, @RequestParam("qnaNo") int no) throws Exception {
 
 		List<QnaFile> fileList = qnaFileService.fileList(no);
-		System.out.println("파일 정보 fileList = " + fileList.toString());
+		logger.info("파일 정보 fileList = " + fileList.toString());
 		
 		// 파일이 존재한다면
 		if(fileList!=null || fileList.size()!=0) {	
@@ -322,7 +348,7 @@ public class QnaController {
 		}
 
 		int deleteCnt = qnaService.deleteQna(no);
-		System.out.println("삭제된 글 개수="+deleteCnt);
+		logger.info("삭제된 글 개수="+deleteCnt);
 		
 		if(deleteCnt==1) {
 			mav.setViewName("redirect:/qna/list");

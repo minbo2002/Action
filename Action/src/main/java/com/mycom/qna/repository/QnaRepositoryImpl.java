@@ -16,18 +16,6 @@ import lombok.RequiredArgsConstructor;
 public class QnaRepositoryImpl implements QnaRepository {
 
 	private final SqlSessionTemplate sqlSession;
-	
-//	@Override
-//	public List<Qna> list(int start, int end) {
-//		
-//		Map<String, Object> map = new HashMap<String, Object>();
-//		map.put("start", start);
-//		map.put("end", end);
-////		map.put("qna", qna);
-//		
-//		return sqlSession.selectList("mapper.qna.qnaList", map);
-//	}
-	
 
 	@Override
 	public List<Qna> list(int start, int end, String search_option, String keyword) {
@@ -37,7 +25,6 @@ public class QnaRepositoryImpl implements QnaRepository {
 		map.put("end", end);
 		map.put("search_option", search_option);
 		map.put("keyword", keyword);
-//		map.put("qna", qna);
 		
 		return sqlSession.selectList("mapper.qna.qnaList", map);
 	}

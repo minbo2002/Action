@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<c:set var="path" value="<%=request.getContextPath()%>"></c:set> 
+<c:set var="path" value="<%=request.getContextPath()%>"></c:set>
 <!DOCTYPE html>
 <html>
 <head>
@@ -74,14 +75,15 @@
 	<section class="bg">
 
 	<!--
-	qnaDetail : ${qnaDetail} <br/><br/>
+	qnaDetail: ${qnaDetail} <br/><br/>
+	curPage:  ${curPage}
 	
-	MEM_NO: ${MEM_NO} <br/>
-	MEM_ID: ${MEM_ID} <br/>
-	MEM_GRADE: ${MEM_GRADE} <br/>
-	EMAIL:  ${EMAIL} <br/><br/>
+	memNo: ${memNo} <br/>
+	memId: ${memId} <br/>
+	email: ${email} <br/>
+	memGrade: ${memGrade} <br/><br/>
 	
-	사진들 map: ${map.fileList}  <br/><br/>
+	이미지파일: ${map.fileList}  <br/><br/>
 	-->  
 	<br/>
 	
@@ -92,8 +94,9 @@
 	
 	<form action="${path}/qna/update" method="post" id="updateBoard">
 
-		<input type="hidden" name="memId" value="${MEM_ID}" >
+		<input type="hidden" name="memId" value="${memId}" >
 		<input type="hidden" name="qnaNo" value="${qnaDetail.qnaNo}" >
+		<input type="hidden" name="curPage" value="${curPage}" >
 		
 		<table border="1" style="width: 1200px;">
 			<tr>
@@ -110,13 +113,28 @@
 			</tr>
 			<tr>
 				<th>제목</th>
-				<td><input type="text" name="title" value="${qnaDetail.title}" 
-						style="width: 950px; color: black;" required="required">
+				<td>
+					<input type="text" name="title" value="${qnaDetail.title}" style="width: 950px; color: black;"/>
+					<br>
+					<spring:hasBindErrors name="qna">
+						<span>에러발생</span>
+						<c:if test="${errors.hasFieldErrors('title')}">
+							<strong style="color: red;">${errors.getFieldError('title')}</strong>
+						</c:if>
+					</spring:hasBindErrors>	
 				</td>
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td><textarea cols="90" rows="10" name="content" style="color: black;" required="required">${qnaDetail.content}</textarea></td>
+				<td>
+					<textarea cols="90" rows="10" name="content" style="color: black;">${qnaDetail.content}</textarea>
+					<br>
+					<spring:hasBindErrors name="qna">
+						<c:if test="${errors.hasFieldErrors('content')}">
+							<strong style="color: red;">${errors.getFieldError('content').defaultMessage}</strong>
+						</c:if>
+					</spring:hasBindErrors>
+				</td>
 			</tr>
 			<tr>
 				<th>등록일</th>

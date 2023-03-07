@@ -88,10 +88,10 @@
 	<!--  
 	qnaDetail : ${qnaDetail} <br/><br/>
 	
-	MEM_NO: ${MEM_NO} <br/>
-	MEM_ID: ${MEM_ID} <br/>
-	MEM_GRADE: ${MEM_GRADE} <br/>
-	EMAIL:  ${EMAIL} <br/><br/>
+	memNo: ${memNo} <br/>
+	memId: ${memId} <br/>
+	memGrade: ${memGrade} <br/>
+	email:  ${email} <br/><br/>
 	curPage: ${curPage} <br/><br/>
 	
 	사진들 map: ${map.fileList}  <br/><br/>
@@ -108,7 +108,7 @@
 
 	<span class="answerDiv">
 	<c:choose>
-	   <c:when test="${qnaDetail.answerStatus eq 'N' && MEM_GRADE eq '999'}">
+	   <c:when test="${qnaDetail.answerStatus eq 'N' && memGrade eq '999' && qnaDetail.writerId ne memId}">
 		   <form action="${path}/qna/sendMailForm" method="get" id="answerFrm">
 			   <input type="hidden" name="writerEmail" value="${qnaDetail.writerEmail}">
 			   <input type="hidden" name="qnaNo" value="${qnaDetail.qnaNo}">
@@ -155,12 +155,12 @@
 		<tr>
      		<td colspan="2" style="text-align:center;">
      			<span id="btns"> 			
-				<c:if test="${qnaDetail.answerStatus eq 'N' && qnaDetail.writerId eq MEM_ID}">
+				<c:if test="${qnaDetail.answerStatus eq 'N' && qnaDetail.writerId eq memId}">
 					<input type="button" value="수정" id="btnUpdate">
 				</c:if>
 					<input type="button" value="목록" id="btnList">
 				</span>
-				<c:if test="${qnaDetail.writerId eq MEM_ID}">
+				<c:if test="${qnaDetail.writerId eq memId}">
 					<form action="${path}/qna/delete" method="post" id="deleteFrm">
 					   <input type="hidden" name="qnaNo" value="${qnaDetail.qnaNo}">
 					   <input type="button" id="btnDelete" value="삭제" style="background:#B22222; color:#FF4500;">

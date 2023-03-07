@@ -1,6 +1,6 @@
 package com.mycom.qna.service;
 
-import java.io.IOException;
+
 import java.util.List;
 import com.mycom.qna.domain.QnaFile;
 

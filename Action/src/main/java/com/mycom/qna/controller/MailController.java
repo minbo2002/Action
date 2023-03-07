@@ -3,13 +3,14 @@ package com.mycom.qna.controller;
 import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import com.mycom.qna.service.MailService;
 import com.mycom.qna.service.QnaService;
 
@@ -25,13 +26,15 @@ public class MailController {
 	private final MailService mailService;
 	private final QnaService qnaService;
 	
+	private final Logger logger = LoggerFactory.getLogger(MailController.class);
+	
 	@RequestMapping(value = "/sendMailForm")
 	public String sendMail(HttpServletRequest request, Model model) {
 		
 		String qnaNo = request.getParameter("qnaNo");
 		String writerEmail = request.getParameter("writerEmail");
 		String curPage = request.getParameter("curPage");
-		System.out.println("qnaNo="+qnaNo+",   writerEmail="+writerEmail+",    curPage="+curPage);
+		logger.info("qnaNo="+qnaNo+",   writerEmail="+writerEmail+",    curPage="+curPage);
 		
 		model.addAttribute("qnaNo", qnaNo);
 		model.addAttribute("curPage", curPage);
@@ -62,7 +65,7 @@ public class MailController {
 //      out.print("메일을 보냈습니다!!");
         
         int updateStatusCnt = qnaService.updateStatus(qnaNo);
-        System.out.println("답변상태 변경 횟수" + updateStatusCnt);
+        logger.info("답변상태 변경 횟수" + updateStatusCnt);
         
         return "redirect:/qna/list";
     }

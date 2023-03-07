@@ -7,8 +7,6 @@ import com.mycom.qna.domain.Qna;
 
 public interface QnaRepository {
 
-//	public List<Qna> list(int start, int end);  // 전체 list
-	
 	public List<Qna> list(int start, int end, String search_option, String keyword);  // 전체 list
 	
 	public Qna getQnaDetail(int no);  // 특정 게시물 조회1

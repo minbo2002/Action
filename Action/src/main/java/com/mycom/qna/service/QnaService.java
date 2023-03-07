@@ -6,8 +6,6 @@ import com.mycom.qna.domain.Qna;
 
 public interface QnaService {
 
-//		public List<Qna> list(int start, int end) throws Exception;  // 전체 list
-	
 		public List<Qna> list(int start, int end, String search_option, String keyword) throws Exception;  // 전체 list
 		
 		public Qna getQnaDetail(int no) throws Exception;  // 특정 게시물 조회

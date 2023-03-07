@@ -14,13 +14,6 @@ import lombok.RequiredArgsConstructor;
 public class QnaServiceImpl implements QnaService {
 
 	private final QnaRepository qnaRepository;
-	
-//	@Override
-//	public List<Qna> list(int start, int end) throws Exception {
-//		
-//		return qnaRepository.list(start, end);
-//	}
-	
 
 	@Override
 	public List<Qna> list(int start, int end, String search_option, String keyword) throws Exception {

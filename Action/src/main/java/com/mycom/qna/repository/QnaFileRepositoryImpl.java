@@ -1,13 +1,10 @@
 package com.mycom.qna.repository;
 
 import java.util.List;
-import java.util.Map;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.mycom.qna.domain.QnaFile;
-
 import lombok.RequiredArgsConstructor;
 
 @Repository

@@ -7,8 +7,9 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
+
 	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-	
+
 	<style>
 	table {
 	  border-collapse: separate;
@@ -27,8 +28,22 @@
 	</style>
 	
 	<script>
-	$(function() {
-
+	$(document).ready(function(){
+	
+		$("#content").attr('required', 'required');	
+		
+		if($("#title").val().length=0) {
+			alert('제목을 입력하세요');
+			$("#title").focus();
+			return;
+		}
+		
+		if($("#content").val().length=0) {
+			alert('내용을 입력하세요');
+			$("#content").focus();
+			return;
+		}
+		
 		$("#sendEmail").click(function() {
 			let s = confirm('답변 하시겠습니까?');
 			if(s) {
@@ -53,9 +68,10 @@
 	<!--
 	qnaNo:   ${qnaNo}  <br/>
 	writerEmail:  ${writerEmail} <br/>
+	curPage:  ${curPage} <br/>
 	<hr/>
 	-->
-	</br>
+	<br>
 	
 	<form action="${path}/qna/sendMail" method="post" id="sendEmailFrm">
 		
@@ -70,12 +86,12 @@
 			</tr>
 			<tr>
 				<th>제목</th>
-				<td><input type="text" name="title" style="color: black;" placeholder="제목을 입력하세요" required="required" /></td>
+				<td><input type="text" name="title" id="title" style="color: black;" required /></td>
 			</tr>
 			<tr>
 				<th>내용</th>
 				<td>
-					<textarea cols="90" rows="10" name="content" style="color: black;" placeholder="내용을 입력하세요" required="required"></textarea>
+					<textarea cols="90" rows="10" name="content" id="content" style="color: black;" required ></textarea>
 				</td>
 			</tr>
 			<tr>

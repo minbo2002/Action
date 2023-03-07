@@ -48,7 +48,7 @@
 	  border-left: 1px solid #c6c9cc;
 	}
 	tr:nth-child(even) td {
-	  background:	#006400;
+	  background:	#C0C0C0;
 	}
 	tr:last-child td:first-child {
 	  border-bottom-left-radius: 6px;
@@ -90,10 +90,10 @@
 	<section class="bg">
 
 	<!--  
-	MEM_NO: ${MEM_NO} <br/>
-	MEM_ID: ${MEM_ID} <br/>
-	MEM_GRADE: ${MEM_GRADE} <br/>
-	EMAIL:  ${EMAIL} <br/><br/>
+	memNo: ${memNo} <br/>
+	memId: ${memId} <br/>
+	email: ${email} <br/>
+	memGrade: ${memGrade} <br/><br/>
 
 	map.list: ${map.list}  <br/>
 	map.search_option: ${map.search_option}  <br/>
@@ -145,7 +145,7 @@
 		<input type="submit" value="조회" style="color: black; background-color:	#8B4513;" />
 	</form>
 	</div>
-	</br>
+	<br>
 	
 	<span class="writeSpan1"> 
 		총 ${map.count}개의 문의글이 있습니다.   
@@ -171,7 +171,7 @@
 				
 				<c:if test="${row.secret eq 'Y'}">
 					<c:choose>
-						<c:when test="${MEM_GRADE eq '999' || row.writerId eq MEM_ID}">
+						<c:when test="${memGrade eq '999' || row.writerId eq memId}">
 							<td><a href="${path}/qna/detail?qnaNo=${row.qnaNo}
 											&curPage=${map.pager.curPage}
 											&search_option=${map.search_option}

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="<%=request.getContextPath()%>"></c:set> 
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,25 +77,27 @@
 <body>
 
 	<!--
-	MEM_NO: ${MEM_NO} <br/>
-	MEM_ID: ${MEM_ID} <br/>
-	EMAIL:  ${EMAIL} <br/><br/>
+	memNo: ${memNo} <br/>
+	memId: ${memId} <br/>
+	email:  ${email} <br/><br/>
+	
+	badRequest:${badRequest}
 	-->
-
+	
 	<section class="bg">
 	<br/><br/>
 	
 	<div id="tableDiv">
 	<form action="${path}/qna/add" id="addForm" method="post" enctype="multipart/form-data">
 
-		<input type="hidden" name="memNo" value="${sessionScope.MEM_NO}" >
-		<input type="hidden" name="writerId" value="${sessionScope.MEM_ID}" >
-		<input type="hidden" name="writerEmail" value="${sessionScope.EMAIL}" >
+		<input type="hidden" name="memNo" value="${sessionScope.memNo}" >
+		<input type="hidden" name="writerId" value="${sessionScope.memId}" >
+		<input type="hidden" name="writerEmail" value="${sessionScope.email}" >
 
 		<table border="1" >
 			<tr>
 				<th>작성자 아이디</th>
-				<td>${sessionScope.MEM_ID}</td>
+				<td>${sessionScope.memId}</td>
 			</tr>
 			<tr>
 				<th>글 공개여부</th>
@@ -105,12 +108,26 @@
 			</tr>
 			<tr>
 				<th>제목</th>
-				<td><input type="text" name="title" style="color: black; width: 950px;" required="required"></td>
+				<td>
+					<input type="text" name="title" style="color: black; width: 950px;"/>
+					</br>
+					<spring:hasBindErrors name="qna">
+						<c:if test="${errors.hasFieldErrors('title')}">
+							<strong style="color: red;">${errors.getFieldError('title').defaultMessage}</strong>
+						</c:if>
+					</spring:hasBindErrors>
+				</td>
 			</tr>
 			<tr>
 				<th>내용</th>
 				<td>
-					<textarea cols="90" rows="10" name="content" style="color: black;" required="required"></textarea>
+					<textarea cols="90" rows="10" name="content" style="color: black;" ></textarea>
+					</br>
+					<spring:hasBindErrors name="qna">
+						<c:if test="${errors.hasFieldErrors('content')}">
+							<strong style="color: red;">${errors.getFieldError('content').defaultMessage}</strong>
+						</c:if>
+					</spring:hasBindErrors>
 				</td>
 			</tr>
 			<tr>
