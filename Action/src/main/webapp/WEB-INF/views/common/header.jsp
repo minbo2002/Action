@@ -151,7 +151,7 @@ body {
 							<a href="<%=request.getContextPath()%>" >회원정보수정</a><br><br>
 							<a href="<%=request.getContextPath()%>" >개인정보수정</a>
 						</div>
-					</li>
+					</li> 
 				</ul>
 			</nav>
 <!-- /main nav -->
