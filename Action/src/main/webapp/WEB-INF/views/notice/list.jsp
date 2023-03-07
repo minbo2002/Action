@@ -17,7 +17,7 @@ td{
 }
 .searchmove{
 			position: relative;
-            left: 880px;
+            left: 894px;
             margin:20px;
             }
 
@@ -93,42 +93,12 @@ td{
 
 <section id="bg">
 
-
-
-  
-  <div class="searchmove">
-  
-<form action="${contextPath}/notice/list" style="display:inline;">
-        <label for="theater"> 극장선택 </label>
-        <select id="theater" name="keyword" value="${keyword}">
-          <option value="">-- 선택하세요 --</option>
-            <option value="t1">강남대로(씨티)</option>
-            <option value="t2">강동</option>
-            <option value="t3">군자</option>
-            <option value="t4">더 부티크 목동현대백화점</option>
-            <option value="t5">동대문</option>
-            <option value="t6">마곡</option>
-            <option value="t7">목동</option>
-            <option value="t8">상봉</option>
-            <option value="t9">상암월드컵경기장</option>
-            <option value="t10">성수</option>
-            <option value="t11">센트럴</option>
-            <option value="t12">송파파크하비오</option>
-            <option value="t13">신촌</option>
-            <option value="t14">이수</option>
-            <option value="t15">창동</option>
-            <option value="t16">코엑스</option>
-            <option value="t17">홍대</option>
-            <option value="t18">화곡</option>
-            <option value="t19">ARTNINE</option>
-        </select>
-</form>
-    
-<form action="${contextPath}/notice/list" style="display:inline;">  
-<input type="text" placeholder="검색어를 입력해 주세요." name="keyword" value="${keyword}" />  
-<input type="submit" value="검색" />  
-</form>  
-  </div>
+<div class="searchmove">
+	<form action="${contextPath}/notice/list" style="display:inline;">  
+		<input type="text" placeholder="검색어를 입력해 주세요." name="keyword" value="${keyword}" style="width:340px"/>  
+		<input type="submit" value="검색" style="width:100px"/>  
+	</form>  
+</div>
   
 <div id="tablediv">
 

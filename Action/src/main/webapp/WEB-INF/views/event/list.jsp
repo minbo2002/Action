@@ -9,9 +9,7 @@
 <link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_rank.css">
 <link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_release.css">
 <link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_query.css">
-<meta charset="UTF-8">
-<title>이벤트 목록</title>
-</head>
+
 <style >
 
 
@@ -20,14 +18,11 @@ td{
 }
 
 
-#tablediv{	
-		
-}
-#search{
-	position: relative;
-    left: 1120px;
-    margin:20px;
-}
+.searchmove{
+			position: relative;
+            left: 894px;
+            margin:20px;
+            }
 
 
 <style type="text/css">
@@ -90,14 +85,17 @@ td{
    }
 
 </style>
+<meta charset="UTF-8">
+<title>이벤트 목록</title>
+</head>
 <body>
 <section id="bg">
 
 
 <div class="searchmove">
 	<form id="search" action="${contextPath}/event/list">  
-		<input type="text" placeholder="검색어를 입력하세요." name="keyword" value="${keyword}" />  
-		<input type="submit" value="검색" />
+		<input type="text" placeholder="검색어를 입력하세요." name="keyword" value="${keyword}" style="width:340px" />  
+		<input type="submit" value="검색" style="width:100px"/>
 	</form>
 </div>
 
@@ -124,9 +122,9 @@ td{
       </c:forEach>
     </tbody>
 </table>
+
 <button type="button" onclick="location.href='${contextPath}/event/addForm'">글쓰기</button>
 </div>
-
 </section>
 </body>
 </html>
