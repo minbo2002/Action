@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="member">
+
+	<select id="memberList" resultType="memberDto">
+		<![CDATA[
+		select mem_no as memNo, mem_id as memId, passwd, mem_name as memName, gender,email, regdate ,postcode,address,extraaddress,grade
+			from member
+		order by memname 	
+		]]>	
+	</select>
+
+	<insert id="insertMember" parameterType="memberDto">
+		INSERT INTO MEMBER (mem_no,MEM_ID, passwd, MEM_NAME, GENDER, EMAIL, POSTCODE,ADDRESS,EXTRAADDRESS, GRADE) 
+		values (seq_member.nextval ,#{memId}, #{passwd}, #{memName}, #{gender}, #{email}, #{postcode},#{address},#{extraAddress}, 0)
+	</insert>
+	
+	<select id="viewMember" resultType="memberDto">
+	 	select mem_id as memId, passwd, mem_name as memName, gender,email, regdate ,postcode,address,extraaddress,grade
+	 	from member
+	 	where mem_id=#{memId}
+	</select>
+
+	<select id="checkPw" resultType="int">
+	 	select count(*) from member
+	 	where mem_Id=#{memId} and passwd=#{passwd}	 <!-- id,pw가 일치한다면 count 1나옴. 틀리면 조회안되니까 0나옴  -->
+	</select>
+	
+	<update id="updateMember" >
+		update member
+		set mem_name=#{memName}, passwd=#{passwd}, email=#{email} ,postcode=#{postcode},address=#{address},extraaddress=#{extraAddress}
+		where mem_id=#{memId}
+	</update>
+
+	<delete id="deleteMember">
+		delete from member
+		where mem_id=#{memId}
+	</delete>
+	
+	<select id="login_check" resultType="String">
+		select mem_name ,mem_id,passwd
+		from member
+		where mem_id=#{memId} and passwd=#{passwd}
+	</select>
+	
+	
+	<select id="findId" resultType="memberDto">
+		select mem_id as memId, mem_name as memName 
+		from MEMBER 
+		where EMAIL = #{email}
+	</select>
+	
+	<select id="findIdCheck" resultType="int">
+		select count(*) from MEMBER where Email = #{email}
+	</select>
+
+</mapper>  
