@@ -138,13 +138,20 @@ body {
 					<li><a href="#service-bottom">공지사항</a></li>
 					<li class="dropdown"><a href="#service">스토어</a>
 					<div class="dropdown-content">
-							<a href="<%=request.getContextPath()%>/store/storeList" >스토어 메뉴</a><hr/>
+							<a href="<%=request.getContextPath()%>/store/storeList" >스토어 메뉴</a><br><br>
 						<c:if test="${sessionScope.user.role == 'admin'}">
 								<a href="<%=request.getContextPath()%>/admin/admin_storeList?store_package=1" >스토어 관리</a>
 						</c:if>	
 						</div>
 					</li>
-					<li><a href="#contact">마이페이지</a></li>
+					<li class="dropdown"><a href="#contact">마이페이지</a>
+					 	<div class="dropdown-content">
+							<a href="<%=request.getContextPath()%>/member/login.do" >로그인</a><br><br>
+							<a href="<%=request.getContextPath()%>" >로그아웃</a><br><br>
+							<a href="<%=request.getContextPath()%>" >회원정보수정</a><br><br>
+							<a href="<%=request.getContextPath()%>" >개인정보수정</a>
+						</div>
+					</li>
 				</ul>
 			</nav>
 <!-- /main nav -->
