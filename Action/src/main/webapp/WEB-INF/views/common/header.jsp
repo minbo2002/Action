@@ -130,7 +130,8 @@ body {
 					<li ><a href="<%=request.getContextPath()%>/">메인페이지</a></li>
 					<li class="dropdown"><a href="#portfolio">영화소개</a>
 						<div class="dropdown-content">
-							<a href="<%=request.getContextPath()%>/movieReleaseList" >영화 검색</a>
+							<a href="<%=request.getContextPath()%>/movieReleaseList" >영화 검색</a><br><br>
+							<a href="<%=request.getContextPath()%>/sample" >오픈API</a>
 						</div>
 					</li>
 					<li><a href="#pricing">예매페이지</a></li>

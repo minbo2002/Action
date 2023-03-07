@@ -23,6 +23,11 @@ public class MovieListController {
 		return "movie/movie_list";
 	}
 	
+	@RequestMapping ("/sample" ) 
+	public String sample() {
+		return "boxoffice/sample1";
+	}
+	
 	@RequestMapping("/movieInfoDetail")
 	public String list(Model model, Integer page, String movieId, String movieSeq, String m_name) {
 

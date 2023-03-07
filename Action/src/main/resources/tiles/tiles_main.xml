@@ -14,9 +14,9 @@
 	</definition>
 	
 	<!-- 테스트 페이지 -->
-    <definition name="test/test" extends="baseLayout">
+    <definition name="boxoffice/sample1" extends="baseLayout">
         <put-attribute name="title" value="테스트페이지"/>
-        <put-attribute name="body" value="/WEB-INF/views/test/test.jsp"/>    
+        <put-attribute name="body" value="/WEB-INF/views/boxoffice/sample1.jsp"/>    
     </definition>
     
     <!-- 메인 페이지 -->

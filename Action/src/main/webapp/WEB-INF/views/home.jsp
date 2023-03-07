@@ -125,10 +125,10 @@ function detailRank( releaseDts, title, trailer ){
 			<!--/.carousel-indicators-->
 
 			<div class="carousel-inner"
-				style="height: 900px; width: 88%; margin: auto">
+				style="height: 1000px; width: 88%; margin: auto">
 
-				<div class="item active" style="height: 105%;">
-				<video autoplay="autoplay" muted="muted" style="margin-top: 6%;  height: 100%;">
+				<div class="item active" style="height: 942px">
+				<video autoplay="autoplay" muted="muted" style="margin-top: 0%;  height: 100%;">
 				<source src="http://h.vod.cgv.co.kr/vodCGVa/86814/86814_212670_1200_128_960_540.mp4" type="video/mp4" >
 			    </video>
 <%-- 					style="background: linear-gradient(to top, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 0.8) 90%, rgba(0, 0, 0, 1) 100%), --%>
@@ -142,8 +142,8 @@ function detailRank( releaseDts, title, trailer ){
 					</div>
 				</div>
 
-				<div class="item" style="height: 105%;">
-				<video autoplay="autoplay" muted="muted" style="margin-top: 6%;  height: 100%;">
+				<div class="item" style="height: 942px;">
+				<video autoplay="autoplay" muted="muted" style="margin-top: 0%;  height: 100%;">
 				<source src="http://h.vod.cgv.co.kr/vodCGVa/86839/86839_212434_1200_128_960_540.mp4" type="video/mp4" >
 			    </video>
 <%-- 					style="background: linear-gradient(to top, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 0.8) 90%, rgba(0, 0, 0, 1) 100%), --%>
@@ -160,8 +160,8 @@ function detailRank( releaseDts, title, trailer ){
 
 				
 			    
-				<div class="item" style="height: 105%;">
-				<video autoplay="autoplay" muted="muted" style="margin-top: 6%;  height: 100%;">
+				<div class="item" style="height: 942px;">
+				<video autoplay="autoplay" muted="muted" style="margin-top: 0%;  height: 100%;">
 				<source src="https://adimg.cgv.co.kr/images/202302/Suzume/Suzume_1080x608.mp4" type="video/mp4" >
 			    </video>
 <%-- 					style="background: linear-gradient(to top, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 0.8) 90%, rgba(0, 0, 0, 1) 100%), --%>
