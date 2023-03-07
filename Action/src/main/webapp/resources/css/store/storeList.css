@@ -3,7 +3,7 @@
 	border-top: 1px solid #e9e4d2;
 	width: 100%;
 	min-width: 980px;
-	height: 2000px;
+	height: 2600px;
 	position: relative;
 	padding-top: 30px;
 }
@@ -87,8 +87,6 @@
 /* 메뉴탭  */
 .menuTab {
 	display: none;
-	/* background-color: lightblue; */
-	color: #000;
 }
 .menuTab.current {
 	display: block;

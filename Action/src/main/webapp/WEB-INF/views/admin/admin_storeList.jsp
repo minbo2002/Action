@@ -34,13 +34,13 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-danger sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul class="navbar-nav bg-gradient-danger sidebar sidebar-dark accordion" id="accordionSidebar" >
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="${pageContext.request.contextPath}/admin/admin_storeList?store_package=1">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="${pageContext.request.contextPath}/">
         <div class="sidebar-brand-icon rotate-n-15">
         </div>
-        <div class="sidebar-brand-text mx-3">2023 Project</div>
+        <div class="sidebar-brand-text mx-3">2023 Action</div>
       </a>
 
       
@@ -226,15 +226,15 @@
 												success: function(result) {
 													if(result == 1){
 														alert("삭제 완료.");
-														location.href = "admin_storeList";
+														location.href = "admin_storeList?store_package=1";
 													}else {
 														alert("삭제 실패.");
-														location.href = "admin_storeList";
+														location.href = "admin_storeList?store_package=1";
 													}
 												},
 												error: function() {
 													alert("error");
-													location.href = "admin_storeList";
+													location.href = "admin_storeList?store_package=1";
 												}
 											});
 										}
@@ -299,15 +299,15 @@
 									success: function(result) {
 										if(result == 1){
 											alert("삭제 완료.");
-											location.href = "admin_storeList";
+											location.href = "admin_storeList?store_package=1";
 										}else {
 											alert("삭제 실패.");
-											location.href = "admin_storeList";
+											location.href = "admin_storeList?store_package=1";
 										}
 									},
 									error: function() {
 										alert("error");
-										location.href = "admin_storeList";
+										location.href = "admin_storeList?store_package=1";
 									}
 								});
 								
@@ -331,7 +331,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>2023 Project</span>
+            <span>2023 Action</span>
           </div>
         </div>
       </footer>
@@ -348,24 +348,6 @@
     <i class="fas fa-angle-up"></i>
   </a>
 
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Bootstrap core JavaScript-->
   <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>

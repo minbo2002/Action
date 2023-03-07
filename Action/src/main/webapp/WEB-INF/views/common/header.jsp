@@ -136,7 +136,10 @@ body {
 					<li><a href="#pricing">예매페이지</a></li>
 					<li class="dropdown"><a href="#service">스토어</a>
 					<div class="dropdown-content">
-							<a href="<%=request.getContextPath()%>/store/storeList" >스토어 메뉴</a>
+							<a href="<%=request.getContextPath()%>/store/storeList" >스토어 메뉴</a><hr/>
+						<c:if test="${sessionScope.user.role == 'admin'}">
+								<a href="<%=request.getContextPath()%>/admin/admin_storeList?store_package=1" >스토어 관리</a>
+						</c:if>	
 						</div>
 					</li>
 					<li><a href="#service-bottom">공지사항</a></li>
