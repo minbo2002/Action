@@ -18,7 +18,7 @@ public class MovieListController {
 	
 	@RequestMapping ("/movieReleaseList" ) 
 	public String movieReleaseList() {
-		return Common.Movie.VIEW_PATH + "movie_list";
+		return "movie/movie_list";
 	}
 	
 	@RequestMapping ("/sample" ) 

@@ -19,6 +19,18 @@
         <put-attribute name="body" value="/WEB-INF/views/boxoffice/sample1.jsp"/>    
     </definition>
     
+    	<!-- 영화페이지 -->
+    <definition name="movie/movie_list" extends="baseLayout">
+        <put-attribute name="title" value="테스트페이지"/>
+        <put-attribute name="body" value="/WEB-INF/views/movie/movie_list.jsp"/>    
+    </definition>
+    
+     	<!-- 영화 상세보기 페이지 -->
+    <definition name="movie/movie_detail" extends="baseLayout">
+        <put-attribute name="title" value="테스트페이지"/>
+        <put-attribute name="body" value="/WEB-INF/views/movie/movie_detail.jsp"/>    
+    </definition>
+    
     <!-- 메인 페이지 -->
 	<definition name="home" extends="baseLayout">
         <put-attribute name="title" value="메인페이지"/>
