@@ -11,7 +11,6 @@
 <link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_query.css">
 <style >
 
-
 td{
 	text-align: center;
 }
