@@ -197,12 +197,13 @@ body {
 									<a href="<%=request.getContextPath()%>">회원정보수정</a>
 								</c:when>
 								<c:otherwise>
+									<p>${sessionScope.memId} 님</p><br><br>
 									<a href="<%=request.getContextPath()%>/member/logout.do">로그아웃</a><br><br>
 									<a href="<%=request.getContextPath()%>">개인정보수정</a><br><br>
 								</c:otherwise>
 							</c:choose>
 							
-							
+							 
 						</div>
 					</li>
 				</ul>
