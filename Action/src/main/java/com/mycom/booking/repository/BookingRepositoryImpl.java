@@ -40,9 +40,9 @@ public class BookingRepositoryImpl implements BookingRepository	 {
 	}
 	//영화좌석검색
 	@Override
-	public List<String> selectSeat(String time) throws DataAccessException {
-		System.out.println("repo:"+time);
-		List<String> list = sqlSession.selectList("mapper.booking.getSeatList", time);
+	public List<String> selectSeat(Ticketing ticketing) throws DataAccessException {
+		System.out.println("repo:"+ticketing);
+		List<String> list = sqlSession.selectList("mapper.booking.getSeatList", ticketing);
 		System.out.println("repo 리턴 값:"+list);
 		return list;
 	}

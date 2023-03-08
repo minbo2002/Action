@@ -38,8 +38,8 @@ public class BookingServiceImpl implements BookingService{
 	}
 	//좌석검색
 	@Override
-	public List<String> selectSeat(String time) throws Exception {
-		return bookingRepository.selectSeat(time);
+	public List<String> selectSeat(Ticketing ticketing) throws Exception {
+		return bookingRepository.selectSeat(ticketing);
 	}
 	//데이터 삽입
 	@Override

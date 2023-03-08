@@ -7,6 +7,7 @@
 <select id="getMovieList" resultType="movie">
 	<![CDATA[
 		select * from movie
+		where movie_status = 0
 	]]>
 </select>
 
@@ -65,17 +66,26 @@
 	]]>
 </select>
 <!-- 좌석 데이터 불러오기 -->
-<select id="getSeatList" parameterType="String" resultMap="seatResult">
-	<![CDATA[
+
+	<select id="getSeatList" parameterType="ticketing" resultMap="seatResult">
+		<![CDATA[
 		select r_seat_no, seat_status
-		from seat s, schedule h, mtime t
-		where s.schedule_no = h.schedule_no
-		and 
-		t.time_code=h.time_code
-		and 
-		time=#{time}
-	]]>
-</select>
+        from mtime t, movie m, cinema c, seat s, schedule h
+        where t.time_code = h.time_code
+        and 
+        s.schedule_no = h.schedule_no
+        and 
+        c.cinema_no = h.cinema_no
+        and
+        m.movie_no = h.movie_no
+        and
+        movie_title = #{movie_title}
+        and cinema_name = #{cinema_name}
+        and time = #{movie_time}
+		]]> 
+	</select>
+	
+
 	<!-- 예매 데이터 삽입 -->
 	<insert id="insertInfo" parameterType="ticketing" >
 		<![CDATA[

@@ -18,7 +18,7 @@ public interface BookingRepository {
 	//영화 상영시간표 검색
 	public List<String> selectMovieTime(Cinema cineam) throws DataAccessException;
 	//좌석 검색
-	public List<String> selectSeat(String time) throws DataAccessException;
+	public List<String> selectSeat(Ticketing ticketing) throws DataAccessException;
 	//예매 데이터 삽입 
 	public int insertInfo(Ticketing ticket) throws DataAccessException;
 	//좌석 상태값 변경

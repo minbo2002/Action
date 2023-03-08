@@ -6,50 +6,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- 모바일 유효 -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- 익스플로러 렌더링 엔진 -->
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<!-- 메타 키워드 -->
-<meta name="keywords"
-	content="one page, business template, single page, onepage, responsive, parallax, creative, business, html5, css3, css3 animation">
-<!-- 메타 캐릭터셋 -->
-<meta charset="utf-8">
-<title>test</title>
-<!-- 폰트 -->
-<link
-	href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700"
-	rel="stylesheet" type="text/css">
 
-<!-- CSS -->
-<!-- Fontawesome -->
-<link rel="stylesheet"
-	href="<%=request.getContextPath() %>/resources/css/font-awesome.min.css">
-<!-- Bootstrap -->
-<link rel="stylesheet"
-	href="<%=request.getContextPath() %>/resources/css/bootstrap.min.css">
-<!-- Fancybox -->
-<link rel="stylesheet"
-	href="<%=request.getContextPath() %>/resources/css/jquery.fancybox.css">
-<!-- owl carousel -->
-<link rel="stylesheet"
-	href="<%=request.getContextPath() %>/resources/css/owl.carousel.css">
-<!-- Animate -->
-<link rel="stylesheet"
-	href="<%=request.getContextPath() %>/resources/css/animate.css">
-<!-- Main Stylesheet -->
-<link rel="stylesheet"
-	href="<%=request.getContextPath() %>/resources/css/main.css">
-<!-- Main Responsive -->
-<link rel="stylesheet"
-	href="<%=request.getContextPath() %>/resources/css/responsive.css">
-
-<link href="<%=request.getContextPath() %>/resources/css/booking/index.css" rel="stylesheet" type="text/css">
-
-<!-- Modernizer Script for old Browsers -->
-<script
-	src="<%=request.getContextPath() %>/resources/js/vendor/modernizr-2.6.2.min.js"></script>
-
+<link href="${path}/resources/css/booking/index.css" rel="stylesheet" type="text/css">
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <style type="text/css">
 body {
@@ -75,8 +33,9 @@ body {
 			    url:"theaterloc", //값을 가져올 경로
 			    data: form, //html, xml, text, script, json, jsonp 등 다양하게 쓸 수 있음
 			    success: function(data){   //요청 성공시 실행될 메서드
-			    		var btnTag = "<button type='button' id='btn1city'><span class='movieloc'>"+data[0]+"</span></button><br/>"
-			    		 	btnTag +="<button type='button' id='btn2city'><span class='movieloc'>"+data[1]+"</span></button>" 
+			    		var btnTag = "<button type='button' id='btn1city' class='btncity'><span class='movieloc'>"+data[0]+"</span></button><br/>"
+			    		 	btnTag +="<button type='button' id='btn2city' class='btncity'><span class='movieloc'>"+data[1]+"</span></button><br/>"
+			    		 	btnTag +="<button type='button' id='btn2city' class='btncity'><span class='movieloc'>"+data[2]+"</span></button><br/>"
 			    	$("#theatercity").html(btnTag);
 			    	console.log(data);
 			        console.log("통신성공");
@@ -87,48 +46,10 @@ body {
 			}) 
 		}); //btn1loc 끝
 		
-		//영화관 클릭시 시간 출력(수지)
-		$(document).on("click","#btn1city",function(){
-			let t = $(this).text();
-			$("#text2").val(t);
-			$("#text2").removeAttr("disabled");
-			alert(t);
-
-			
-			 $.ajax({ //jquery ajax
-				    type:"get", //get방식으로 가져오기
-				    url:"getTime", //값을 가져올 경로
-				    dataType:"json",
-				    data: {
-				    	title : $("#text1").val(),
-				    	name : $("#text2").val()
-				    }, //html, xml, text, script, json, jsonp 등 다양하게 쓸 수 있음
-				    success: function(data){   //요청 성공시 실행될 메서드
-				    	/* let jsonInfo = JSON.stringify(data);
-				    	alert(jsonInfo); */
-				    	$("#timeList").empty();	
-				    	
-				    	$.each(data, function(index, item) { // 데이터 =item
-				    	
-				    		    var btnTag =  "<button type='button' id='btn"+index+"time'><span class='movietime'>"+item.time+"</span></button><br/>"
-					    		$("#timeList").append(btnTag);
-				    	
-						});
-				    	
-				        console.log("통신성공");
-				    },
-				    error:function(){		 //요청 실패시 에러 확인을 위함
-				        console.log("통신에러");
-				    }
-				});	//ajax 끝 
-			
-		});// btn1city끝
 		
 		
-		
-		
-		//영화관 클릭시 시간 출력(오산)
-		$(document).on("click","#btn2city",function(){
+		//영화관 클릭시 시간 출력
+		$(document).on("click",".btncity",function(){
 				let t = $(this).text();
 				$("#text2").val(t);
 				$("#text2").removeAttr("disabled");
@@ -145,7 +66,15 @@ body {
 				    success: function(data){   //요청 성공시 실행될 메서드
 				    	/* let jsonInfo = JSON.stringify(data);
 				    	alert(jsonInfo); */
-				    	$("#timeList").empty();	
+				    	$("#timeList").empty();
+				    	
+				    	
+				    	if(data=='') {
+				    		var value = "<button type='button'><span class='movietime'>상영관이 없습니다.</span></button><br/>"
+				    			$("#timeList").append(value);
+				    		$(".tg").empty();
+				    	}
+				    	
 				    	
 				    	$.each(data, function(index, item) { // 데이터 =item
 				    			
@@ -175,7 +104,9 @@ body {
 		    type:"get", //get방식으로 가져오기
 		    url:"getSeat", //값을 가져올 경로
 		    data: {
-		    	time : $("#text3").val()
+		    	movie_title : $("#text1").val(),
+		    	cinema_name : $("#text2").val(),
+		    	movie_time : $("#text3").val()
 		    }, //html, xml, text, script, json, jsonp 등 다양하게 쓸 수 있음
 		    success: function(data){   //요청 성공시 실행될 메서드
 				//$(".tr1").empty();	
@@ -185,39 +116,27 @@ body {
 		    	
 		    	var jsonInfo = JSON.stringify(data);
 		    	
-		    	/* <select id="person" style="background: none; font-size: 20px; height: 30px;">
-			        <option value="1">1명</option>
-			        <option value="2">2명</option>
-			        <option value="3">3명</option>
-		   		 </select> */
-		   		 
-		   		/* var t = $("#person").val();
-    			alert("속성변경 성공!"+"인원수:"+t); */
+		    	
     			
 		    	$.each(data, function(index, item){
-		    		
+		    		console.log(item);
 		    		cnt++;
 		    		if(cnt>=0 && cnt<6) {
-		    			$(".tr1").append("<td class='tg-0pky'><button type='button' name='btnA1' id='btnA1' class='seatBtn'>"+item.r_seat_no+"</button></td>");			    			
+		    			$(".tr1").append("<td class='tg-0pky'><button type='button' name='btnA' id='btn"+cnt+"' class='seatBtn'>"+item.r_seat_no+"</button></td>");			    			
 		    		}else if(cnt>=6 && cnt <11) {
-		    			$(".tr2").append("<td class='tg-0pky'><button type='button' name='btnA1' id='btnA2' class='seatBtn'>"+item.r_seat_no+"</button></td>");
+		    			$(".tr2").append("<td class='tg-0pky'><button type='button' name='btnA1' id='btn"+cnt+"' class='seatBtn'>"+item.r_seat_no+"</button></td>");
 		    		}else if(cnt>=11 && cnt <16) {
-		    			$(".tr3").append("<td class='tg-0pky'><button type='button' name='btnA1' id='btnA3' class='seatBtn'>"+item.r_seat_no+"</button></td>");
+		    			$(".tr3").append("<td class='tg-0pky'><button type='button' name='btnA1' id='btn"+cnt+"' class='seatBtn'>"+item.r_seat_no+"</button></td>");
 		    		}else if(cnt>=16 && cnt <21){
-		    			$(".tr4").append("<td class='tg-0pky'><button type='button' name='btnA1' id='btnA4' class='seatBtn'>"+item.r_seat_no+"</button></td>");
+		    			$(".tr4").append("<td class='tg-0pky'><button type='button' name='btnA1' id='btn"+cnt+"' class='seatBtn'>"+item.r_seat_no+"</button></td>");
 		    		}else {
-		    			$(".tr5").append("<td class='tg-0pky'><button type='button' name='btnA1' id='btnA5' class='seatBtn'>"+item.r_seat_no+"</button></td>");
+		    			$(".tr5").append("<td class='tg-0pky'><button type='button' name='btnA1' id='btn"+cnt+"' class='seatBtn'>"+item.r_seat_no+"</button></td>");
 		    		}
 		    		if(item.seat_status==1) {
 		    			//$(".seatBtn").attr("disabled", "disabled");
 		    			$(".seatBtn").css("background-color", "grey");
-		    			
 		    		}
-		    		
-		    		
 		    	});
-		   		 
-				
 		        console.log("통신성공");
 		    },
 		    error:function(){		 //요청 실패시 에러 확인을 위함
@@ -225,89 +144,18 @@ body {
 		    }
 		});	//ajax 끝 
 			
-	});//btn1time 
+	});// //영화시간 클릭시 좌석값 불러오기 .movietime끝
 		
-		/* $(document).on("click",".movietime",function(){
-			let t = $(this).text();
-			$("#text3").val(t);
-			alert(t);
-			var cnt = 0;
-			
-			$.ajax({ //jquery ajax
-			    type:"get", //get방식으로 가져오기
-			    url:"getSeat", //값을 가져올 경로
-			    data: {
-			    	time : $("#text3").val()
-			    }, //html, xml, text, script, json, jsonp 등 다양하게 쓸 수 있음
-			    success: function(data){   //요청 성공시 실행될 메서드
-					//$(".tr1").empty();	
-			    	for(var i=1; i<6; i++){
-			    		$(".tr"+i+"").empty();
-			    	}
-			    	var jsonInfo = JSON.stringify(data);
-			    	alert(jsonInfo.seat_status);
-			    	/* <select id="person" style="background: none; font-size: 20px; height: 30px;">
-				        <option value="1">1명</option>
-				        <option value="2">2명</option>
-				        <option value="3">3명</option>
-				        <option value="4">4명</option>
-				        <option value="5">5명</option>
-			   		 </select> 
-			    	
-			   		var t = $("#person").val();
-	    			alert("속성변경 성공!"+"인원수:"+t);
-	    			
-			    	$.each(data, function(index, item){
-			    		
-			    		cnt++;
-			    		if(cnt>=0 && cnt<6) {
-			    			$(".tr1").append("<td class='tg-0pky'><button type='button' name='btnA1' id='btnA1' class='seatBtn'>"+item.r_seat_no+"  /></td>");			    			
-			    		}else if(cnt>=6 && cnt <11) {
-			    			$(".tr2").append("<td class='tg-0pky'><button type='button' name='btnA1' id='btnA2' class='seatBtn'>"+item.r_seat_no+" /></td>");
-			    		}else if(cnt>=11 && cnt <16) {
-			    			$(".tr3").append("<td class='tg-0pky'><button type='button' name='btnA1' id='btnA3' class='seatBtn'>"+item.r_seat_no+" /></td>");
-			    		}else if(cnt>=16 && cnt <21){
-			    			$(".tr4").append("<td class='tg-0pky'><button type='button' name='btnA1' id='btnA4' class='seatBtn'>"+item.r_seat_no+" /></td>");
-			    		}else {
-			    			$(".tr5").append("<td class='tg-0pky'><button type='button' name='btnA1' id='btnA5' class='seatBtn'>"+item.r_seat_no+" /></td>");
-			    		}
-			    		if(item.seat_status==1) {
-			    			$(".seatBtn").attr("disabled", "disabled");
-			    			$(".seatBtn").css("background-color", "red");
-			    			
-			    		}
-			    		return true;
-			    		
-			    	});
-			   		 
-					
-			        console.log("통신성공");
-			    },
-			    error:function(){		 //요청 실패시 에러 확인을 위함
-			        console.log("통신에러");
-			    }
-			});	//ajax 끝 
-				
-		});//btn1time */
+	
 		
 		
 		$(document).on("click",".seatBtn",function(){
 			var t = $(this).text();
 			$("#text4").val(t);
 			$("#text4").removeAttr("disabled");
+			$(".btnSubmit").append('<input type="submit" value="예약하기" style="width:80px; height: 30px; background: none; font-size: 15px; margin-left: 1%;">');
 		});
 		
-		/* $(document).on("click","#btn2city",function(){
-			let t = $(this).text();
-			$("#text2").val(t);
-			alert(t);
-		}); */
-		
-		$(document).on("click","#btn3city",function(){
-			let t = $(this).text();
-			$("#text2").val(t);
-			alert(t);
-		});
 		
 		//경기도
 		$("#btn2loc").click(function(){
@@ -321,9 +169,9 @@ body {
 			    data: form, //html, xml, text, script, json, jsonp 등 다양하게 쓸 수 있음
 			    success: function(data){   //요청 성공시 실행될 메서드
 			    	  	//for(var i=0; i<data.length; i++) {
-			    	  		var btnTag = "<button type='button' id='btn1city'><span class='movieloc'>"+data[0]+"</span></button><br/>"
-			    		 		btnTag +="<button type='button' id='btn2city'><span class='movieloc'>"+data[1]+"</span></button><br/>"
-			    		 		btnTag +="<button type='button' id='btn3city'><span class='movieloc'>"+data[2]+"</span></button>"
+			    	  		var btnTag = "<button type='button' id='btn1city' class='btncity'><span class='movieloc'>"+data[0]+"</span></button><br/>"
+			    		 		btnTag +="<button type='button' id='btn2city' class='btncity'><span class='movieloc'>"+data[1]+"</span></button><br/>"
+			    		 		btnTag +="<button type='button' id='btn3city' class='btncity'><span class='movieloc'>"+data[2]+"</span></button>"
 			    	  		
 			    	  	//}
 			    	  	$("#theatercity").html(btnTag);
@@ -360,8 +208,7 @@ model.addAttribute("loc", list);
 <body>
 	
 	
-	
-<section class="bg">
+<section>
 	<hr/>
 	<%-- <h1>1. <pre>상대경로 = ${pageContext.request.requestURI}</pre></h1> --%>
 	<div class="bodyFrame">영화예매 
@@ -393,11 +240,11 @@ model.addAttribute("loc", list);
 	 					</ul>
 	 			</div>
 	 				<div class="seat">
-	 					<br/>
+	 					<br/><p>상영관
 	 					<br/><br/>
-	 					<span class="screen" style="margin-left: 10%; margin-top: 100%;">SCREEN</span>
-	 					<table class="tg" style="margin-left: 3%;">
-						<tr class="tr1">
+	 					<span class="screen" style="margin-left: 20%; margin-top: 100%;">SCREEN</span>
+	 					<table class="tg" style="margin-left: 13%; margin-top: 3%;" >
+						<tr class="tr1" style="font-size: 20px;">
 						
 						  </tr>
 						    						  
@@ -420,6 +267,7 @@ model.addAttribute("loc", list);
 	 				<span>극장 : <input type="text" name="cinema_name" id="text2"  style="width:110px; height: 30px; background: none;" disabled="disabled"/></span>
 	 				<span>관람시간 : <input type="text" name="movie_time" id="text3"  style="width:60px; height: 30px; background: none;" disabled="disabled"/></span>
 	 				<span class=spans>좌석 : <input type="text" name="seat_number" id="text4" style="width:40px; height: 30px; background: none;" disabled="disabled" /></span>
+	 				<span><input type="text" id="text5" style="width:40px; height: 30px; background: none;" disabled="disabled"/></span>
 	 				<span style="padding-top: 13px; padding-left: 5px; width: 200px;">인원수:</span>
 	 				  		<select id="person" name="person" style="background: none; font-size: 20px; height: 30px;" disabled="disabled">
 						        <option value="0">관람인원</option>
@@ -427,8 +275,7 @@ model.addAttribute("loc", list);
 						        <option value="2">2명</option>
 						        <option value="3">3명</option>
 						    </select>
-	 				<span><input type="text" id="text5" value="" style="width:40px; height: 30px; background: none;" disabled="disabled"/></span><br/>
-	 				<span><input type="submit" value="예약" style="width:40px; height: 30px; background: none; font-size: 15px;"> </span> 
+	 				<span id="btnSubmit"><!-- <input type="submit" value="예약하기" style="width:80px; height: 30px; background: none; font-size: 15px; margin-left: 1%;"> --> </span> 
 	 			</div>
 	 			</form>
 	 			
@@ -440,7 +287,6 @@ model.addAttribute("loc", list);
 
 
 	</section>	
-	
 	
 	<script>
 	function Btnreset() {

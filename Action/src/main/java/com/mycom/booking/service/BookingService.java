@@ -17,7 +17,7 @@ public interface BookingService {
 	//영화 상영 시간표 검색
 	public List<String> selectMovieTime(Cinema cinema) throws Exception;
 	//좌석 불러오기
-	public List<String> selectSeat(String time) throws Exception;
+	public List<String> selectSeat(Ticketing ticketing) throws Exception;
 	//예매정보 추가 
 	public int insertInfo(Ticketing ticket) throws Exception;
 	//좌석 상태 변경 

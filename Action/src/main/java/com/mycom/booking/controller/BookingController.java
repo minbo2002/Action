@@ -14,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mycom.booking.domain.Cinema;
@@ -35,7 +34,7 @@ public class BookingController {
 	 
 	//영화리스트 불러오기
 	@GetMapping("/booking")
-	public ModelAndView getMovieList(ModelAndView mv) throws Exception {
+	public ModelAndView getMovieList(ModelAndView mv, HttpServletRequest requset) throws Exception {
 		List<Movie> movieList = bookingService.getMovieList();
 		
 		
@@ -66,47 +65,44 @@ public class BookingController {
 		
 	}
 	
-	//좌석 불러오기 
-	@GetMapping(value="/getSeat", produces = "application/json;charset=utf8")
-	public @ResponseBody Object getSeat(String time) throws Exception {
-		System.out.println("time값:"+time);
-		List<String> seatList = bookingService.selectSeat(time);
+//	//좌석 불러오기 
+//	@GetMapping(value="/getSeat", produces = "application/json;charset=utf8")
+//	public @ResponseBody Object getSeat(String time) throws Exception {
+//		System.out.println("time값:"+time);
+//		List<String> seatList = bookingService.selectSeat(time);
+//	
+//		
+//		return seatList;
+//	}
 	
+	//좌석 불러오기 
+		@GetMapping(value="/getSeat", produces = "application/json;charset=utf8")
+		public @ResponseBody Object getSeat(Ticketing ticketing) throws Exception {
+			System.out.println("ticketing값:"+ticketing);
+			List<String> seatList = bookingService.selectSeat(ticketing);
 		
-		return seatList;
-	}
+			
+			return seatList;
+		}
 	
 	//예매 데이터 전송 
 	@GetMapping(value="/ticket")
-	public String submitMovieInfo(Ticketing ticket, HttpServletRequest request, MultipartHttpServletRequest mutilRequest) throws Exception {
+	public String submitMovieInfo(Ticketing ticket, HttpServletRequest request) throws Exception {
 		int men_no = 1;
 		HttpSession session = request.getSession();
 		session.setAttribute("men_no", men_no);
-		String msg = null;
 		
 		//데이터 추가
 		int cnt1 = bookingService.insertInfo(ticket);
 		System.out.println("cnt1:"+cnt1);
 		if(cnt1==1) {
 			int cnt2 = bookingService.updateSeat(ticket);
-			System.out.println("cnt2:"+cnt2);
-			msg = "<script>";
-			msg += "alert('예약성공.');";
-			msg += "location.href= '"+mutilRequest.getContextPath()+"/booking/ticket';";
-			msg += "</script>";
-		}else {
-			msg = "<script>";
-			msg += "alert('예약실패 관리자 문의바람.');";
-			msg += "location.href= '"+mutilRequest.getContextPath()+"/booking/ticket';";
-			msg += "</script>";
-			
-			
 		}
 		//좌석 상태 변경 
 		
 		
 		
 		System.out.println("ticket값:"+ticket);
-		return "redirect:/movieInfo";
+		return "redirect:/";
 	}
 }

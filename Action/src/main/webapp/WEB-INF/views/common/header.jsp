@@ -134,7 +134,12 @@ body {
 							<a href="<%=request.getContextPath()%>/sample" >오픈API</a>
 						</div>
 					</li>
-					<li><a href="<%=request.getContextPath()%>/booking">예매페이지</a></li>
+					<li class="dropdown"><a href="#portfolio">예매페이지</a>
+						<div class="dropdown-content">
+							<a href="<%=request.getContextPath()%>/booking">예매페이지</a>
+						</div>
+					</li>
+					<%-- <li><a href="<%=request.getContextPath()%>/booking">예매페이지</a></li> --%>
 					<li><a href="#service-bottom">공지사항</a></li>
 					<li class="dropdown"><a href="#service">스토어</a>
 					<div class="dropdown-content">
