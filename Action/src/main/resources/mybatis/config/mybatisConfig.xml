@@ -7,6 +7,13 @@
   	<typeAliases> 
   		<typeAlias type="java.lang.Integer" alias="Integer"/>
 		<typeAlias type="java.lang.String" alias="String"/>
+		<typeAlias type="java.util.List" alias="list"/>
 		<typeAlias type="com.mycom.store.model.StoreVO" alias="StoreVO"/>
+		<typeAlias type="com.mycom.booking.domain.Movie" alias="movie"/>
+		<typeAlias type="com.mycom.booking.domain.Cinema" alias="cinema"/>
+		<typeAlias type="com.mycom.booking.domain.Mtime" alias="mtime"/>
+		<typeAlias type="com.mycom.booking.domain.Schedule" alias="schedule"/>
+		<typeAlias type="com.mycom.booking.domain.Seat" alias="seat"/>
+		<typeAlias type="com.mycom.booking.domain.Ticketing" alias="ticketing"/>
   	</typeAliases>
   </configuration>
