@@ -9,5 +9,7 @@
 		<typeAlias type="java.lang.String" alias="String"/>
 		<typeAlias type="com.mycom.store.model.StoreVO" alias="StoreVO"/>
 		<typeAlias type="com.mycom.member.dto.MemberDTO" alias="memberDto" />
+		<typeAlias type="com.mycom.qna.domain.Qna" alias="qnaDomain" />
+		<typeAlias type="com.mycom.qna.domain.QnaFile" alias="qnaFileDomain" />
   	</typeAliases>
   </configuration>

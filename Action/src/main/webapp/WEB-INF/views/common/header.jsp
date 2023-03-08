@@ -144,6 +144,7 @@ body {
 						</c:if>	
 						</div>
 					</li>
+					<li><a href="<%=request.getContextPath()%>/qna/list">Q&A</a></li>
 					<li class="dropdown"><a href="#contact">마이페이지</a>
 					 	<div class="dropdown-content">
 							<a href="<%=request.getContextPath()%>/member/login.do" >로그인</a><br><br>
