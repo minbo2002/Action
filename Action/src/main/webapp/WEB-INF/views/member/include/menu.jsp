@@ -7,12 +7,12 @@
 
 	<div style="text-align: right;">
 	<c:choose>
-		<c:when test="${sessionScope.userid == null}">	
+		<c:when test="${sessionScope.memId == null}">	
 			<a href="${path}/member/login.do">로그인</a>
 		</c:when>
 
 		<c:otherwise>
-			${sessionScope.name} 님이 로그인중입니다. ||
+			${sessionScope.memId} 님이 로그인중입니다. ||
 			<a href="${path}/member/logout.do">로그아웃</a>
 		</c:otherwise>	
 	</c:choose>

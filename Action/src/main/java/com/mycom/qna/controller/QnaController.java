@@ -63,26 +63,7 @@ public class QnaController {
 							 Model model,
 							 HttpServletRequest request) throws Exception {
 
-		HttpSession session = request.getSession();
-		
-		session.setAttribute("memNo", 15);
-		session.setAttribute("memId", "adminid");
-		session.setAttribute("email", "adminid@abc.com");
-		session.setAttribute("memGrade", 999);
-//		session.setAttribute("memNo", 16);
-//		session.setAttribute("memId", "hongid");
-//		session.setAttribute("email", "hongid@abc.com");
-//		session.setAttribute("memGrade", 0);
-//		session.setAttribute("memNo", 17);
-//		session.setAttribute("memId", "kimid");
-//		session.setAttribute("email", "kimid@abc.com");
-//		session.setAttribute("memGrade", 0);
-//		session.setAttribute("memNo", 23);
-//		session.setAttribute("memId", "ohnbgawk89");
-//		session.setAttribute("email", "ohnbgawk89@naver.com");
-//		session.setAttribute("memGrade", 0);
 
-		
 		int count = qnaService.countQna(search_option, keyword);
 		logger.info("게시물 총 개수 count = " + count);
 

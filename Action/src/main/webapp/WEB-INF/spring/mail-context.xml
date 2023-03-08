@@ -6,8 +6,8 @@
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.gmail.com" />
 		<property name="port" value="587" />
-		<property name="username" value="minbo2002@gmail.com" />
-		<property name="password" value="yxjcqvftvhsujbpo" />
+		<property name="username" value="ehdgydi@gmail.com" />
+		<property name="password" value="arfiuerolemfgqls" />
 		<property name="javaMailProperties">
 			<props>
 			   <prop key="mail.transport.protocol">smtp</prop>
@@ -22,7 +22,7 @@
 	<!-- 수신자에게 정기적으로 메일을 보낼경우의 설정 -->
 	<bean id="preConfiguredMessage" class="org.springframework.mail.SimpleMailMessage">
 		<property name="to" value=""></property>
-		<property name="from" value="minbo2002@gmail.com"></property>
+		<property name="from" value="ehdgydi@gmail.com"></property>
 		<property name="subject" value="테스트 메일입니다."/>
 	</bean>
 	

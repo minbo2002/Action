@@ -84,7 +84,7 @@ public class MemberServiceImpl implements MemberService {
 		    session.setAttribute("email", dto.getEmail());
 		    session.setAttribute("memGrade",dto.getGrade());
 			session.setAttribute("memId", dto.getmemId());
-			session.setAttribute("name", name);
+			session.setAttribute("memName", dto.getmemName());
 		}
 		
 		return name;
