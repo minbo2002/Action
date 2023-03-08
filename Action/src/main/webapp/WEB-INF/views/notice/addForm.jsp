@@ -52,32 +52,30 @@
 </script>
 <style >
 
-
-td{
-	/* text-align: center; */
-	margin:20px;
-}
-input{
-	margin:5px;
-}
-
-
-
-<style type="text/css">
+	td{
+		text-align: center;
+	}
+	.searchmove{
+				position: relative;
+	            margin-left:18.5%;
+	            margin-top:2%;
+	            margin-bottom:2%;
+	            }
+	
+	#tablediv{	
+			
+	}
    th{
       width: 50px;
    }
-  
    body {
      color: #666;
-     font: 14px/24px "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Sans-Serif;
    }
    table {
-     border-collapse: separate;
      border-spacing: 0;
      width: 100%;
      margin: auto;
-     background-color: white;
+     background-color: #cacaca;
      
    }
    th,   td {
@@ -88,12 +86,6 @@ input{
      color: #fff;
      text-align: center;
    }
-   tr:first-child th:first-child {
-     border-top-left-radius: 6px;
-   }
-   tr:first-child th:last-child {
-     border-top-right-radius: 6px;
-   }
    td {
      border-right: 1px solid #c6c9cc;
      border-bottom: 1px solid #c6c9cc;
@@ -102,7 +94,7 @@ input{
      border-left: 1px solid #c6c9cc;
    }
    tr:nth-child(even) td {
-     background: white;
+     background: #c1c1c1;
    }
    tr:last-child td:first-child {
      border-bottom-left-radius: 6px;
@@ -121,21 +113,27 @@ input{
       position: relative;
       left: 1010px;
    }
-
+	button{
+	background-color:#fefefe
+	}
+	input{
+	background-color:#dadada;
+	height: 33px;
+	}
 </style>
 </head>
 <body>
 <section id="bg">
   
   <form id="noticeAddForm" 
-  		method="post" enctype="multipart/form-data" action="/notice/save">
+  		method="post" enctype="multipart/form-data" action="/notice/list">
    	<table border="1" style="width:800px; ">
  	  <tbody>
  		<tr>
- 		 <th>작성자</th>
+ 		 <th style="    width: 14%;">작성자</th>
  		 <td>
  		 <div style="margin:5px;">${sessionScope.AUTHUSER_ID}</div> 
- 		 <input type="hidden" name="memberId" value="${sessionScope.AUTHUSER_ID}"/>
+ 		 <input type="hidden" name="memberId" value="${sessionScope.memId}"/>
  		 </td>
  		</tr>
  		<tr>
@@ -184,7 +182,7 @@ input{
  		</tr>
  		<tr>
  		 <th>내용</th>
- 		 <td><textarea name="content" id="content" cols="30" rows="5" required="required"></textarea></td>	
+ 		 <td><textarea name="content" id="content" cols="60" rows="5" required="required"></textarea></td>	
  		</tr>
  		<tr>
 	     <th>파일첨부</th>

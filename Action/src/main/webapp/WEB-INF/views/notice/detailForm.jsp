@@ -41,7 +41,6 @@ td{
   
    body {
      color: #666;
-     font: 14px/24px "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Sans-Serif;
    }
    table {
      border-collapse: separate;

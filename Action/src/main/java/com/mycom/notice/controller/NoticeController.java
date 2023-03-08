@@ -1,22 +1,14 @@
 package com.mycom.notice.controller;
 
 
-import java.io.File;
-import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,11 +18,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 //원칙적으로 요청함수는 <->Service<->DAO(Repository)<->(MyBatis)->db
 //여기에서는 임시 요청함수                <->DAO(Repository)<->(MyBatis)->db
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mycom.common.base.BaseController;
-import com.mycom.notice.domain.ImageFileVO;
 import com.mycom.notice.domain.Notice;
 import com.mycom.notice.service.NoticeService;
 
@@ -67,15 +57,16 @@ public class NoticeController extends  BaseController {
 	
 	//입력폼 페이지이동
 	@GetMapping("/notice/addForm")
-	public String insertNoticeForm() {
+	public String insertNoticeForm(HttpServletRequest request) {
+		HttpSession session = request.getSession();
 		return "notice/addForm";
 	}
 	
 	//입력 데이터 실제 저장되는곳
-	@PostMapping("/notice/save")
+	@PostMapping("/notice/list")
 	public String saveForm(Notice notice) throws Exception {
 		noticeService.insertNotice(notice);
-		return "/notice/list";
+		return "redirect:/notice/list";
 	}
 	
 	
