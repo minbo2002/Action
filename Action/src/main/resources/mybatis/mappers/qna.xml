@@ -14,7 +14,8 @@
                      		  from qna
         ]]>   		<choose>
 						<when test="search_option == ''">
-							where 1=1
+							where (title like '%'||#{keyword}||'%' or CONTENT like '%'||#{keyword}||'%' 
+                           or WRITER_ID like '%'||#{keyword}||'%' or WRITER_EMAIL like '%'||#{keyword}||'%')
 						</when>
 						<when test="search_option == 'all'">
 							where (writer_id like '%'||#{keyword}||'%' or content like '%'||#{keyword}||'%' or title like '%'||#{keyword}||'%')

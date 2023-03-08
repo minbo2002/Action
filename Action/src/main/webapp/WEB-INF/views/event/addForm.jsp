@@ -139,7 +139,7 @@ width:1000px;
 <section id="bg">
  
   <form id="eventAddForm" 
-  		method="post" enctype="multipart/form-data" action="/action/event/save">
+  		method="post" enctype="multipart/form-data" action="/event/save">
    	<table border="1" style=" width:800px; ">
  	  <tbody>
  		<tr>

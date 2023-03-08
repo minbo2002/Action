@@ -151,7 +151,7 @@ body {
 						</div>
 					</li>
 					<li><a href="#pricing">예매페이지</a></li>
-							<li class="dropdown"><a href="<%=request.getContextPath()%>/notice/list">공지사항</a>
+							<li class="dropdown"><a href="#service-bottom">공지사항</a>
 						<div class="dropdown-content">
 							<a href="<%=request.getContextPath()%>/notice/list">공지사항</a><br><br>
 							<a href="<%=request.getContextPath()%>/event/list" >이벤트</a>

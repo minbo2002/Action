@@ -331,11 +331,9 @@ function detailRank( releaseDts, title, trailer ){
 					<ul class="list-inline">
 						<li><a href="javascript:;" class="filter" data-filter="all">전체</a></li>
 						<li><a href="javascript:;" class="filter" data-filter=".app">한국액션</a></li>
-						<li><a href="javascript:;" class="filter"
-							data-filter=".photography">외국액션</a></li>
+						<li><a href="javascript:;" class="filter" data-filter=".photography">외국액션</a></li>
 						<li><a href="javascript:;" class="filter" data-filter=".web">다시보기</a></li>
-						<li><a href="javascript:;" class="filter"
-							data-filter=".print">로맨스</a></li>
+						<li><a href="javascript:;" class="filter" data-filter=".print">로맨스</a></li>
 					</ul>
 				</nav>
 				<div id="projects" class="clearfix">
@@ -678,12 +676,6 @@ function detailRank( releaseDts, title, trailer ){
 		</div>
 	</section>
 	<!-- End #service-bottom -->
-
-	</section>
-
-	<!--  End #Portfolio -->
-
-
 
 	<!--  #about-us -->
 	<section class="bg">

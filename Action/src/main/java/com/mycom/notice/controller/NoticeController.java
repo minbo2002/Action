@@ -67,11 +67,7 @@ public class NoticeController extends  BaseController {
 	
 	//입력폼 페이지이동
 	@GetMapping("/notice/addForm")
-	public String insertNoticeForm(HttpServletRequest request) {
-		
-		HttpSession session = request.getSession();
-		session.setAttribute("isLogOn",true);
-		session.setAttribute("AUTHUSER_ID", "adminid");//임시
+	public String insertNoticeForm() {
 		return "notice/addForm";
 	}
 	
@@ -79,7 +75,7 @@ public class NoticeController extends  BaseController {
 	@PostMapping("/notice/save")
 	public String saveForm(Notice notice) throws Exception {
 		noticeService.insertNotice(notice);
-		return "redirect:/notice/list";
+		return "/notice/list";
 	}
 	
 	
@@ -122,7 +118,6 @@ public class NoticeController extends  BaseController {
 	    		        method= {RequestMethod.POST,RequestMethod.GET})
 		public ModelAndView deleteNotice(@RequestParam("noticeNo") int no) throws Exception {
 			int cnt=noticeService.deleteNotice(no);
-			System.out.println("cnt="+cnt);
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("redirect:/notice/list");
 			return mv;

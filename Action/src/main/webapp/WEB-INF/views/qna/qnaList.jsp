@@ -151,7 +151,9 @@
 		총 ${map.count}개의 문의글이 있습니다.   
 	</span>
 	<span class="writeSpan2"> 
-		<input type="button" value="글작성" id="btnWrite" style="color: black; background-color:	#8B4513;"> 
+		<c:if test="${!empty memId}">
+         <input type="button" value="글작성" id="btnWrite" style="color: black; background-color:   #8B4513;">
+      </c:if>
 	</span>
 	<br/>
 	

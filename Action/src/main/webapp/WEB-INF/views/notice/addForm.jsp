@@ -7,7 +7,6 @@
 <html>
 <head>
 <link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_rank.css">
-<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_release.css">
 <link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_query.css">
 <meta charset="UTF-8">
 <title>입력</title>
@@ -129,7 +128,7 @@ input{
 <section id="bg">
   
   <form id="noticeAddForm" 
-  		method="post" enctype="multipart/form-data" action="/action/notice/save">
+  		method="post" enctype="multipart/form-data" action="/notice/save">
    	<table border="1" style="width:800px; ">
  	  <tbody>
  		<tr>

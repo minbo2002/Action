@@ -7,35 +7,29 @@
 <html>
 <head>
 <link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_rank.css">
-<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_release.css">
 <link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_query.css">
 <style >
 
-td{
-	text-align: center;
-}
-.searchmove{
-			position: relative;
-            left: 894px;
-            margin:20px;
-            }
-
-#tablediv{	
-		
-}
-
-
-<style type="text/css">
+	td{
+		text-align: center;
+	}
+	.searchmove{
+				position: relative;
+	            margin-left:40%;
+	            margin-top:2%;
+	            margin-bottom:2%;
+	            }
+	
+	#tablediv{	
+			
+	}
    th{
       width: 50px;
    }
-  
    body {
      color: #666;
-     font: 14px/24px "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Sans-Serif;
    }
    table {
-     border-collapse: separate;
      border-spacing: 0;
      width: 100%;
      margin: auto;
@@ -90,7 +84,7 @@ td{
 </head>
 <body>
 
-<section id="bg">
+<section id="bg" style="height:800px;"> 
 
 <div class="searchmove">
 	<form action="${contextPath}/notice/list" style="display:inline;">  
@@ -105,10 +99,10 @@ td{
     <thead>
         <tr>
             <th>번호</th>
-            <th>작성자</th>
             <th>극장</th>
             <th>구분</th>
             <th>제목</th>
+            <th>작성자</th>
             <th>등록일</th>
         </tr>
     </thead>
@@ -116,18 +110,18 @@ td{
          <c:forEach var="data" items="${list}">
             <tr>
                 <td>${data.noticeNo}</td>
-                <td>${data.memberId}</td>
                 <td>${data.theater}</td>
                 <td>${data.category}</td>
-                <td style="width:404px;"><a href="${contextPath}/notice/detailForm?noticeNo=${data.noticeNo}" style="color: black;">${data.title}
+                <td style="width:404px;"><a href="${contextPath}/notice/detailForm?noticeNo=${data.noticeNo}" style="color: black;">${data.title}</a></td>
+                <td>${data.memberId}</td>
                 <td><fmt:formatDate value="${data.writeDate}" pattern="yyyy-MM-dd "/></td>
-           </a></td>
             </tr>
       </c:forEach>
     </tbody>
 </table>
-
-<button type="button" onclick="location.href='${contextPath}/notice/addForm'">글쓰기</button>
+  <c:if test="${sessionScope.memId == 'adminid'}">
+  	<button type="button" onclick="location.href='${contextPath}/notice/addForm'">글쓰기</button>
+  </c:if>
 </div>
 </section>
 </body>
