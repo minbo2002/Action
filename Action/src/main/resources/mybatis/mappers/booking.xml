@@ -66,10 +66,9 @@
 	]]>
 </select>
 <!-- 좌석 데이터 불러오기 -->
-
 	<select id="getSeatList" parameterType="ticketing" resultMap="seatResult">
 		<![CDATA[
-		select r_seat_no, seat_status
+		select s.r_seat_no, s.seat_status
         from mtime t, movie m, cinema c, seat s, schedule h
         where t.time_code = h.time_code
         and 
@@ -79,13 +78,14 @@
         and
         m.movie_no = h.movie_no
         and
-        movie_title = #{movie_title}
-        and cinema_name = #{cinema_name}
-        and time = #{movie_time}
+        m.movie_title = #{movie_title}
+        and 
+        c.cinema_name = #{cinema_name}
+        and 
+        t.time = #{movie_time}
+       	order by r_seat_no asc;
 		]]> 
 	</select>
-	
-
 	<!-- 예매 데이터 삽입 -->
 	<insert id="insertInfo" parameterType="ticketing" >
 		<![CDATA[
@@ -97,8 +97,8 @@
 	<update id="updateSeat" parameterType="ticketing">
 		<![CDATA[
 			update seat
-set seat_status = 1
-where r_seat_no =(select r_seat_no
+		set seat_status = 1
+		where r_seat_no =(select r_seat_no
         from mtime t, movie m, cinema c, seat s, schedule h
         where t.time_code = h.time_code
         and 

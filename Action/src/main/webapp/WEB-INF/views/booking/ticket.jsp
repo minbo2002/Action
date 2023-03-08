@@ -115,12 +115,15 @@ body {
 		    	}
 		    	
 		    	var jsonInfo = JSON.stringify(data);
+		    	alert(jsonInfo); //추후삭제
 		    	
 		    	
     			
 		    	$.each(data, function(index, item){
 		    		console.log(item);
 		    		cnt++;
+		    		
+		    		
 		    		if(cnt>=0 && cnt<6) {
 		    			$(".tr1").append("<td class='tg-0pky'><button type='button' name='btnA' id='btn"+cnt+"' class='seatBtn'>"+item.r_seat_no+"</button></td>");			    			
 		    		}else if(cnt>=6 && cnt <11) {
@@ -131,11 +134,12 @@ body {
 		    			$(".tr4").append("<td class='tg-0pky'><button type='button' name='btnA1' id='btn"+cnt+"' class='seatBtn'>"+item.r_seat_no+"</button></td>");
 		    		}else {
 		    			$(".tr5").append("<td class='tg-0pky'><button type='button' name='btnA1' id='btn"+cnt+"' class='seatBtn'>"+item.r_seat_no+"</button></td>");
-		    		}
-		    		if(item.seat_status==1) {
-		    			//$(".seatBtn").attr("disabled", "disabled");
+		    		} 
+		    		if(item.seat_status==1 || item.seat_status!=0) {
 		    			$(".seatBtn").css("background-color", "grey");
+		    			return true;
 		    		}
+		    		
 		    	});
 		        console.log("통신성공");
 		    },
