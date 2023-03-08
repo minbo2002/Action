@@ -11,5 +11,8 @@
 		<typeAlias type="com.mycom.member.dto.MemberDTO" alias="memberDto" />
 		<typeAlias type="com.mycom.qna.domain.Qna" alias="qnaDomain" />
 		<typeAlias type="com.mycom.qna.domain.QnaFile" alias="qnaFileDomain" />
+		<typeAlias type="com.mycom.notice.domain.Notice" alias="notice"/>
+		<typeAlias type="com.mycom.event.domain.Event" alias="event"/>
   	</typeAliases>
+  	
   </configuration>

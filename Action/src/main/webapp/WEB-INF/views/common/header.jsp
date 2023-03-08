@@ -11,50 +11,30 @@
 <meta charset="UTF-8">
 <title>header</title>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-<link
-	href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700"
-	rel="stylesheet" type="text/css">
-<script
-	src="${ pageContext.request.contextPath }/resources/js/vendor/jquery-1.11.1.min.js"></script>
-<script
-	src="${ pageContext.request.contextPath }/resources/js/bootstrap.min.js"></script>
-<script
-	src="${ pageContext.request.contextPath }/resources/js/jquery.nav.js"></script>
-<script
-	src="${ pageContext.request.contextPath }/resources/js/jquery.mixitup.min.js"></script>
-<script
-	src="${ pageContext.request.contextPath }/resources/js/jquery.fancybox.pack.js"></script>
-<script
-	src="${ pageContext.request.contextPath }/resources/js/jquery.parallax-1.1.3.js"></script>
-<script
-	src="${ pageContext.request.contextPath }/resources/js/jquery.appear.js"></script>
-<script
-	src="${ pageContext.request.contextPath }/resources/js/jquery-countTo.js"></script>
-<script
-	src="${ pageContext.request.contextPath }/resources/js/owl.carousel.min.js"></script>
-<script
-	src="${ pageContext.request.contextPath }/resources/js/wow.min.js"></script>
+<link	href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700"	rel="stylesheet" type="text/css">
+<script	src="${ pageContext.request.contextPath }/resources/js/vendor/jquery-1.11.1.min.js"></script>
+<script	src="${ pageContext.request.contextPath }/resources/js/bootstrap.min.js"></script>
+<script	src="${ pageContext.request.contextPath }/resources/js/jquery.nav.js"></script>
+<script	src="${ pageContext.request.contextPath }/resources/js/jquery.mixitup.min.js"></script>
+<script	src="${ pageContext.request.contextPath }/resources/js/jquery.fancybox.pack.js"></script>
+<script	src="${ pageContext.request.contextPath }/resources/js/jquery.parallax-1.1.3.js"></script>
+<script	src="${ pageContext.request.contextPath }/resources/js/jquery.appear.js"></script>
+<script	src="${ pageContext.request.contextPath }/resources/js/jquery-countTo.js"></script>
+<script	src="${ pageContext.request.contextPath }/resources/js/owl.carousel.min.js"></script>
+<script	src="${ pageContext.request.contextPath }/resources/js/wow.min.js"></script>
 <script src="${ pageContext.request.contextPath }/resources/js/main.js"></script>
-<script
-	src="${ pageContext.request.contextPath }/resources/js/vendor/modernizr-2.6.2.min.js"></script>
-<script
-	src="${ pageContext.request.contextPath }/resources/js/httpRequest.js"></script>
-<script
-	src="${ pageContext.request.contextPath }/resources/js/needDate.js"></script>
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/font-awesome.min.css">
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/jquery.fancybox.css">
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/owl.carousel.css">
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/animate.css">
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/main.css">
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/responsive.css">
+
+<script	src="${ pageContext.request.contextPath }/resources/js/vendor/modernizr-2.6.2.min.js"></script>
+<script	src="${ pageContext.request.contextPath }/resources/js/httpRequest.js"></script>
+<script	src="${ pageContext.request.contextPath }/resources/js/needDate.js"></script>
+<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/font-awesome.min.css">
+<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/bootstrap.min.css">
+<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/jquery.fancybox.css">
+<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/owl.carousel.css">
+<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/animate.css">
+<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/main.css">
+<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/responsive.css">
+
 </head>
 
 <style type="text/css">
@@ -159,7 +139,6 @@ body {
 					</a>
 				</h1>
 			</div>
-			<!-- main nav -->
 			<nav class="collapse navigation navbar-collapse navbar-right"
 				role="navigation">
 				<ul id="nav" class="nav navbar-nav">
@@ -172,7 +151,12 @@ body {
 						</div>
 					</li>
 					<li><a href="#pricing">예매페이지</a></li>
-					<li><a href="#service-bottom">공지사항</a></li>
+							<li class="dropdown"><a href="<%=request.getContextPath()%>/notice/list">공지사항</a>
+						<div class="dropdown-content">
+							<a href="<%=request.getContextPath()%>/notice/list">공지사항</a><br><br>
+							<a href="<%=request.getContextPath()%>/event/list" >이벤트</a>
+						</div>
+					</li>
 					<li class="dropdown">
 						<a href="#service">스토어</a>
 						<div class="dropdown-content">
@@ -182,7 +166,7 @@ body {
 							</c:if>
 						</div>
 					</li>
-					<li><a href="<%=request.getContextPath()%>/qna/list">Q&A</a></li>
+					<li><a href="<%=request.getContextPath()%>/qna/list">QnA</a></li>
 					<li class="dropdown"><a href="#contact">마이페이지</a>
 						<div class="dropdown-content">
 							<c:choose>
@@ -202,13 +186,10 @@ body {
 									<a href="<%=request.getContextPath()%>">개인정보수정</a><br><br>
 								</c:otherwise>
 							</c:choose>
-							
-							 
 						</div>
 					</li>
 				</ul>
 			</nav>
-			<!-- /main nav -->
 		</div>
 	</header>
 </body>

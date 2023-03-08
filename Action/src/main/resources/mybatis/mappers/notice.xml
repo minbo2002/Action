@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+          "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="mapper.notice">
+ 
+	<resultMap type="notice"  
+	           id="noticeResult">
+		<!-- <result property="필드명"  column="컬럼명"/>	 -->
+		<result property="noticeNo"  column="noticeno"/>	
+		<result property="theater"  column="theater"/>	
+		<result property="category"  column="category"/>	
+		<result property="title"  column="title"/>	
+		<result property="content"  column="content"/>	
+		<result property="writeDate"  column="writedate"/>	
+		<result property="memberId"  column="memberid"/>	
+	</resultMap>
+	
+	<!-- 전체 게시물수 조회 /검색기능 -->
+	<select id="totalCnt" resultType="Integer" parameterType="string">
+	  <![CDATA[		
+		select count(*) from notice
+	  ]]>
+	  <where>
+	     <if test="value != null and value != ''">  
+		and (theater like ('%'||#{keyword}||'%') or category like ('%'||#{keyword}||'%') or title like ('%'||#{keyword}||'%') or content like ('%'||#{keyword}||'%'))  
+		</if>    
+	  </where>
+	</select>
+	
+	<!-- 특정글의 글번호 조회 -->
+	<select id="getNoticeNo" 
+	        resultType="Integer"
+	        parameterType="Integer">
+	  <![CDATA[		
+		select noticeno from notice where noticeno=#{no}
+	  ]]>
+	</select>
+ 
+	<!-- 상세보기  -->
+	<select id="noticeDetail"
+			resultType="notice"
+	        parameterType="Integer">
+	  <![CDATA[	
+	select * from notice where noticeno=#{no}
+	  ]]>
+	</select>
+	
+	<!-- 전체목록조회 -->
+	<select id="noticeAllList"  resultType="notice" parameterType="string">
+		
+		select * from notice
+		<where>	
+			<if test="value != null and value != ''">  
+				and (theater like ('%'||#{keyword}||'%') or category like ('%'||#{keyword}||'%') or title like ('%'||#{keyword}||'%') or content like ('%'||#{keyword}||'%'))
+			</if> 
+		</where>
+		order by noticeno desc
+		
+	</select>
+	
+	<!-- 저장하기  -->
+	<insert id="insertNotice"  parameterType="notice">
+		<![CDATA[
+		insert into notice(noticeno,theater,category,title,content,writeDate,memberId)
+		values(seq_notice.nextval,#{theater},#{category},#{title},#{content},sysdate,#{memberId})
+		]]>
+	</insert>
+	
+	<!-- 수정하기 -->
+	<update id="updateNotice" parameterType="notice">
+		<![CDATA[
+		update notice 
+		set theater=#{theater},category=#{category},title=#{title},content=#{content} 
+		where noticeno=#{noticeNo}
+		]]>
+	</update>
+	
+	<!-- 삭제 -->
+	<delete id="deleteNotice" parameterType="Integer">
+		<![CDATA[
+		delete from notice
+		where noticeno=#{noticeNo}
+		]]>
+	</delete>
+
+
+	
+</mapper>    
+
+
+
+      
+
+
+
+
+
+
+
+
+
+
+
