@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>아이디 찾기</title>
 <script type="text/javascript">
 
 
@@ -19,30 +19,29 @@
 </script>
 </head>
 <body>
+<section class ="bg">
 
-
-   <div class="text-center">
-           <h1 class="h4 text-gray-900 mb-2">아이디 찾기</h1>
-           <p class="mb-4">이메일을 입력해주세요!</p>
+   <div>
+           <h1>아이디 찾기</h1>
+           <p>가입 시 입력한 이메일을 입력해주세요!</p>
        </div>
-       <form class="member" action="/member/findId.do" method="POST">
-           <div class="form-group">
-               <input type="email" class="form-control form-control-user"
-                   id="email" aria-describedby="emailHelp" name="email"
-                   placeholder="Enter Email Address...">
+       <form class="member" action="/member/findId" method="POST">
+           <div>
+               <input type="email" id="email"  name="email" placeholder="Enter Email Address">
            </div>
-           <button type="submit" class="btn btn-primary btn-user btn-block">
-               Find ID
-           </button>
+      
+           <div>
+               <input type="text" id="memName"  name="memName" placeholder="Enter Your Name">
+           </div>
+      
+      
+           <button type="submit"> 아이디찾기</button>
        </form>
-       <hr>
      
-       <a href="/member/login.do" class="btn btn-facebook btn-user btn-block">
-              Login
-           </a>
-           <hr>
-          <div class="text-center">
-           <a class="small" href="/">메인페이지</a>
-     </div>
+       <a href="/member/login.do">로그인</a>
+          <div>
+           <a href="/">메인페이지</a>
+    	 </div>
+     </section>
 </body>
 </html>

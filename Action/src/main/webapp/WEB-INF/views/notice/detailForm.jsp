@@ -12,57 +12,39 @@
 	<title>공지사항 상세보기</title>
 <style >
 
-td{
-	/* text-align: center; */
-	margin:20px;
-}
-input{
-	margin:5px;
-}
-
-td{
-	text-align: center;
-}
-.searchmove{
-			position: relative;
-            left: 880px;
-            margin:20px;
-            }
-
-#tablediv{	
-		
-}
-
-
-<style type="text/css">
+	td{
+		text-align: center;
+	}
+	.searchmove{
+				position: relative;
+	            margin-left:18.5%;
+	            margin-top:2%;
+	            margin-bottom:2%;
+	            }
+	
+	#tablediv{	
+			
+	}
    th{
       width: 50px;
    }
-  
    body {
      color: #666;
    }
    table {
-     border-collapse: separate;
      border-spacing: 0;
      width: 100%;
      margin: auto;
-     background-color: white;
+     background-color: #cacaca;
      
    }
    th,   td {
-     padding: 6px 0px;
+     padding: 6px 15px;
    }
    th {
      background: #42444e;
      color: #fff;
      text-align: center;
-   }
-   tr:first-child th:first-child {
-     border-top-left-radius: 6px;
-   }
-   tr:first-child th:last-child {
-     border-top-right-radius: 6px;
    }
    td {
      border-right: 1px solid #c6c9cc;
@@ -72,14 +54,9 @@ td{
      border-left: 1px solid #c6c9cc;
    }
    tr:nth-child(even) td {
-     background: white;
+     background: #c1c1c1;
    }
-   tr:last-child td:first-child {
-     border-bottom-left-radius: 6px;
-   }
-   tr:last-child td:last-child {
-     border-bottom-right-radius: 6px;
-   }
+
    #searchDiv, #tableDiv {
       text-align: center;
    }
@@ -91,11 +68,12 @@ td{
       position: relative;
       left: 1010px;
    }
-
-button{
-	display:inline;
-	
-}
+	button{
+	background-color:#dadada;
+	}
+	input{
+	background-color:#dadada;
+	}
 </style>
 	
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -122,7 +100,7 @@ button{
 
 	<table border="1" style="width: 800px; margin-top:50px;">
 		<tr>
-			<th>글번호</th>
+			<th style="    width: 13%;">글번호</th>
 			<td>${detail.noticeNo}</td>
 		</tr>
 		<tr>
@@ -138,7 +116,7 @@ button{
 			<td>${detail.title}</td>
 		</tr>
 		<tr>
-			<th>내용</th>
+			<th style="    height: 200px;">내용</th>
 			<td>${detail.content}</td>
 		</tr>
 		<tr>

@@ -74,7 +74,7 @@ public class MemberDAOImpl implements MemberDAO {
 
 	// 로그인 체크
 	@Override
-	public String loginCheck(MemberDTO dto) {
+	public MemberDTO loginCheck(MemberDTO dto) {
 		
 		return sqlSession.selectOne("member.login_check", dto);
 	}
@@ -82,13 +82,35 @@ public class MemberDAOImpl implements MemberDAO {
 	// id찾기
 	
 	@Override
-	public MemberDTO findId(String email)throws Exception{
-		return sqlSession.selectOne("member.findId", email);
-	}
-
-	@Override
-	public int findIdCheck(String email)throws Exception{
-		return sqlSession.selectOne("member.findIdCheck", email);
+	public MemberDTO findId(MemberDTO dto)throws Exception{
+		return sqlSession.selectOne("member.findId", dto);
 	}
 	
+	//비번찾기
+	@Override
+	public MemberDTO findPasswd(MemberDTO dto)throws Exception{
+	return sqlSession.selectOne("member.findPasswd", dto);
+	}
+	
+	// --------------------------------------------------
+	
+	// db id체크
+	@Override
+	public int findIdCheck(String memId)throws Exception{
+	return sqlSession.selectOne("member.findIdCheck", memId);
+		}
+	
+	
+	// db 이름 체크
+	@Override
+	public int findNameCheck(String memName)throws Exception{
+		return sqlSession.selectOne("member.findNameCheck", memName);
+	}
+	
+	// db email체크
+	@Override
+	public int findEmailCheck(String email)throws Exception{
+		return sqlSession.selectOne("member.findEmailCheck", email);
+	}
 }
+

@@ -97,7 +97,7 @@
 	<%@ include file="./include/menu.jsp" %>
 	<h2>회원목록(관리자만 열람)</h2>
 		
-	${list}	
+
 
 	<table border="1" style="width: 700px;">
 		<tr>

@@ -9,43 +9,71 @@
 	<meta charset="UTF-8">
 	<title>상세보기</title>
 	
-	<style>
-	.imgSize {
-		width: 300px;
-		height: 300px;
-		background-size: cover;
-	}
-	.imgSpan {
-		margin: 0px auto;
-	}
-	table {
-	  border-collapse: separate;
-	  border-spacing: 0;
-	  width: 1200px;
-	  margin: auto;
-	}
-	th,	td {
-	  padding: 6px 15px;
-	}
-	th {
-	  background: #42444e;
-	  color: #fff;
-	  text-align: center;
-	}
-	#waringSpan {
-		position: relative;
-		left:250px;
-		color: red;
-	}
-	#btns {
+<style >
+
+	td{
 		text-align: center;
-		color: black;
 	}
-	.answerDiv {
-		position: relative;
-		left: 1270px;
+	.searchmove{
+				position: relative;
+	            margin-left:18.5%;
+	            margin-top:2%;
+	            margin-bottom:2%;
+	            }
+	
+	#tablediv{	
+			
 	}
-	</style>
+   th{
+      width: 200px;
+   }
+   body {
+     color: #666;
+   }
+   table {
+     border-spacing: 0;
+     width: 100%;
+     margin: auto;
+     background-color: #cacaca;
+     
+   }
+   th,   td {
+     padding: 6px 15px;
+   }
+   th {
+     background: #42444e;
+     color: #fff;
+     text-align: center;
+   }
+   td {
+     border-right: 1px solid #c6c9cc;
+     border-bottom: 1px solid #c6c9cc;
+   }
+   td:first-child {
+     border-left: 1px solid #c6c9cc;
+   }
+   tr:nth-child(even) td {
+     background: #c1c1c1;
+   }
+
+   #searchDiv, #tableDiv {
+      text-align: center;
+   }
+   .writeSpan1 {
+      position: relative;
+      left: 160px;
+   }
+   .writeSpan2 {
+      position: relative;
+      left: 1010px;
+   }
+	button{
+	background-color:#dadada;
+	}
+	input{
+	background-color:#dadada;
+	}
+</style>
 	
 	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 	
@@ -99,11 +127,7 @@
 	
 	<br/>
 
-	<c:forEach var="imageFileName" items="${map.fileList}">
-			<span class="imgSpan">
-			<img src="${path}/qna/imageFile?imageFileName=${imageFileName.fileName}" class="imgSize" />
-			</span>
-	</c:forEach>
+	
 	<br/><br/>
 
 	<span class="answerDiv">
@@ -142,7 +166,15 @@
 		<tr>
 			<th>내용</th>
 			<td><textarea cols="90" rows="10" name="content" style="background-color:black; color:white;" 
-				readonly="readonly">${qnaDetail.content}</textarea></td>  		  
+						readonly="readonly">${qnaDetail.content}</textarea>
+					<c:forEach var="imageFileName" items="${map.fileList}">
+						<span class="imgSpan">
+						<img src="${path}/qna/imageFile?imageFileName=${imageFileName.fileName}" class="imgSize" />
+						</span>
+					</c:forEach>
+				
+			</td> 
+				 		  
 		</tr>
 		<tr>
 			<th>등록일</th>
@@ -154,18 +186,18 @@
 		</tr>
 		<tr>
      		<td colspan="2" style="text-align:center;">
-     			<span id="btns"> 			
+     			<span id="btns" style="display: inline-flex;"> 			
 				<c:if test="${qnaDetail.answerStatus eq 'N' && qnaDetail.writerId eq memId}">
-					<input type="button" value="수정" id="btnUpdate">
+					<input type="button" value="수정" id="btnUpdate" style="margin:10px; width:150px; height:50px; border: none;">
 				</c:if>
-					<input type="button" value="목록" id="btnList">
-				</span>
+					<input type="button" value="목록" id="btnList" style="margin:10px; width:150px; height:50px; border: none;">
 				<c:if test="${qnaDetail.writerId eq memId}">
 					<form action="${path}/qna/delete" method="post" id="deleteFrm">
 					   <input type="hidden" name="qnaNo" value="${qnaDetail.qnaNo}">
-					   <input type="button" id="btnDelete" value="삭제" style="background:#B22222; color:#FF4500;">
+					   <input type="button" id="btnDelete" value="삭제" style="background:#B22222; color:#ffffff; margin:10px; width:100px; height:50px ; border: none;">
 				    </form>
 				</c:if>
+				</span>
 			</td>
 		</tr>
 	</table>

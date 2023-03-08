@@ -11,26 +11,20 @@
 <link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_query.css">
 	<meta charset="UTF-8">
 	<title>이벤트 상세보기</title>
+
 <style >
 
+
 td{
-	 text-align: center; 
-	
-}
-input{
-	margin:5px;
+	text-align: center;
 }
 
 
 .searchmove{
 			position: relative;
-            left: 880px;
+            left: 894px;
             margin:20px;
             }
-
-#tablediv{	
-		
-}
 
 
 <style type="text/css">
@@ -51,7 +45,7 @@ input{
      
    }
    th,   td {
-     padding: 6px 1px;
+     padding: 6px 15px;
    }
    th {
      background: #42444e;
@@ -67,7 +61,6 @@ input{
    td {
      border-right: 1px solid #c6c9cc;
      border-bottom: 1px solid #c6c9cc;
-     
    }
    td:first-child {
      border-left: 1px solid #c6c9cc;
@@ -93,13 +86,7 @@ input{
       left: 1010px;
    }
 
-button{
-	display:inline;
-	
-}
-
-</style>	
-	
+</style>
 	
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	

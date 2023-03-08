@@ -72,12 +72,12 @@ public class MemberServiceImpl implements MemberService {
 
 	// 로그인 체크
 	@Override
-	public String loginCheck(MemberDTO dto, HttpSession session) {
+	public MemberDTO loginCheck(MemberDTO dto, HttpSession session) {
 	
 		// 사용자가 userid, passwd 입력하면 user에 담아서 넘김
-		String name = memberDAO.loginCheck(dto);
+		MemberDTO member = memberDAO.loginCheck(dto);
 
-		if(name != null) {
+		if(member != null) {
 
 			// userid, name 세션등록
 			session.setAttribute("memNo", dto.getMemNo());
@@ -87,7 +87,7 @@ public class MemberServiceImpl implements MemberService {
 			session.setAttribute("memName", dto.getmemName());
 		}
 		
-		return name;
+		return member;
 	}
 
 	// 로그아웃
@@ -100,15 +100,37 @@ public class MemberServiceImpl implements MemberService {
 	
 	//id 찾기
 	@Override
-	public MemberDTO findId(String email)throws Exception{
-		return memberDAO.findId(email);
-	}
-	//id확인 
-	@Override
-	public int findIdCheck(String email)throws Exception{
-		return memberDAO.findIdCheck(email);
+	public MemberDTO findId(MemberDTO dto)throws Exception{
+		return memberDAO.findId(dto);
 	}
 	
+	//pw 찾기
+	@Override
+	public MemberDTO findPasswd(MemberDTO dto)throws Exception{
+		return memberDAO.findPasswd(dto);
+	}
+	
+	
+	// ----------------------------------
+	
+	//id확인 
+	@Override
+	public int findIdCheck(String memId)throws Exception{
+		return memberDAO.findIdCheck(memId);
+	}
+	//이름 확인
+	@Override
+	public int findNameCheck(String memName)throws Exception{
+		return memberDAO.findNameCheck(memName);
+	}
+	
+	//email 확인
+	@Override
+	public int findEmailCheck(String email)throws Exception{
+		return memberDAO.findEmailCheck(email);
+	}
 
+	
+	
 
 }

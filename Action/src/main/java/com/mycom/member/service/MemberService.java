@@ -27,17 +27,21 @@ public interface MemberService {
 	public boolean checkPw(String memId,String passwd);
 	
 	// 로그인 체크
-	public String loginCheck(MemberDTO dto, HttpSession session);
+	public MemberDTO loginCheck(MemberDTO dto, HttpSession session);
 	
 	// 로그아웃
 	public void logout(HttpSession session);
 
 	// 회원 id찾기
+	public MemberDTO findId(MemberDTO dto)throws Exception;
 	
-	public MemberDTO findId(String email)throws Exception;
+	// 회원 passwd찾기
+	public MemberDTO findPasswd(MemberDTO dto)throws Exception;
 	
-	public int findIdCheck(String email)throws Exception;
+	// db id, 이름 , email 확인
+	public int findIdCheck(String memId)throws Exception;
 	
-	
+	public int findNameCheck(String memName)throws Exception;
 
+	public int findEmailCheck(String email)throws Exception;
 }

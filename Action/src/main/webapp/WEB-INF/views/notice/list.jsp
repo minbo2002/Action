@@ -54,12 +54,7 @@
    tr:nth-child(even) td {
      background: #c1c1c1;
    }
-   tr:last-child td:first-child {
-     border-bottom-left-radius: 6px;
-   }
-   tr:last-child td:last-child {
-     border-bottom-right-radius: 6px;
-   }
+
    #searchDiv, #tableDiv {
       text-align: center;
    }
@@ -87,12 +82,11 @@
 
  
 <div class="searchmove">
- 
 	<form action="${contextPath}/notice/list" style="display:inline;">  
 		<input type="text" placeholder="검색어를 입력해 주세요." name="keyword" value="${keyword}" style="width:340px; height:50px;"/>  
 		<input type="submit" value="검색" style="height: 50px;width:100px"/>  
 	</form>  
-	 <c:if test="${sessionScope.memId == 'adminid'}">
+  <c:if test="${sessionScope.memId == 'adminid'}">
   	<button type="button" onclick="location.href='${contextPath}/notice/addForm'" style="height: 50px;width:100px; margin-left: 41.8%;">글쓰기</button>
   </c:if>
 </div>

@@ -11,63 +11,75 @@
 	<meta charset="UTF-8">	
 	<title></title>
 	
-	<style type="text/css">
-	th{
-		width: 50px;
-	}
-	<style>
-	body {
-	  color: #666;
-	  font: 14px/24px "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Sans-Serif;
-	}
-	table {
-	  border-collapse: separate;
-	  border-spacing: 0;
-	  width: 100%;
-	  margin: auto;
-	}
-	th,	td {
-	  padding: 6px 15px;
-	}
-	th {
-	  background: #42444e;
-	  color: #fff;
-	  text-align: center;
-	}
-	tr:first-child th:first-child {
-	  border-top-left-radius: 6px;
-	}
-	tr:first-child th:last-child {
-	  border-top-right-radius: 6px;
-	}
-	td {
-	  border-right: 1px solid #c6c9cc;
-	  border-bottom: 1px solid #c6c9cc;
-	}
-	td:first-child {
-	  border-left: 1px solid #c6c9cc;
-	}
-	tr:nth-child(even) td {
-	  background:	#C0C0C0;
-	}
-	tr:last-child td:first-child {
-	  border-bottom-left-radius: 6px;
-	}
-	tr:last-child td:last-child {
-	  border-bottom-right-radius: 6px;
-	}
-	#searchDiv, #tableDiv {
+	
+<style >
+   
+	td{
 		text-align: center;
 	}
-	.writeSpan1 {
-		position: relative;
-		left: 160px;
+	.searchmove{
+				position: relative;
+	            margin-left:18.5%;
+	            margin-top:2%;
+	            margin-bottom:2%;
+	            }
+	
+	#tablediv{	
+			
 	}
-	.writeSpan2 {
-		position: relative;
-		left: 1010px;
+   th{
+      width: 200px;
+   }
+   body {
+     color: #666;
+   }
+   table {
+     border-spacing: 0;
+     width: 100%;
+     margin: auto;
+     background-color: #cacaca;
+     
+   }
+   th,   td {
+     padding: 6px 15px;
+   }
+   th {
+     background: #42444e;
+     color: #fff;
+     text-align: center;
+   }
+   td {
+     border-right: 1px solid #c6c9cc;
+     border-bottom: 1px solid #c6c9cc;
+   }
+   td:first-child {
+     border-left: 1px solid #c6c9cc;
+   }
+   tr:nth-child(even) td {
+     background: #c1c1c1;
+   }
+
+   #searchDiv, #tableDiv {
+      text-align: center;
+   }
+   .writeSpan1 {
+      position: relative;
+      left: 160px;
+   }
+   .writeSpan2 {
+      position: relative;
+      left: 1010px;
+   }
+	button{
+	background-color:#dadada;
 	}
-	</style>
+	input{
+	background-color:#dadada;
+	}
+	.ak {
+	color:black;
+	}
+</style>
 	
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	
@@ -99,8 +111,8 @@
 	map.search_option: ${map.search_option}  <br/>
 	map.pager.curPage: ${map.pager.curPage}  <br/>
 	-->
-	
-	<div id="searchDiv">
+	<br><br>
+	<div id="searchDiv" style="    margin-left: -31%;">
 	<form name="form1" method="post" action="${path}/qna/list">
 		<select name="search_option" style="color: black;">
 			<c:choose>
@@ -142,17 +154,17 @@
 		</select>
 		
 		<input name="keyword" value="${map.keyword}" style="color: black;" />
-		<input type="submit" value="조회" style="color: black; background-color:	#8B4513;" />
+		<input type="submit" value="조회" style="color: black;background-color: #ffffff;width: 150px;height: 33px;"/>
 	</form>
 	</div>
 	<br>
 	
-	<span class="writeSpan1"> 
+	<span class="writeSpan1" style="    margin-left: 10%;"> 
 		총 ${map.count}개의 문의글이 있습니다.   
 	</span>
 	<span class="writeSpan2"> 
 		<c:if test="${!empty memId}">
-         <input type="button" value="글작성" id="btnWrite" style="color: black; background-color:   #8B4513;">
+         <input type="button" value="글작성" id="btnWrite" style="color: black;background-color: #ffffff;width: 150px;height: 33px;margin-left: -2.8%;">
       </c:if>
 	</span>
 	<br/>
@@ -161,23 +173,22 @@
 	<div id="tableDiv">
 	<table border="1" style="width: 1200px;">
 		<tr>  
-			<th>글번호</th>  
-			<th style="width: 300px;">제목</th>  
+			<th style="    width: 8%;">글번호</th>  
+			<th style="    width: 65%;">제목</th>  
 			<th>작성자ID</th>  
-			<th style="width: 100px;">작성일</th>
+			<th style="    width: 12%;">작성일</th>
 			<th>답변</th>
 		</tr>   
 		<c:forEach var="row" items="${map.list}">  
 			<tr>
 				<td>${row.qnaNo}</td>
-				
 				<c:if test="${row.secret eq 'Y'}">
 					<c:choose>
 						<c:when test="${memGrade eq '999' || row.writerId eq memId}">
-							<td><a href="${path}/qna/detail?qnaNo=${row.qnaNo}
+							<td><a class="ak" href="${path}/qna/detail?qnaNo=${row.qnaNo}
 											&curPage=${map.pager.curPage}
 											&search_option=${map.search_option}
-											&keyword=${map.keyword}">${row.title}</a></td>
+											&keyword=${map.keyword}" style="color:black;">${row.title}</a></td>
 						</c:when>
 						<c:otherwise> 
 							<td>비밀글은 작성자와 관리자만 볼 수 있습니다.</td>
@@ -185,12 +196,12 @@
 					</c:choose>
 				</c:if>
 				<c:if test="${row.secret eq 'N'}">
-						<td><a href="${path}/qna/detail?qnaNo=${row.qnaNo}&curPage=${map.pager.curPage}"> ${row.title} </a></td>
+						<td><a class="ak" href="${path}/qna/detail?qnaNo=${row.qnaNo}&curPage=${map.pager.curPage}"> ${row.title} </a></td>
 				</c:if>
 				
 				<td>${row.writerId}</td>  
 				<td><fmt:formatDate value="${row.regDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-				<td>${row.answerStatus}</td> 
+				<td style="    width: 5%;">${row.answerStatus}</td> 
 			</tr>  
 		</c:forEach>
 		  
@@ -217,10 +228,10 @@
 				</c:forEach>
 				
 				<c:if test="${map.pager.curBlock <= map.pager.totBlock}">
-					<a href="javascript:list('${map.pager.nextPage}')">[다음]</a>
+					<a class="ak" href="javascript:list('${map.pager.nextPage}')">[다음]</a>
 				</c:if>
 				<c:if test="${map.pager.curPage <= map.pager.totPage}">
-					<a href="javascript:list('${map.pager.totPage}')">[끝]</a>
+					<a class="ak" href="javascript:list('${map.pager.totPage}')">[끝]</a>
 				</c:if>
 			</td>
 		</tr>

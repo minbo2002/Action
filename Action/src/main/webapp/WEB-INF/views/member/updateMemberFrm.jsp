@@ -114,13 +114,9 @@
 
 	<%@ include file="include/menu.jsp" %>
 	<h2>내 정보</h2>
-	dto : ${dto} 
-	dto.memno: ${dto.memNo}
 	<form name="form1" method="post">
 		<table border="1" style="width: 400px">		
 												
-				
-			
 			<tr>									
 				<td>아이디</td>						
 				<td><input name="memId" value="${dto.memId}" readonly></td>	

@@ -73,8 +73,7 @@ public class EventController extends  BaseController {
 		//원칙적으로는 (로그인한 user가) 글입력 권한을 가진 사용자가 글입력해야지만
 		//여기에서는 임시로 세션에 정보를 저장하여 진행하겠다
 		HttpSession session = request.getSession();
-		session.setAttribute("isLogOn",true);
-		session.setAttribute("AUTHUSER_ID", "adminid");//임시
+		
 		return "event/addForm";
 	}
 	

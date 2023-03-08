@@ -7,7 +7,6 @@
 <html>
 <head>
 <link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_rank.css">
-<link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_release.css">
 <link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_query.css">
 <meta charset="UTF-8">
 <title>입력</title>
@@ -53,32 +52,30 @@
 </script>
 <style >
 
-
-td{
-	/* text-align: center; */
-	margin:20px;
-}
-input{
-	margin:5px;
-}
-
-
-
-<style type="text/css">
+	td{
+		text-align: center;
+	}
+	.searchmove{
+				position: relative;
+	            margin-left:18.5%;
+	            margin-top:2%;
+	            margin-bottom:2%;
+	            }
+	
+	#tablediv{	
+			
+	}
    th{
       width: 50px;
    }
-  
    body {
      color: #666;
-     font: 14px/24px "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Sans-Serif;
    }
    table {
-     border-collapse: separate;
      border-spacing: 0;
      width: 100%;
      margin: auto;
-     background-color: white;
+     background-color: #cacaca;
      
    }
    th,   td {
@@ -89,12 +86,6 @@ input{
      color: #fff;
      text-align: center;
    }
-   tr:first-child th:first-child {
-     border-top-left-radius: 6px;
-   }
-   tr:first-child th:last-child {
-     border-top-right-radius: 6px;
-   }
    td {
      border-right: 1px solid #c6c9cc;
      border-bottom: 1px solid #c6c9cc;
@@ -103,14 +94,9 @@ input{
      border-left: 1px solid #c6c9cc;
    }
    tr:nth-child(even) td {
-     background: white;
+     background: #c1c1c1;
    }
-   tr:last-child td:first-child {
-     border-bottom-left-radius: 6px;
-   }
-   tr:last-child td:last-child {
-     border-bottom-right-radius: 6px;
-   }
+
    #searchDiv, #tableDiv {
       text-align: center;
    }
@@ -122,17 +108,12 @@ input{
       position: relative;
       left: 1010px;
    }
-
-button{
-	display:inline;
-	text-align: center;
-	width:300px;
-
-
-}
-box{
-width:1000px;
-}
+	button{
+	background-color:#dadada;
+	}
+	input{
+	background-color:#dadada;
+	}
 </style>
 </head>
 <body>
@@ -144,8 +125,8 @@ width:1000px;
  	  <tbody>
  		<tr>
  		 <th>작성자</th>
- 		 <td>${sessionScope.AUTHUSER_ID}
- 		 <input type="hidden" name="memberId" value="${sessionScope.AUTHUSER_ID}"/>
+ 		 <td>${sessionScope.memId}
+ 		 <input type="hidden" name="memberId" value="${sessionScope.memId}"/>
  		 </td>
  		</tr>
  		<tr>
@@ -154,21 +135,8 @@ width:1000px;
  		</tr>
  		<tr>
  		 <th>내용</th>
- 		 <td><textarea name="content" id="content" cols="30" rows="5" required="required"></textarea></td>	
+ 		 <td><textarea name="content" id="content" cols="60" rows="5" required="required"></textarea></td>	
  		</tr>
- 		<tr>
-	     <th>파일첨부</th>
-	     <td>
-	        <input type="button" value="파일추가" id="btnAddFile"/>
-	    	<input type="button" value="파일삭제" id="btnDelFile"/>
-	     </td>
-	    </tr>
-	    <tr>
-	     <th>첨부파일</th>
-	     <td>
-	     	<input type="file" name="file1" id="files1"/>
-	     </td>
-  		 </tr>
  		<tr id="i1">
  		 <td colspan="2" 
  		 	style="text-align: center;">

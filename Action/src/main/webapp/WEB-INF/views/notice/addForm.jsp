@@ -132,7 +132,7 @@
  		<tr>
  		 <th style="    width: 14%;">작성자</th>
  		 <td>
- 		 <div style="margin:5px;">${sessionScope.AUTHUSER_ID}</div> 
+ 		 <div style="margin:5px;">${sessionScope.memId}</div> 
  		 <input type="hidden" name="memberId" value="${sessionScope.memId}"/>
  		 </td>
  		</tr>
@@ -170,7 +170,6 @@
 			    <option value="없음">--없음--</option>
 			    <option value="전체">전체</option>
 			    <option value="공지">공지</option>
-			    <option value="이벤트">이벤트</option>
 			    <option value="라이프뷰잉">라이프뷰잉</option>
 			    <option value="클래식중계">클래식중계</option>
 			</select>
@@ -184,19 +183,6 @@
  		 <th>내용</th>
  		 <td><textarea name="content" id="content" cols="60" rows="5" required="required"></textarea></td>	
  		</tr>
- 		<tr>
-	     <th>파일첨부</th>
-	     <td>
-	        <input type="button" value="파일추가" id="btnAddFile"/>
-	    	<input type="button" value="파일삭제" id="btnDelFile"/>
-	     </td>
-	    </tr>
-	    <tr>
-	     <th>첨부파일</th>
-	     <td>
-	     	<input type="file" name="file1" id="files1"/>
-	     </td>
-	    </tr>
  		<tr id="i1">
  		 <td colspan="2" style="text-align:center;">
  		 	<input type="button" id="btnBack" value="뒤로가기" onclick="location.href='list'" /> 		 

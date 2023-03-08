@@ -53,8 +53,16 @@ public class MemberController {
 		
 		
 		int insertMember = memberService.insertMember(dto);
-	
-		return "/member/addSuccess";
+		
+		if(insertMember==1) {
+		
+			return "/member/addSuccess";
+		
+		} else {
+		
+			return "redirect:/addMemberFrm";
+		}
+		
 	}
 	
 	// 회원 상세조회
@@ -115,13 +123,13 @@ public class MemberController {
 	public ModelAndView login_check(@ModelAttribute MemberDTO dto, HttpSession session) {
 		
 		// 로그인 성공시 -> 이름이 넘어옴    /  로그인 실패시 -> null이 넘어옴
-		String name = memberService.loginCheck(dto, session);
+		MemberDTO member = memberService.loginCheck(dto, session);
 		
-		logger.info("name : " + name);
+		logger.info("member : " + member);
 		
 		ModelAndView mav = new ModelAndView();
 		
-		if(name != null) {
+		if(member.getmemName() != null) {
 			mav.setViewName("home");
 		}else {
 			mav.setViewName("member/login");
@@ -146,21 +154,60 @@ public class MemberController {
 	
 	//id찾기 
 	@RequestMapping(value="/member/findIdFrm", method=RequestMethod.GET)
-	public String findIdView() throws Exception{
+	public String findId() throws Exception{
 		return"/member/findIdFrm";
 	}
 	
-	@RequestMapping(value="/findId.do", method=RequestMethod.POST)
+	@RequestMapping(value="/member/findId", method=RequestMethod.POST)
 	public String findId(MemberDTO dto,Model model) throws Exception{
-				
-		if(memberService.findIdCheck(dto.getEmail())==0) {
+	
+		
+		if(memberService.findEmailCheck(dto.getEmail())==0) {
 		model.addAttribute("msg", "이메일을 확인해주세요");
 		return "/member/findIdFrm";
-		}else {
-		model.addAttribute("member", memberService.findId(dto.getEmail()));
+		
+		} else if(memberService.findNameCheck(dto.getmemName())==0) {
+		model.addAttribute("msg", "이름을 확인해주세요");
+		return "/member/findIdFrm";
+		}
+		
+		else {
+		model.addAttribute("member", memberService.findId(dto));
 		
 		return "/member/findId";
 		}
 	}
+	
+	// 비번찾기 
+	
+		@RequestMapping(value="/member/findPasswdFrm", method=RequestMethod.GET)
+		public String findPasswd() throws Exception{
+			return"/member/findPasswdFrm";
+		}
+		
+		@RequestMapping(value="/member/findPasswd", method=RequestMethod.POST)
+		public String findPasswd(MemberDTO dto,Model model) throws Exception{
+					
+			if(memberService.findIdCheck(dto.getmemId())==0) {
+			model.addAttribute("msg", "아이디를 확인해주세요");
+			return "/member/findPasswdFrm";
+			
+			} else if(memberService.findNameCheck(dto.getmemName())==0) {
+			model.addAttribute("msg", "이름을 확인해주세요");
+			return "/member/findPasswdFrm";
+			
+			} else if(memberService.findEmailCheck(dto.getEmail())==0) {
+			model.addAttribute("msg", "메일 주소를 확인해주세요");
+			return "/member/findPasswdFrm";
+			}
+			
+			else {
+			model.addAttribute("member", memberService.findPasswd(dto));
+			
+			return "/member/findPasswd";
+			}
+		}
+	
+	
 	
 }

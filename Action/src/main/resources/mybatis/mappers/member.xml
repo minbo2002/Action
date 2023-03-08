@@ -40,21 +40,48 @@
 		where mem_id=#{memId}
 	</delete>
 	
-	<select id="login_check" resultType="String">
-		select mem_name ,mem_id,passwd
-		from member
-		where mem_id=#{memId} and passwd=#{passwd}
+	<select resultType="memberDto" id="login_check">
+	select mem_no as memNo, mem_id as memId, passwd, mem_name as memName, gender,email, regdate as regDate, postcode, address, extraaddress as extraAddress, grade
+	from member
+	where mem_id=#{memId} and passwd=#{passwd} 
 	</select>
 	
 	
 	<select id="findId" resultType="memberDto">
 		select mem_id as memId, mem_name as memName 
 		from MEMBER 
-		where EMAIL = #{email}
+		where EMAIL = #{email} and mem_name= #{memName}
 	</select>
 	
-	<select id="findIdCheck" resultType="int">
-		select count(*) from MEMBER where Email = #{email}
+	<select id="findPasswd" resultType="memberDto">
+		select mem_Id as memId, mem_name as memName, email ,passwd
+		from member
+		where mem_id=#{memId} and mem_name=#{memName} and email=#{email}
 	</select>
+
+	<select id="findIdCheck" resultType="int">
+		select count(*) 
+		from MEMBER 
+		where mem_id = #{memId}
+	</select>
+	
+	<select id="findNameCheck" resultType="int">
+		select count(*) 
+		from MEMBER 
+		where mem_name = #{memName}
+	</select>
+	
+	<select id="findEmailCheck" resultType="int">
+		select count(*) 
+		from MEMBER 
+		where email = #{email}
+	</select>
+
+	
+	<update id="updatePasswd">
+		update member 
+		set passwd=#{passwd} 
+		where mem_id=#{memId}
+	</update>
 
 </mapper>  
