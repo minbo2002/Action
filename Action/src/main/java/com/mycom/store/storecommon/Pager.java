@@ -11,7 +11,7 @@ public class Pager {
 	
 	
 	//View (JSP)
-	private Integer startNum; //블럭 시작번호
+	private Integer startNum; //블럭 시작번호 
 	private Integer lastNum; //블럭 마지막 번호
 	
 	private Integer curBlock; //현재 블럭번호
