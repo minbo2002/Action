@@ -6,7 +6,6 @@
 <!-- 모바일 유효 -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"	href="${ pageContext.request.contextPath }/resources/css/movie_rank.css">
-
 <meta charset="utf-8">
 
 <title>Project</title>
@@ -107,12 +106,9 @@ function resultFnPos(){
 function detailRank( releaseDts, title, trailer ){
    return location.href="movieInfoDetailRank?releaseDts="+releaseDts+"&title="+encodeURIComponent(title)+"&trailer="+trailer;
 }
-
-
 </script>
 </head>
 <body>
-
 
 	<!-- Home Slider  -->
 	<section id="home">
@@ -128,8 +124,8 @@ function detailRank( releaseDts, title, trailer ){
 				style="height: 1000px; width: 88%; margin: auto">
 
 				<div class="item active" style="height: 942px">
-				<video autoplay="autoplay" muted="muted" style="margin-top: 0%;  height: 100%;">
-				<source src="http://h.vod.cgv.co.kr/vodCGVa/86814/86814_212670_1200_128_960_540.mp4" type="video/mp4" >
+				<video  controls   id="player" autoplay="autoplay" muted="muted" style="margin-top: 6%;margin-left: 6%;height: 90%;">
+				<source src="https://adimg.cgv.co.kr/images/202302/Suzume/Suzume_1080x608.mp4" type="video/mp4" >
 			    </video>
 <%-- 					style="background: linear-gradient(to top, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 0.8) 90%, rgba(0, 0, 0, 1) 100%), --%>
 <!--                                                                  linear-gradient(to bottom,rgba(0, 0, 0, 0) 70%,rgba(0, 0, 0, 1) 80%), -->
@@ -137,14 +133,14 @@ function detailRank( releaseDts, title, trailer ){
 <%--                                                                  background-size:auto;"> --%>
 					<div class="carousel-caption">
 						<div class="animated bounceInLeft">
-							<h2>2023년 3월 1일 개봉</h2>
+							<h2>2023년 3월 8일 개봉</h2>
 						</div>
 					</div>
 				</div>
 
 				<div class="item" style="height: 942px;">
-				<video autoplay="autoplay" muted="muted" style="margin-top: 0%;  height: 100%;">
-				<source src="http://h.vod.cgv.co.kr/vodCGVa/86839/86839_212434_1200_128_960_540.mp4" type="video/mp4" >
+				<video controls   autoplay="autoplay" muted="muted" style="margin-top: 6%;margin-left: 6%;height: 90%;">
+				<source src="http://h.vod.cgv.co.kr/vodCGVa/86720/86720_210669_1200_128_960_540.mp4" type="video/mp4" >
 			    </video>
 <%-- 					style="background: linear-gradient(to top, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 0.8) 90%, rgba(0, 0, 0, 1) 100%), --%>
 <!--                                                                  linear-gradient(to bottom,rgba(0, 0, 0, 0) 70%,rgba(0, 0, 0, 1) 80%), -->
@@ -152,8 +148,8 @@ function detailRank( releaseDts, title, trailer ){
 <%--                                                                  background-size:auto;"> --%>
 					<div class="carousel-caption">
 						<div class="animated bounceInLeft">
-							<h2>2023년 3월 8일 개봉</h2>
-							<h3>Knock at the Cabin</h3>
+							<h2>2023년 1월 8일 개봉</h2>
+							<h3>더 라스트 슬램덩크</h3>
 						</div>
 					</div>
 				</div>
@@ -161,9 +157,9 @@ function detailRank( releaseDts, title, trailer ){
 				
 			    
 				<div class="item" style="height: 942px;">
-				<video autoplay="autoplay" muted="muted" style="margin-top: 0%;  height: 100%;">
-				<source src="https://adimg.cgv.co.kr/images/202302/Suzume/Suzume_1080x608.mp4" type="video/mp4" >
-			    </video>
+				<video controls  autoplay="autoplay" muted="muted" style="margin-top: 6%;margin-left: 6%;height: 90%;">
+				<source src="http://h.vod.cgv.co.kr/vodCGVa/86814/86814_212670_1200_128_960_540.mp4" type="video/mp4" >
+			    </video>    
 <%-- 					style="background: linear-gradient(to top, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 0.8) 90%, rgba(0, 0, 0, 1) 100%), --%>
 <!--                                                                  linear-gradient(to bottom,rgba(0, 0, 0, 0) 70%,rgba(0, 0, 0, 1) 80%), -->
 <%--                                                                  url('${ pageContext.request.contextPath }/resources/img/slider/스즈메.jpg');  --%>
@@ -173,14 +169,13 @@ function detailRank( releaseDts, title, trailer ){
 
 
 						<div class="animated bounceInLeft">
-							<h2>2023년 3월 8일 개봉</h2>
+							<h2>2023년 3월 1일 개봉</h2>
 						</div>
 					</div>
 				</div>
 			</div>
 			<!--/.carousel-inner-->
-			<nav id="nav-arrows"
-				class="nav-arrows hidden-xs hidden-sm visible-md visible-lg">
+			<nav id="nav-arrows" class="nav-arrows hidden-xs hidden-sm visible-md visible-lg">
 				<a class="sl-prev hidden-xs" href="#home-carousel" data-slide="prev">
 					<i class="fa fa-angle-left fa-3x"></i>
 				</a> <a class="sl-next" href="#home-carousel" data-slide="next"> <i
@@ -229,7 +224,7 @@ function detailRank( releaseDts, title, trailer ){
 											<div id="movie_rank_poster_${n}">
 												<div class="poster_box">
 													<img id="movie_rank_poster_${n}_img"
-														src="http://file.koreafilm.or.kr/poster/99/17/95/DPK020222_01.jpg" style="height: 400px;">
+														src="http://file.koreafilm.or.kr/poster/99/17/80/DPF025823_01.jpg" style="height: 400px;">
 												</div>
 											</div>
 											<div class="col-md-6 col-sm-6 col-xs-12 wow fadeInLeft"
@@ -246,7 +241,7 @@ function detailRank( releaseDts, title, trailer ){
 											<div id="movie_rank_poster_${n}">
 												<div class="poster_box">
 												<img id="movie_rank_poster_${n}_img"
-														src="http://file.koreafilm.or.kr/poster/99/17/97/DPF026871_01.jpg" style="height: 400px;">
+														src="http://file.koreafilm.or.kr/poster/99/17/90/DPF026474_01.jpg" style="height: 400px;">
 												</div>
 											</div>
 											<div class="col-md-6 col-sm-6 col-xs-12 wow fadeInLeft"
@@ -263,7 +258,7 @@ function detailRank( releaseDts, title, trailer ){
 											<div id="movie_rank_poster_${n}">
 												<div class="poster_box">
 													<img id="movie_rank_poster_${n}_img"
-														src="http://file.koreafilm.or.kr/poster/99/17/90/DPF026474_01.jpg" style="height: 400px;">
+														src="http://file.koreafilm.or.kr/poster/99/17/95/DPK020222_01.jpg" style="height: 400px;">
 												</div>
 											</div>
 											<div class="col-md-6 col-sm-6 col-xs-12 wow fadeInLeft"

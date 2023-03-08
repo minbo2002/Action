@@ -164,10 +164,10 @@
 	</span>
 	<span class="writeSpan2"> 
 		<c:if test="${!empty memId}">
-         <input type="button" value="글작성" id="btnWrite" style="color: black;background-color: #ffffff;width: 150px;height: 33px;margin-left: -2.8%;">
+         <input type="button" value="글작성" id="btnWrite"  style="color: black;background-color: #ffffff;border: none;height: 50px;width: 200px;border-radius: 10px; margin-left: -5.5%;">
       </c:if>
 	</span>
-	<br/>
+	<br/><br/>
 	
 	
 	<div id="tableDiv">

@@ -137,15 +137,15 @@
 			   <input type="hidden" name="writerEmail" value="${qnaDetail.writerEmail}">
 			   <input type="hidden" name="qnaNo" value="${qnaDetail.qnaNo}">
 			   <input type="hidden" name="curPage" value="${curPage}">
-			   <input type="button" id="btnAnswer" value="답변하기" style="background-color:#8B4513; color:black;">
+			   <input type="button" id="btnAnswer" value="답변하기"  style="color: black;background-color: #ffffff;border: none;height: 50px;width: 200px;border-radius: 10px;margin-left: 18.5%;">
 		   </form> 
 	   </c:when>
 	   <c:when test="${qnaDetail.answerStatus eq 'Y'}">
-		   <input type="button" value="답변완료" readonly="readonly" style="background-color:#8B4513; color: red;" />
+		   <input type="button" value="답변완료" readonly="readonly"  style="color: black;background-color: #ffffff;border: none;height: 50px;width: 200px;border-radius: 10px; margin-left: 18.5%;" />
 	   </c:when>
     </c:choose>
 	</span>
-
+<br><br>
 	<table border="1" style="width: 1200px;">
 		<tr>
 			<th>글번호</th>

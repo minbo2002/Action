@@ -7,30 +7,82 @@
 <html>
 <head>
 
-	<style>
-	table {
-	  border-collapse: separate;
-	  border-spacing: 0;
-	  width: 1200px;
-	  margin: auto;
-	}
-	th,	td {
-	  padding: 6px 15px;
-	}
-	th {
-	  background: #42444e;
-	  color: #fff;
-	  text-align: center;
-	}
-	#waringSpan {
-		position: relative;
-		left:250px;
-		color: red;
-	}
-	#btns {
+	
+<style >
+   
+	td{
 		text-align: center;
 	}
-	</style>
+	.searchmove{
+				position: relative;
+	            margin-left:18.5%;
+	            margin-top:2%;
+	            margin-bottom:2%;
+	            }
+	
+	#tablediv{	
+			
+	}
+   th{
+      width: 200px;
+   }
+   body {
+     color: #666;
+   }
+   table {
+     border-spacing: 0;
+     width: 100%;
+     margin: auto;
+     background-color: #cacaca;
+     
+   }
+   th,   td {
+     padding: 6px 15px;
+   }
+   th {
+     background: #42444e;
+     color: #fff;
+     text-align: center;
+   }
+   td {
+     border-right: 1px solid #c6c9cc;
+     border-bottom: 1px solid #c6c9cc;
+   }
+   td:first-child {
+     border-left: 1px solid #c6c9cc;
+   }
+   tr:nth-child(even) td {
+     background: #c1c1c1;
+   }
+
+   #searchDiv, #tableDiv {
+      text-align: center;
+   }
+   .writeSpan1 {
+      position: relative;
+      left: 160px;
+   }
+   .writeSpan2 {
+      position: relative;
+      left: 1010px;
+   }
+	button{
+	background-color:#dadada;
+	}
+	input{
+	background-color:#dadada;
+	}
+	.ak {
+	color:black;
+	}
+	button{
+	color: black;
+	background-color: #ffffff;
+	border: none;height: 50px;
+	width: 200px;
+	border-radius: 10px;
+		}
+</style>
 
 	<meta charset="UTF-8">
 	<title>글등록</title>
@@ -94,7 +146,7 @@
 		<input type="hidden" name="writerId" value="${sessionScope.memId}" >
 		<input type="hidden" name="writerEmail" value="${sessionScope.email}" >
 
-		<table border="1" >
+		<table border="1"  style="    width: 63%;">
 			<tr>
 				<th>작성자 아이디</th>
 				<td>${sessionScope.memId}</td>
@@ -102,15 +154,15 @@
 			<tr>
 				<th>글 공개여부</th>
 				<td>
-					<span><input type="radio" name="secret" id="secret" value="N" class="radio" required="required"> 공개</span>
-					<span><input type="radio" name="secret" id="secret" value="Y" class="radio"> 비공개</span>
+					<span><input type="radio" name="secret" id="secret" value="N" class="radio" required="required"><p style="    margin-left: -90%;    margin-top: -1.5%;">공개</p></span>
+					<span><input type="radio" name="secret" id="secret" value="Y" class="radio"> <p style=" margin-left: -90%;    margin-top: -1.5%;">비공개</p></span>
 				</td>
 			</tr>
 			<tr>
 				<th>제목</th>
 				<td>
 					<input type="text" name="title" style="color: black; width: 950px;"/>
-					</br>
+					<br>
 					<spring:hasBindErrors name="qna">
 						<c:if test="${errors.hasFieldErrors('title')}">
 							<strong style="color: red;">${errors.getFieldError('title').defaultMessage}</strong>
@@ -122,7 +174,7 @@
 				<th>내용</th>
 				<td>
 					<textarea cols="90" rows="10" name="content" style="color: black;" ></textarea>
-					</br>
+					<br>
 					<spring:hasBindErrors name="qna">
 						<c:if test="${errors.hasFieldErrors('content')}">
 							<strong style="color: red;">${errors.getFieldError('content').defaultMessage}</strong>
@@ -133,9 +185,9 @@
 			<tr>
 				<td></td>
 			    <td>
-			        <input type="button" value="파일추가" id="btnAddFile" style="color: black; background-color: #8B4513;" />
-			    	<input type="button" value="파일삭제" id="btnDelFile" style="color: black; background-color:#8B4513;" />
-			    	<span id="waringSpan">*주의사항 : 파일은 반드시 순서대로 등록해야합니다</span>
+			    <span id="waringSpan">*주의사항 : 파일은 반드시 순서대로 등록해야합니다</span><br><br>
+			        <input type="button" value="파일추가" id="btnAddFile" style="color: black;background-color: #ffffff;border: none;height: 50px;width: 200px;border-radius: 10px;" />
+			    	<input type="button" value="파일삭제" id="btnDelFile" style="color: black;background-color: #ffffff;border: none;height: 50px;width: 200px;border-radius: 10px;" />
 				</td>
 			</tr>
 			<tr>
@@ -146,8 +198,8 @@
 			</tr>	
 			<tr id="i1">
 	     		<td colspan="2" style="text-align: center;">
-	     			<input type="submit" value="등록" style="color: black; background-color: #B8860B;" />
-	     			<input type="button" value="목록" id="btnList" style="color: black; background-color:	#B8860B;" />
+	     			<input type="submit" value="등록" style="color: black;background-color: #ffffff;border: none;height: 50px;width: 200px;border-radius: 10px; margin-left: 17%;" />
+	     			<input type="button" value="목록" id="btnList" style="color: black;background-color: #ffffff;border: none;height: 50px;width: 200px;border-radius: 10px;" />
 	     		</td>
 	    	</tr>	
 		</table>
