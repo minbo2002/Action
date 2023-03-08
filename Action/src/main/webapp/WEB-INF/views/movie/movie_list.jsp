@@ -120,7 +120,7 @@ body {
       var releaseStart = releaseDtStart();
       var releaseEnd = releaseDtEnd();
 
-      var moreCount = 1;//더보기 카운트
+      var moreCount = 1;//더보기 카운트 
    
       function more_list(){
          moreCount++;

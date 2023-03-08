@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.qna">
+
+	<!-- 전체 list -->
+	<select id="qnaList" resultType="qnaDomain">
+		<![CDATA[
+		select * from (
+                		select rownum as rn, A.* 
+                		from (select QNA_NO as qnaNo, TITLE, CONTENT, WRITER_ID as writerId, 
+                             		WRITER_EMAIL as writerEmail, REGDATE as regDate, ANSWER_STATUS as answerStatus,
+                             		SECRET, MEM_NO as memNo 
+                     		  from qna
+        ]]>   		<choose>
+						<when test="search_option == ''">
+							where (title like '%'||#{keyword}||'%' or CONTENT like '%'||#{keyword}||'%' 
+                           or WRITER_ID like '%'||#{keyword}||'%' or WRITER_EMAIL like '%'||#{keyword}||'%')
+						</when>
+						<when test="search_option == 'all'">
+							where (writer_id like '%'||#{keyword}||'%' or content like '%'||#{keyword}||'%' or title like '%'||#{keyword}||'%')
+						</when>
+						<when test="search_option == 'writer_id'">
+							where writer_id like '%'||#{keyword}||'%'
+						</when>
+						<when test="search_option == 'title'">
+							where title like '%'||#{keyword}||'%'
+						</when>
+						<when test="search_option == 'content'">
+							where content like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+        <![CDATA[              
+                      		  order by QNA_NO desc) A
+               		   ) where (rn between #{start} and #{end})
+		]]>
+	</select>
+	
+	<!-- 특정 게시물 조회 -->
+	<select id="qnaDetail" parameterType="int" resultType="qnaDomain">
+		<![CDATA[
+			select qna_no as qnaNo, title, content, WRITER_ID as writerId, WRITER_EMAIL as writerEmail, REGDATE as regDate, ANSWER_STATUS as answerStatus, secret, mem_no as memNo  
+			from qna
+			where qna_no=#{no}
+		]]>
+	</select>
+
+	<!-- 게시물 등록 -->
+	<insert id="insertQna" parameterType="qnaDomain" useGeneratedKeys="true" keyProperty="qnaNo">
+		<selectKey keyProperty="qnaNo" resultType="int" order="BEFORE">
+			SELECT seq_qna_no.NEXTVAL FROM DUAL
+		</selectKey>
+		<![CDATA[
+			insert into qna (qna_no, title, content, WRITER_ID, WRITER_EMAIL, secret, mem_no)
+			values (#{qnaNo}, #{title}, #{content}, #{writerId}, #{writerEmail}, #{secret}, #{memNo})
+		]]>
+	</insert>
+	
+	<!-- 파일 등록 -->
+	<insert id="uploadFile" parameterType="hashMap">
+		<![CDATA[
+			insert into QNA_FILE (FILE_NO, FILE_ORI_NAME, FILE_NAME, FILE_SIZE, QNA_NO)
+			values (SEQ_FILE_NO.NEXTVAL, #{originalFilename}, #{storedFileName}, #{fileSize}, #{qnaNo})
+		]]>
+	</insert>
+	
+	<!-- 특정글 수정 -->
+	<update id="updateQna" parameterType="qnaDomain">
+		<![CDATA[
+			update qna
+			set title=#{title}, content=#{content}
+			where qna_no=#{qnaNo}
+		]]>
+	</update>
+	
+	<!-- 특정글 삭제 -->
+	<delete id="deleteQna" parameterType="int">
+		<![CDATA[
+			delete from qna
+			where qna_no=#{no}
+		]]>
+	</delete>
+	
+	<!-- 답변상태 수정 -->
+	<update id="answerStatus" parameterType="qnaDomain">
+		<![CDATA[
+			update qna
+			set ANSWER_STATUS='Y'
+			where qna_no=#{qnaNo}
+		]]>
+	</update>
+	
+	<select id="countQna" resultType="int">
+		<![CDATA[
+				select count(*) 
+				from qna
+		]]> <choose>
+				<when test="search_option == ''">
+					where 1=1
+				</when>
+				<when test="search_option == 'all'">
+					where (writer_id like '%'||#{keyword}||'%' or content like '%'||#{keyword}||'%' or title like '%'||#{keyword}||'%')
+				</when>
+				<when test="search_option == 'writer_id'">
+					where writer_id like '%'||#{keyword}||'%'
+				</when>
+				<when test="search_option == 'title'">
+					where title like '%'||#{keyword}||'%'
+				</when>
+				<when test="search_option == 'content'">
+					where content like '%'||#{keyword}||'%'
+				</when>
+			</choose>
+	</select>
+	
+</mapper>

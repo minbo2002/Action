@@ -6,16 +6,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Project</title>
+<title>상품 구매</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 	
 <link href="${pageContext.request.contextPath}/resources/css/reset.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/layout/header.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/store/storeSelect.css" rel="stylesheet">
 </head>
 <body>
-<header>
-	<%-- <c:import url="../layout/header.jsp"></c:import> --%>
-</header>
 <section>
 <form action="../pay/marketPay" id="frm" method="post">
 	<div id="container">

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- tiles_main.xml -->
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+       
+<tiles-definitions>
+	<definition name="baseLayout" template="/WEB-INF/views/common/layout.jsp">
+		<put-attribute name="title"  value="Spring Web Application"/>   
+		<put-attribute name="header" value="/WEB-INF/views/common/header.jsp"/>   
+		<put-attribute name="body"   value=""/>
+		<put-attribute name="side"   value="/WEB-INF/views/common/side.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp"/>
+	</definition>
+	
+	<!-- 테스트 페이지  definition name에 요청 url
+    <definition name="test/test" extends="baseLayout">
+        <put-attribute name="title" value="테스트페이지"/>
+        <put-attribute name="body" value="/WEB-INF/views/test/test.jsp"/>    
+    </definition>
+    -->
+    
+    <definition name="qna/qnaList" extends="baseLayout">
+        <put-attribute name="title" value="게시판 전체조회"/>
+        <put-attribute name="body" value="/WEB-INF/views/qna/qnaList.jsp"/>    
+    </definition>
+    
+    <definition name="qna/addForm" extends="baseLayout">
+        <put-attribute name="title" value="글 작성 폼"/>
+        <put-attribute name="body" value="/WEB-INF/views/qna/addForm.jsp"/>    
+    </definition>
+    
+    <definition name="qna/detailView" extends="baseLayout">
+        <put-attribute name="title" value="게시판 상세조회"/>
+        <put-attribute name="body" value="/WEB-INF/views/qna/detailView.jsp"/>    
+    </definition>
+    
+    <definition name="qna/updateForm" extends="baseLayout">
+        <put-attribute name="title" value="게시판 수정 폼"/>
+        <put-attribute name="body" value="/WEB-INF/views/qna/updateForm.jsp"/>    
+    </definition>
+    
+    <definition name="qna/mailSendForm" extends="baseLayout">
+        <put-attribute name="title" value="메일 전송 폼"/>
+        <put-attribute name="body" value="/WEB-INF/views/qna/mailSendForm.jsp"/>    
+    </definition>
+    
+</tiles-definitions>   
+
+
+
+
+
+
+
+
+  

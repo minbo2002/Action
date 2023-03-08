@@ -1,7 +1,6 @@
 package com.mycom.movielist;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +14,6 @@ public class MovieListController {
 
 	@Autowired
 	HttpServletRequest request;
-	HttpServletResponse response;
 
 	
 	@RequestMapping ("/movieReleaseList" ) 
@@ -47,6 +45,5 @@ public class MovieListController {
 
 		return "movie/movie_detail";
 	}
-	
 
 }
