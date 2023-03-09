@@ -1,0 +1,165 @@
+@charset "UTF-8";
+
+.bodyFrame {
+	border:1px solid white;
+	width: 100%;
+	height:100%;
+	font-size: 35px;
+	text-align: center;
+}
+
+. currentMovie {
+	width: 600px;
+	height:600px;
+}
+.selectCnt {
+	font-size: 20px;
+	text-align: center;
+	width : 70%;
+  	height: 70%;
+  	padding-top: 10px;
+  	margin-left: 5%;
+  	margin-right: 5%;
+	
+}
+
+
+.movieName {
+	border-bottom: 1px solid white;
+	border-left: 1px solid white;
+	border-right: 1px solid white;
+	font-size: 30px;
+	line-height: 30px; 
+	text-align: left;
+	padding-left: 10px;
+	float: left;
+	
+}
+.theater {
+	border-bottom: 1px solid white;
+	border-right: 1px solid white;
+	font-size: 30px;
+	text-align: left;
+	padding-left: 10px;
+	float: left;
+	width: 50%;
+}
+.theater span {
+	
+	
+}
+.theater button {
+	background-color:rgba(0,0,0,0);
+  	border: none;
+}
+.theaterloc {
+	width:40%;
+	float: left;
+	line-height: 30px; 
+}
+
+.theaterloc  {
+	font-size: 20px;
+	color:aqua;
+	line-height: 30px; 
+}
+
+.theatercity {
+	width:150px;
+	float: left;
+	line-height: 20px; 
+	text-align: center;
+}
+.theatercity span{
+	padding-left;
+	font-size: 20px;
+	color:aqua;
+}
+
+.reserveTime {
+	border-bottom: 1px solid white;
+	border-right: 1px solid white;
+	font-size: 30px;
+	text-align: left;
+	padding-left: 10px;
+	height: 400px;
+	float:left;
+	width:150px;
+
+}
+
+.reserveTime button {
+	background-color:rgba(0,0,0,0);
+  	border: none;
+  	width: 80px;
+}
+
+.reserveTime span{
+	font-size: 15px;
+	color:aqua;
+	
+}
+
+
+.movieName span{
+	font-size: 20px;
+	color:aqua;
+	
+}
+.movieName button{
+	background-color: rgba(0,0,0,0);
+  	border: none;
+}
+
+
+
+
+.time_Calendar {
+	width:100%;
+	height:50px;
+	border: 1px solid white;
+}
+
+
+.chooseMovie {
+	/* border-bottom:1px solid white;
+	border-left:1px solid white;
+	border-right:1px solid white; */
+	border:1px solid white;
+	float: left;
+	width: 100%;
+	height: 50px;
+	text-align: left;
+	
+}
+.chooseMovie span {
+	font-size: 20px;
+	
+}
+
+.selectCnt p {
+	text-align: left;
+}
+
+.seat-count {
+	
+	border: 1px soild white;
+	
+}
+
+.movieloc {
+	line-height: 20px; 
+}
+
+.seat {
+	/* //border-bottom: 1px solid white; */
+	font-size: 30px;
+	text-align: left;
+	padding-left: 10px;
+	height: 400px;
+	float:left;
+	width:44%;
+}
+
+
+

@@ -17,7 +17,137 @@
 }
 
 body {
+<<<<<<< HEAD
+=======
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	font-family: 'Montserrat', sans-serif;
+	height: 200vh;
+	margin: -20px 0 50px;
+}
+
+h1 {
+	font-weight: bold;
+	margin: 0;
+}
+
+p {
+	font-size: 14px;
+	font-weight: 100;
+	line-height: 20px;
+	letter-spacing: 0.5px;
+	margin: 20px 0 30px;
+}
+
+span {
+	font-size: 12px;
+}
+
+a{
+	color: #4a3b3a;
+	text-decoration: none;
+	margin: 15px 0;
+}
+
+button {
+	border-radius: 20px;
+	border: 1px solid #241d1c;
+	background-color: #241d1c;
+	color: #FFFFFF;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	transition: transform 80ms ease-in;
+}
+
+form {
+	background-color: #FFFFFF;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 50px;
+	height: 100%;
+	text-align: center;
+}
+
+input {
+	background-color: #eee;
+	border: none;
+	padding: 12px 15px;
+	margin: 8px 0;
+	width: 100%;
+}
+
+.container2 {
+	border-radius: 10px;
+	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px
+		rgba(0, 0, 0, 0.22);
+	position: relative;
+	overflow: hidden;
+	width: 768px;
+	max-width: 100%;
+	min-height: 480px;
+}
+
+.form-container {
+	position: absolute;
+	top: 0;
+	height: 100%;
+}
+
+.log-in-container {
+	left: 0;
+	width: 50%;
+	z-index: 2;
+}
+
+.overlay-container {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: 50%;
+	height: 100%;
+}
+
+.overlay {
+	background: linear-gradient(to bottom, #000000 0%, #ffffff 200%);
+	    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0 0;
+    color: #FFFFFF;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+}
+
+.overlay-panel {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 40px;
+	text-align: center;
+	top: 0;
+	height: 100%;
+	width: 50%;
+}
+
+.overlay-right {
+	right: 0;
+}
+
+.social-container {
+	/*margin: 50px 0;*/
+>>>>>>> refs/remotes/origin/ticket2
 	
+<<<<<<< HEAD
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
@@ -145,6 +275,8 @@ input {
 .social-container {
 	/*margin: 50px 0;*/
 	
+=======
+>>>>>>> refs/remotes/origin/ticket2
 }
 
 .social-container a {
@@ -168,6 +300,7 @@ input {
 
 </head>
 <body>
+<<<<<<< HEAD
 <section style="margin-top: 5%;margin-left: 30%;">
 	<div class="container2" id="container2">
 		<div class="form-container log-in-container">
@@ -180,6 +313,20 @@ input {
 				<a class="ak"href="/member/write.do" > 회원가입 /</a>
 				<a class="ak"href="/member/findIdFrm" > 아이디찾기 /</a>
 				<a class="ak"href="/member/findPasswdFrm">비밀번호찾기</a>
+=======
+<section>
+	<div class="container2" id="container2">
+		<div class="form-container log-in-container">
+			<form action="<%=request.getContextPath()%>/member/login_check.do" method="post">
+				<h1 class="headH1"><a href="/">Action</a></h1>
+				
+				<input type="text" placeholder="ID" name="memId" /> 
+				<input type="password" placeholder="Password" name="passwd" /> 
+				<p>
+				<a href="/member/write.do" > 회원가입 /</a>
+				<a href="/member/findIdFrm" > 아이디찾기 /</a>
+				<a href="/member/findPasswdFrm">비밀번호찾기</a>
+>>>>>>> refs/remotes/origin/ticket2
 				</p>
 				
 				<button style="cursor: pointer;" id="btnLogin">Log In</button>

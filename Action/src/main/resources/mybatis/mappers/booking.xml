@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.booking">
+
+<!-- 영화리스트 검색 -->
+<select id="getMovieList" resultType="movie">
+	<![CDATA[
+		select * from movie
+		where movie_status = 0
+	]]>
+</select>
+
+<!-- 영화관 loc 검색 -->
+<select id="getLocList" parameterType="String" resultType="String">
+	<![CDATA[
+		select cinema_name
+		from cinema
+		where cinema_loc=#{loc}
+	]]>
+</select>
+	<resultMap type="movie" id="movieResult">
+		<!-- <result property="필드명" column="컬럼명" /> -->
+		<result property="movie_no" column="movie_no" />
+		<result property="movie_title" column="movie_title" />
+		<result property="movie_running_time" column="movie_running_time" />
+		<result property="movie_grade" column="movie_grade" />
+		<result property="movie_opening" column="movie_opening" />
+		<result property="movie_status" column="movie_status" />
+	</resultMap>
+
+	<resultMap type="cinema" id="cinemaResult">
+		<!-- <result property="필드명" column="컬럼명" /> -->
+		<result property="name" column="cinema_name" />
+		<result property="title" column="movie_title" />
+	</resultMap>
+	
+	<resultMap type="mtime" id="mtimeResult">
+		<!-- <result property="필드명" column="컬럼명" /> -->
+		<result property="time" column="time" />
+	</resultMap>
+	
+	<resultMap type="seat" id="seatResult">
+		<!-- <result property="필드명" column="컬럼명" /> -->
+		<result property="r_seat_no" column="r_seat_no" />
+		<result property="seat_status" column="seat_status" />
+		<result property="schedule_no" column="schedule_no" />
+	</resultMap>
+
+<!-- 영화 상영시간 검색(현재시간 기준으로 지난 시간은 표시 x)
+	movie, -->
+<select id="getTimeList" parameterType="cinema" resultType="mtime">
+	<![CDATA[
+		select t.time
+		from mtime t, schedule s, cinema c, movie m
+		where t.time_code=s.time_code
+		and 
+		s.movie_no=m.movie_no
+		and
+		s.cinema_no=c.cinema_no
+		and
+		movie_title=#{title}
+		and 
+		cinema_name=#{name}
+		order by time asc
+	]]>
+</select>
+<!-- 좌석 데이터 불러오기 -->
+	<select id="getSeatList" parameterType="ticketing" resultMap="seatResult">
+		<![CDATA[
+		select r_seat_no, seat_status
+        from mtime t, movie m, cinema c, seat s, schedule h
+        where t.time_code = h.time_code
+        and 
+        s.schedule_no = h.schedule_no
+        and 
+        c.cinema_no = h.cinema_no
+        and
+        m.movie_no = h.movie_no
+        and
+        movie_title = #{movie_title}
+        and cinema_name = #{cinema_name}
+        and time = #{movie_time}
+        order by r_seat_no asc
+		]]> 
+	</select>
+	
+
+	<!-- 예매 데이터 삽입 -->
+	<insert id="insertInfo" parameterType="ticketing" >
+		<![CDATA[
+		insert into ticketing(ticketing_no, cinema_name, seat_number, person, men_no, movie_title, movie_time)
+		values(seq_ticketing_no.nextval, #{cinema_name}, #{seat_number}, #{person}, #{mon_no}, #{movie_title}, #{movie_time})
+		]]>
+	</insert>
+	
+	<update id="updateSeat" parameterType="ticketing">
+		<![CDATA[
+			update seat
+set seat_status = 1
+where r_seat_no =(select r_seat_no
+        from mtime t, movie m, cinema c, seat s, schedule h
+        where t.time_code = h.time_code
+        and 
+        s.schedule_no = h.schedule_no
+        and 
+        c.cinema_no = h.cinema_no
+        and
+        m.movie_no = h.movie_no
+        and
+        movie_title = #{movie_title}
+        and cinema_name = #{cinema_name}
+        and time = #{movie_time}
+        and r_seat_no = #{seat_number})
+		and schedule_no = (
+			select h.schedule_no
+        from mtime t, movie m, cinema c, seat s, schedule h
+        where t.time_code = h.time_code
+        and 
+        s.schedule_no = h.schedule_no
+        and 
+        c.cinema_no = h.cinema_no
+        and
+        m.movie_no = h.movie_no
+        and
+        movie_title = #{movie_title}
+        and cinema_name = #{cinema_name}
+        and time = #{movie_time}
+        and r_seat_no = #{seat_number})
+		]]>
+	</update>
+	
+</mapper>
