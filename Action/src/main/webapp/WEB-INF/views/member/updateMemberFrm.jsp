@@ -111,7 +111,6 @@
 <body>
 <section class="bg">
 
-	<%@ include file="include/menu.jsp" %>
 	<h2>내 정보</h2>
 	<form name="form1" method="post">
 		<table border="1" style="width: 400px">		
