@@ -132,8 +132,6 @@ body {
 		    		}else {
 		    			$(".tr5").append("<td class='tg-0pky'><button type='button' name='btnA1' id='btn"+cnt+"' class='seatBtn' disabled='disabled' value='"+item.seat_status+"'>"+item.r_seat_no+"</button></td>");
 		    		}
-		    		
-		    		//$("input[value=1]")
 		    		if(item.seat_status==1) {
 		    			$(".seatBtn[value=1]").css("background-color", "gray");
 		    			//$(this).css("background-color", "gray");
@@ -142,9 +140,6 @@ body {
 		    		} 
 		    		
 		    	});
-		    	
-		   		 
-				
 		        console.log("통신성공");
 		    },
 		    error:function(){		 //요청 실패시 에러 확인을 위함
@@ -153,17 +148,10 @@ body {
 		});	//ajax 끝 
 			
 	});//btn1time 
-		
-		
-		
-		
 		$(document).on("click",".seatBtn",function(){
 			var t = $(this).text();
 			$("#text4").val(t);
 		}); 
-		
-		
-		
 		//경기도
 		$("#btn2loc").click(function(){
 			var form= {
@@ -276,8 +264,8 @@ font-size: 30px;
 	 				  		<select id="person" name="person" style="background: none; font-size: 20px; height: 30px;" disabled="disabled">
 						        <option value="0">관람인원</option>
 						        <option value="1">1명</option>
-						        <option value="2">2명(미완)</option>
-						        <option value="3">3명(미완)</option>
+						        <!-- <option value="2">2명(미완)</option> -->
+						        <!-- <option value="3">3명(미완)</option> -->
 						    </select>
 	 				<span><input type="submit" value="예약하기" id="subBtn" disabled="disabled" style="width:80px; height: 30px; background: none; font-size: 15px; margin-left: 1%;"> </span> 
 	 			</div>
@@ -285,18 +273,11 @@ font-size: 30px;
 	 			
 	 		</div>
 		</div>
-	 <!-- </div> -->
 </div>
 </div>
-
-
 	</section>	
 	
-	
 	<script>
-	
-	
-	
 	$(document).ready(function(){
  		$(".btnmovie").click(function(){
 	 			let t = $(this).text();
@@ -312,7 +293,7 @@ font-size: 30px;
 	 			$(".seatBtn:not([style*='gray'])").prop("disabled", false);	//버튼 활성
 	 			//$(".seatBtn").prop("disabled", false); //활성
 	 			var cnt = $("#person").val();
-	 			alert("선택인원:"+cnt+"count:"+count);
+	 			//alert("선택인원:"+cnt+"count:"+count);
 	 			
 	 		  // 버튼을 클릭할 때마다 실행되는 함수
 	 		  $(document).on("click",".seatBtn",function() {
@@ -321,28 +302,27 @@ font-size: 30px;
 	 		    	//$("#person").prop('disabled', true);
 	 		    	//빨간 버튼중에서 버튼이 활성인 버튼이면 다른 버튼들도 활성으로 변함
 	 		    	if($(this).prop("disabled", false) ) {
-	 		    		$(".seatBtn:not([style*='gray'])").prop("disabled", false);	//회색이 아닌 버튼 활성
+	 		    		$(".seatBtn:not([style*='gray'])").prop("disabled", false);	//회색이 아닌 버튼 활성화 하기
 	 		    	} 
 	 		    	count--;
-	 		    	alert("해제카운트:"+count);
+	 		    	//alert("해제카운트:"+count);
 	 		      // 현재 빨간색이면 원래 색상으로 변경합니다.
 	 		      $("#text4").val('');
 	 		      $(this).css("background-color","");
 	 		    } else {
 	 		    		 count++;
-	 		    		 alert("클릭카운트:"+count);
+	 		    		 //alert("클릭카운트:"+count);
 	 		    		 $(this).css("background-color", "red");
 	 		    		//만약 선택 인원가 클릭한 값이 동일하면 마지막 클릭한 버튼 외 버튼들 비활성
 	 		    		if(cnt==count) {
 		 		    		$(".seatBtn").not(this).prop("disabled", true);	//비활성
 		 		    		$("#subBtn").prop("disabled", false);
 	 		    		}
-	 		 		      // 그렇지 않으면 빨간색으로 변경합니다.
 	 		    }
-	 		  });
-	 		});	//change
+	 		  }); //click 끝
+	 		});	//change 끝
 	 		
-	 		});//ready
+	 		});//ready 끝
 
 	 	</script>
 	
