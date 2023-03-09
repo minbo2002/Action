@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-   request.setCharacterEncoding("utf-8");
-%>
+<%   request.setCharacterEncoding("utf-8");%>
 <c:set var="contextPath" value="${pageContext.servletContext.contextPath }" />
 <!DOCTYPE html>
 <html>
@@ -22,8 +20,7 @@
 <script   src="${ pageContext.request.contextPath }/resources/js/jquery-countTo.js"></script>
 <script   src="${ pageContext.request.contextPath }/resources/js/owl.carousel.min.js"></script>
 <script   src="${ pageContext.request.contextPath }/resources/js/wow.min.js"></script>
-<script src="${ pageContext.request.contextPath }/resources/js/main.js"></script>
-
+<script   src="${ pageContext.request.contextPath }/resources/js/main.js"></script>
 <script   src="${ pageContext.request.contextPath }/resources/js/vendor/modernizr-2.6.2.min.js"></script>
 <script   src="${ pageContext.request.contextPath }/resources/js/httpRequest.js"></script>
 <script   src="${ pageContext.request.contextPath }/resources/js/needDate.js"></script>
@@ -193,5 +190,6 @@ body {
 				</ul>
 			</nav>
 		</div>
+	</header>
 </body>
 </html>

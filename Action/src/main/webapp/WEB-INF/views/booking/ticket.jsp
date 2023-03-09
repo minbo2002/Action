@@ -106,7 +106,6 @@ body {
 		$.ajax({ //jquery ajax
 		    type:"get", //get방식으로 가져오기
 		    url:"getSeat", //값을 가져올 경로
-		    async : false,
 		    data: {
 		    	movie_title : $("#text1").val(),
 		    	cinema_name : $("#text2").val(),
@@ -256,7 +255,7 @@ font-size: 30px;
 	 				</div> 
 	 			<form action="${path}/ticket" method="post">
 	 			<div class="chooseMovie">
-	 				<span>영화 : <input type="text" name="movie_title" id="text1"  style="width:100px; height: 30px; background: none;" disabled="disabled"/></span>
+	 				<span>영화 : <input type="text" name="movie_title" id="text1"  style="width:200px; height: 30px; background: none;" disabled="disabled"/></span>
 	 				<span>극장 : <input type="text" name="cinema_name" id="text2"  style="width:110px; height: 30px; background: none;" disabled="disabled"/></span>
 	 				<span>관람시간 : <input type="text" name="movie_time" id="text3"  style="width:60px; height: 30px; background: none;" disabled="disabled"/></span>
 	 				<span class=spans>좌석 : <input type="text" name="seat_number" id="text4" style="width:40px; height: 30px; background: none;" disabled="disabled" /></span>
