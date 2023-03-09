@@ -147,14 +147,24 @@ body {
 							<a href="<%=request.getContextPath()%>/sample">박스오피스(kofic)</a>
 						</div>
 					</li>
-					<li class="dropdown">
-                  <a href="<%=request.getContextPath()%>/member/login.do">예매페이지</a>
-                  <c:if test="${not empty sessionScope.memId}">
-                  <div class="dropdown-content">
-                     <a href="${contextPath}/booking">영화예매</a><br><br>
-                  </div>
-                  </c:if>
-                  </li>
+					<li class="dropdown"><a href="#service-bottom">공지사항</a>
+						<div class="dropdown-content">
+							<a href="<%=request.getContextPath()%>/notice/list">공지사항</a><br><br>
+							<a href="<%=request.getContextPath()%>/event/list" >이벤트</a>
+						</div>
+					</li>
+					   <li class="dropdown"><a href="#pricing">예매페이지</a>
+					  	 <div class="dropdown-content">
+		                  <c:choose>
+								<c:when test="${sessionScope.memId == null}">
+									<a href="<%=request.getContextPath()%>/member/login.do">로그인</a>
+		                  	    </c:when>
+		                  		<c:otherwise>
+									<a href="<%=request.getContextPath()%>/booking">영화예매</a>
+								</c:otherwise>
+		                  	</c:choose>
+		                  </div>	
+	                  </li>
 					<li class="dropdown">
 						<a href="#service">스토어</a>
 						<div class="dropdown-content">

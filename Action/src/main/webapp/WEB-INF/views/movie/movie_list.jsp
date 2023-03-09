@@ -237,6 +237,7 @@ body {
          sendRequest( url, param, resultFnRank, "GET" );   
       }
       
+      
       function resultFnRank(){
          if( xhr.readyState == 4 && xhr.status == 200 ){
             var data = xhr.responseText;
@@ -259,8 +260,35 @@ body {
          }      
       }
       
-      function detailRank( title ){
-         return location.href="movieInfoDetailRank?&title="+title;
+      //박스오피스의  DB에서 포스터 가져오기
+      function load_poster(){
+         var url2 ="moviePosterLoad";
+         var param2 = "";
+         sendRequest( url2, param2 , resultFnPos, "GET");
+      }
+      
+      function resultFnPos(){            
+         if( xhr.readyState == 4 && xhr.status == 200 ){
+            var data = xhr.responseText;
+            var json = eval(data);
+            
+            outer : for( var i = 0; i < json.length ; i++){
+               var jsonLoadMovieNm = json[i].movieNm.trim();
+               var jsonLoadPoster=json[i].posterNm;
+               var jsonLoadTrailer=json[i].trailerSrc;
+               for(var j = 0; j < 10 ; j++){
+                   if( jsonLoadMovieNm == document.getElementById("movie_movieNm_"+j).value.trim() ){
+                      document.getElementById("movie_rank_poster_"+j+"_img").src=jsonLoadPoster;
+                      document.getElementById("movie_trailer_src_"+j).value=jsonLoadTrailer;
+                      continue outer;
+                   }               
+               }
+            }
+         }
+      }
+      
+      function detailRank( releaseDts, title ){
+         return location.href="movieInfoDetailRank?releaseDts="+releaseDts+"&title="+encodeURIComponent(title)+"&trailer="+trailer;
       }
       //---------------------query---------------------------------------------------
       //쿠키 생성
@@ -580,7 +608,9 @@ body {
                   <li id="movie_list_${n}">
                      <div id="movie_rank_box_one">
                         <input type="hidden" id="movie_openDt_${n}">
-                        <input type="hidden" id="movie_movieNm_${n}">
+						<input type="hidden" id="movie_movieNm_${n}">
+						<input type="hidden" id="movie_trailer_src_${n}">
+						<input type="hidden" id="ticket${n}" >  
                         <div id="movie_rank_poster_${n}">
                           <div class="poster_box">
 							<img id="movie_rank_poster_${n}_img" src="http://file.koreafilm.or.kr/poster/99/17/80/DPF025823_01.jpg" >
@@ -593,7 +623,6 @@ body {
                         </div>
                            <div id="movie_rank_movieNm_${n}"></div>
                         </div>
-                        
                         <div class="movie_rank_infos">
                            <div id="movie_rank_salesShare_${n}"></div>
                            <div id="movie_rank_audiAcc_${n}"></div>
@@ -694,7 +723,7 @@ body {
                         <div class="movie_title_box">
                         <div>
 	                        <div style="width:60px; float:left;" id="movie_rank_rank_${n}"></div>
-                        </div>
+                        </div><br>
                            <div id="movie_rank_movieNm_${n}"></div>
                         </div>
                         
@@ -728,7 +757,7 @@ body {
                         <div class="movie_title_box">
                         <div>
 	                        <div style="width:60px; float:left;" id="movie_rank_rank_${n}"></div>
-                        </div>
+                        </div><br>
                            <div id="movie_rank_movieNm_${n}"></div>
                         </div>
                         
@@ -762,7 +791,7 @@ body {
                         <div class="movie_title_box">
                         <div>
 	                        <div style="width:60px; float:left;" id="movie_rank_rank_${n}"></div>
-                        </div>
+                        </div><br>
                            <div id="movie_rank_movieNm_${n}"></div>
                         </div>
                         <div class="movie_rank_infos">

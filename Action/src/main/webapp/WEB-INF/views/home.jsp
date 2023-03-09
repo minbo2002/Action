@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
 <!-- 모바일 유효 -->
@@ -526,7 +527,7 @@ function detailRank( releaseDts, title, trailer ){
 									</tr>
 								</tbody>
 							</table>
-							<a href="#" class="btn btn-price">예매하기</a>
+							<a href="<%=request.getContextPath()%>/booking" class="btn btn-price">예매하기</a>
 						</div>
 					</div>
 
@@ -579,7 +580,7 @@ function detailRank( releaseDts, title, trailer ){
 									</tr>
 								</tbody>
 							</table>
-							<a href="#" class="btn btn-price">예매하기</a>
+							<a href="<%=request.getContextPath()%>/booking" class="btn btn-price">예매하기</a>
 						</div>
 					</div>
 
@@ -632,7 +633,7 @@ function detailRank( releaseDts, title, trailer ){
 									</tr>
 								</tbody>
 							</table>
-							<a href="#" class="btn btn-price">예매하기</a>
+							<a href="<%=request.getContextPath()%>/booking" class="btn btn-price">예매하기</a>
 						</div>
 					</div>
 				</div>
@@ -653,20 +654,35 @@ function detailRank( releaseDts, title, trailer ){
 				<img data-wow-delay="0.2s"
 					class="img-responsive black  wow fadeInLeftBig"
 					src="${ pageContext.request.contextPath }/resources/img/icons/팝콘.png"
-					style="margin-top: -22%; margin-left: -10%"> <img
+					style="margin-top: -22%; margin-left: -45%"> <img
 					data-wow-delay="0.5s"
 					class="img-responsive white  wow fadeInLeftBig"
 					src="${ pageContext.request.contextPath }/resources/img/icons/배경.png">
 			</div>
 			<div class="service-features wow fadeInRight">
-				<h1>공지사항</h1>
-				<ul>
-					<li>내일은 내일의 태양이 뜬다</li>
-					<li>피할수 없으면 즐겨라</li>
-					<li>한번의 실패와 영원한 실패를 혼동하지 마라</li>
-					<li>돈이란 바닷물과도 같다. 그것은 마시면 마실수록 목이 말라진다y</li>
-				</ul>
+				<h1 style="    padding-bottom: 9%;    margin-top: -9%;">공지사항</h1>
+				<table border=1 style="width:1200px;margin-top: -6%;">
+				    <thead>
+				        <tr style="height: 30px;">
+				            <th style="width:12%">극장</th>
+				            <th style="width:8%">구분</th>
+				            <th style="width:30%">제목</th>
+				            <th style="width:10%">등록일</th>
+				        </tr>
+				    </thead>
+				    <tbody>
+				         <c:forEach var="data" items="${list}">
+				            <tr style="height: 55px;">
+				                <td>${data.theater}</td>
+				                <td>${data.category}</td>
+				                <td style="width:404px;"><a href="${contextPath}/notice/detailForm?noticeNo=${data.noticeNo}" style="color: white;">${data.title}</a></td>
+				                <td><fmt:formatDate value="${data.writeDate}" pattern="yyyy-MM-dd "/></td>
+				            </tr>
+				      </c:forEach>
+				    </tbody>
+				</table>
 			</div>
+			
 		</div>
 	</section>
 	<!-- End #service-bottom -->

@@ -27,20 +27,21 @@ public class MovieListController {
 	}
 	
 	@RequestMapping("/movieInfoDetail")
-	public String list(Model model, String movieId, String movieSeq, String m_name, String movieNm) {
+	public String list(Model model, Integer page, String movieId, String movieSeq, String m_name) {
 
 		model.addAttribute("m_name", m_name);
 		model.addAttribute("movieId", movieId);
 		model.addAttribute("movieSeq", movieSeq);
-		model.addAttribute("movieNm", movieNm);
 
 		return "movie/movie_detail";
 	}
 	
 	@RequestMapping("/movieInfoDetailRank")
-	public String MovieInfoDetail(Model model, String movieNm) {
+	public String MovieInfoDetail(Model model, Integer page, String releaseDts, String title, String trailer) {
 
-		model.addAttribute("movieNm", movieNm);
+		model.addAttribute("releaseDts", releaseDts);
+		model.addAttribute("title", title);
+		model.addAttribute("trailer", trailer);
 
 		return "movie/movie_detail";
 	}

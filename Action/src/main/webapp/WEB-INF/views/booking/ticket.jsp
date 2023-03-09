@@ -203,18 +203,18 @@ font-size: 30px;
 <section>
 	<hr/>
 	<%-- <h1>1. <pre>상대경로 = ${pageContext.request.requestURI}</pre></h1> --%>
-	<div class="bodyFrame">영화예매 
+	<div class="bodyFrame" style="width: 80%;margin: auto;margin-top: 5%; background: rgb(119, 119, 119, 0.3);">영화예매 
  <div class="currentMovie">
  	<!-- <div class="time_Calendar">시간 -->
 		<div class="movieChoice">
 			<div class=movieFrame> 
-				<div class="movieName" style="overflow: auto; width: 26%; height:400px;">
+				<div class="movieName" style="overflow: auto; width: 26%; height:400px; background: rgb(119, 119, 119, 0.3);"">
 					<br/><p>영화<br/>
 					<c:forEach var="list" items="${movieList}">
 					 <button type="button" name="btn1movie" id="btn1movie" class="btnmovie"><span class="movie" id="movie1">${list.movie_title}</span></button><span>(${list.movie_grade})</span> <br/>
 					 </c:forEach>
 	 			</div>
-	 			<div class="theater" style="width: 20%; height:400px;">
+	 			<div class="theater" style="width: 20%; height:400px; background: rgb(119, 119, 119, 0.3);"">
 	 			<br/><p/>극장<br/> 
 	 				<div class="theaterloc" style="overflow: auto; width:40%; ">
 	 				<c:forEach var="list" items="${theaterList}"></c:forEach>
@@ -226,12 +226,15 @@ font-size: 30px;
 						<!-- <button type="button" name="btn1city" id="btn1city"><span class="movieloc" id="result"></span></button> <br/> -->
 					 </div>
 	 			</div>
-	 			<div class="reserveTime" id="reserveTime" style="overflow: auto; width: 10%; height:400px;">
+	 			<div class="reserveTime" id="reserveTime" style="overflow: auto; width: 10%; height:400px; background: rgb(119, 119, 119, 0.3);"">
 	 				<br/><p>시간<br/> 
 	 					<ul id="timeList">
 	 					</ul>
 	 			</div>
-	 				<div class="seat">
+	 				<div class="seat" style="border-right-style: solid;
+										     border-right-width: 1px;
+										     border-right-color: white;
+										     background: rgb(119, 119, 119, 0.3);"">
 	 					<br/><p>상영관
 	 					<br/><br/>
 	 					<span class="screen" style="margin-left: 26%; margin-top: 100%;">SCREEN</span>
@@ -254,13 +257,13 @@ font-size: 30px;
 						</table>
 	 				</div> 
 	 			<form action="${path}/ticket" method="post">
-	 			<div class="chooseMovie">
+	 			<div class="chooseMovie" style="background: rgb(119, 119, 119, 0.3);">
 	 				<span>영화 : <input type="text" name="movie_title" id="text1"  style="width:200px; height: 30px; background: none;" disabled="disabled"/></span>
 	 				<span>극장 : <input type="text" name="cinema_name" id="text2"  style="width:110px; height: 30px; background: none;" disabled="disabled"/></span>
 	 				<span>관람시간 : <input type="text" name="movie_time" id="text3"  style="width:60px; height: 30px; background: none;" disabled="disabled"/></span>
 	 				<span class=spans>좌석 : <input type="text" name="seat_number" id="text4" style="width:40px; height: 30px; background: none;" disabled="disabled" /></span>
 	 				<span style="padding-top: 13px; padding-left: 5px; width: 200px;">인원수:</span>
-	 				  		<select id="person" name="person" style="background: none; font-size: 20px; height: 30px;" disabled="disabled">
+	 				  		<select id="person" name="person" style="background:black; font-size: 20px; height: 30px;" disabled="disabled">
 						        <option value="0">관람인원</option>
 						        <option value="1">1명</option>
 						        <!-- <option value="2">2명(미완)</option> -->
