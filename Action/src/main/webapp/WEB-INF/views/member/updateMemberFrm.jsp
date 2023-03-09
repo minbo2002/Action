@@ -81,7 +81,6 @@
 
 <meta charset="UTF-8">
 <title>내 정보 수정</title>
-	<%@ include file="include/header.jsp" %>
 	
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>	
@@ -112,7 +111,6 @@
 <body>
 <section class="bg">
 
-	<%@ include file="include/menu.jsp" %>
 	<h2>내 정보</h2>
 	<form name="form1" method="post">
 		<table border="1" style="width: 400px">		
