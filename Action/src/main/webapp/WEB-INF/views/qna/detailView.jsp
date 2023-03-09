@@ -10,7 +10,11 @@
 	<title>상세보기</title>
 	
 <style >
-
+	.imgSize {
+      width: 300px;
+      height: 300px;
+      background-size: cover;
+   }
 	td{
 		text-align: center;
 	}
