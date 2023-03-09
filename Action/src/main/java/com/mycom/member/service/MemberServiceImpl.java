@@ -80,11 +80,11 @@ public class MemberServiceImpl implements MemberService {
 		if(member != null) {
 
 			// userid, name 세션등록
-			session.setAttribute("memNo", dto.getMemNo());
-		    session.setAttribute("email", dto.getEmail());
-		    session.setAttribute("memGrade",dto.getGrade());
-			session.setAttribute("memId", dto.getmemId());
-			session.setAttribute("memName", dto.getmemName());
+			session.setAttribute("memNo", member.getMemNo());
+		    session.setAttribute("email", member.getEmail());
+		    session.setAttribute("memGrade",member.getGrade());
+			session.setAttribute("memId", member.getmemId());
+			session.setAttribute("memName", member.getmemName());
 		}
 		
 		return member;

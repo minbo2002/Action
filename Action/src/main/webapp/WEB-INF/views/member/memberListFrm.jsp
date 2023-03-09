@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  <!-- 날짜 출력 format 지정 -->    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  <!-- 날짜 출력 format 지정 -->
+<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -80,9 +81,8 @@
   </style>
 
 <meta charset="UTF-8">
-<title>회원목록페이지(관리자)</title>
-	<%@ include file="./include/header.jsp" %>
-	<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+<title>회원목록</title>
+	
 		<script>
 		$( document ).ready( function() {
 			$("p:contains('0')").html("일반회원");
@@ -94,8 +94,7 @@
 </head>
 <body>
 <section class ="bg">
-	<%@ include file="./include/menu.jsp" %>
-	<h2>회원목록(관리자만 열람)</h2>
+	<h2>회원목록</h2>
 		
 
 

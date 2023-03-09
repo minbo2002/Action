@@ -172,18 +172,21 @@ body {
 							<c:choose>
 								<c:when test="${sessionScope.memId == null}">
 									<a href="<%=request.getContextPath()%>/member/login.do">로그인</a><br><br>
-									<a href="<%=request.getContextPath()%>/member/findId.do">ID찾기</a><br><br>
-									<a href="<%=request.getContextPath()%>/member/findPW.do">PW찾기</a><br><br>
+									<a href="<%=request.getContextPath()%>/member/findId">ID찾기</a><br><br>
+									<a href="<%=request.getContextPath()%>/member/findPasswd">PW찾기</a><br><br>
 								</c:when>
 								<c:when test="${sessionScope.memId == 'adminid'}">
 									<p><Strong>관리자</Strong>${sessionScope.memId} 님</p><br><br>
 									<a href="<%=request.getContextPath()%>/member/logout.do">로그아웃</a><br><br>
-									<a href="<%=request.getContextPath()%>">회원정보수정</a>
+									<a href="<%=request.getContextPath()%>/member/list.do">회원 목록 보기</a><br><br>
+									<a href="<%=request.getContextPath()%>/member/update.do?memId=${sessionScope.memId}">정보수정</a><br><br>
+									<a href="<%=request.getContextPath()%>/member/updatePasswd">PW변경</a>
 								</c:when>
 								<c:otherwise>
 									<p>${sessionScope.memId} 님</p><br><br>
 									<a href="<%=request.getContextPath()%>/member/logout.do">로그아웃</a><br><br>
-									<a href="<%=request.getContextPath()%>">개인정보수정</a><br><br>
+									<a href="<%=request.getContextPath()%>/member/update.do?memId=${sessionScope.memId}">개인정보수정</a><br><br>
+									<a href="<%=request.getContextPath()%>/member/updatePasswd">PW변경</a>
 								</c:otherwise>
 							</c:choose>
 						</div>

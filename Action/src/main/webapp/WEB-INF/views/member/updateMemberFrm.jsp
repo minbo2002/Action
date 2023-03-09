@@ -81,7 +81,6 @@
 
 <meta charset="UTF-8">
 <title>내 정보 수정</title>
-	<%@ include file="include/header.jsp" %>
 	
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>	
