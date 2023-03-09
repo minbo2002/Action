@@ -140,7 +140,7 @@
 		<!-- ******************* 데이터 넣는 곳 *************************** -->
 		<div class="container">
 			<h2>상품 등록</h2>
-			<form class="form-horizontal" action="/store/storeWrite" method="post" enctype="multipart/form-data">
+			<form class="form-horizontal" action="/store/storeWrite" method="post" enctype="multipart/form-data" >
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="store_name">상품명:</label>
 					<div class="col-sm-10">
@@ -194,13 +194,40 @@
 							reader.readAsDataURL(this.files[0]);
 						}
 					});
+					
+					 function checkForm() {
+					        var store_name = $('#store_name').val();
+					        var store_price = $('#store_price').val();
+					        var store_note = $('#store_note').val();
+					        var alert_msg = "";
+
+					        if (!store_name) {
+					            alert_msg += '상품명을 입력하세요.\n';
+					        }
+
+					        if (!store_price) {
+					            alert_msg += '상품가격을 입력하세요.\n';
+					        }
+
+					        if (!store_note) {
+					            alert_msg += '상품구성을 입력하세요.\n';
+					            
+					        }
+
+					        if (alert_msg !== "") {
+					            alert(alert_msg);
+					            return false;
+					        }
+
+					        return true;
+					    }
 					</script>
 					
 				</div>
 				
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
-						<input type="submit" class="btn" value="등록" style="position: absolute; right: 13px; background-color: #4e73df; color: #fff;">
+						<input type="submit" class="btn" value="등록"  onclick="return checkForm()" style="position: absolute; right: 13px; background-color: #4e73df; color: #fff;">
 					</div>
 				</div>
 			</form>

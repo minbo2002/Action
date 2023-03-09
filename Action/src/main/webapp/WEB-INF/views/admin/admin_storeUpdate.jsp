@@ -188,6 +188,33 @@
 								reader.readAsDataURL(this.files[0]);
 							}
 						});
+						
+						 function checkForm() {
+						        var store_name = $('#store_name').val();
+						        var store_price = $('#store_price').val();
+						        var store_note = $('#store_note').val();
+						        var alert_msg = "";
+
+						        if (!store_name) {
+						            alert_msg += '상품명을 입력하세요.\n';
+						        }
+
+						        if (!store_price) {
+						            alert_msg += '상품가격을 입력하세요.\n';
+						        }
+
+						        if (!store_note) {
+						            alert_msg += '상품구성을 입력하세요.\n';
+						            
+						        }
+
+						        if (alert_msg !== "") {
+						            alert(alert_msg);
+						            return false;
+						        }
+
+						        return true;
+						    }
 					</script>
 					
 				</div>
@@ -195,7 +222,7 @@
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10" style="text-align: right;">
 						<button type="button" id="btn_back" class="btn btn-danger">취소</button>
-						<input type="submit" class="btn btn-info" value="등록" style="margin-left: 20px;">
+						<input type="submit" class="btn btn-info" value="등록"  onclick="return checkForm()" style="margin-left: 20px;">
 						
 						<script type="text/javascript">
 							$('#btn_back').click(function() {

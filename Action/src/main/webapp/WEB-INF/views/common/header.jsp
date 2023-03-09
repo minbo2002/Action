@@ -147,7 +147,7 @@ body {
 						<a href="#portfolio">영화소개</a>
 						<div class="dropdown-content">
 							<a href="<%=request.getContextPath()%>/movieReleaseList">영화 검색</a><br><br>
-							<a href="<%=request.getContextPath()%>/sample">오픈 API</a>
+							<a href="<%=request.getContextPath()%>/sample">박스오피스(kofic)</a>
 						</div>
 					</li>
 					<li><a href="#pricing">예매페이지</a></li>
