@@ -212,6 +212,7 @@ function detailRank( releaseDts, title, trailer ){
 
 		<div class="container">
 			<div class="row" style="height: 50%;">
+			
 					<ul id="movie_list">
 						<c:forEach var="n" begin="0" end="2" step="1">
 							<li id="movie_list_${n}">
@@ -227,11 +228,10 @@ function detailRank( releaseDts, title, trailer ){
 														src="http://file.koreafilm.or.kr/poster/99/17/80/DPF025823_01.jpg" style="height: 400px;">
 												</div>
 											</div>
-											<div class="col-md-6 col-sm-6 col-xs-12 wow fadeInLeft"
-												data-wow-delay="0.5s">
+											<div class="col-md-6 col-sm-6 col-xs-12 wow fadeInLeft"	data-wow-delay="0.5s">
 												<div class="movie_title_box">
 													<div>
-														<p style="width: 40px; float: left;"
+			 											<p style="width: 40px; float: left;"
 															id="movie_rank_rank_${n}"></p>
 														<img style="width: 25px; height: 32px;"
 															src="${ pageContext.request.contextPath }/resources/img/maedal_one.png">
@@ -270,7 +270,6 @@ function detailRank( releaseDts, title, trailer ){
 														<img style="width: 25px; height: 32px;"
 															src="${ pageContext.request.contextPath }/resources/img/maedal_three.png">
 										</c:when>
-
 										<c:otherwise>
 											<div style="width: 40px; float: left;"
 												id="movie_rank_rank_${n}"></div>

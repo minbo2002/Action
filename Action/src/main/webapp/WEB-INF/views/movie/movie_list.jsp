@@ -237,7 +237,6 @@ body {
          sendRequest( url, param, resultFnRank, "GET" );   
       }
       
-      
       function resultFnRank(){
          if( xhr.readyState == 4 && xhr.status == 200 ){
             var data = xhr.responseText;
@@ -260,35 +259,8 @@ body {
          }      
       }
       
-      //박스오피스의  DB에서 포스터 가져오기
-      function load_poster(){
-         var url2 ="moviePosterLoad";
-         var param2 = "";
-         sendRequest( url2, param2 , resultFnPos, "GET");
-      }
-      
-      function resultFnPos(){            
-         if( xhr.readyState == 4 && xhr.status == 200 ){
-            var data = xhr.responseText;
-            var json = eval(data);
-            
-            outer : for( var i = 0; i < json.length ; i++){
-               var jsonLoadMovieNm = json[i].movieNm.trim();
-               var jsonLoadPoster=json[i].posterNm;
-               var jsonLoadTrailer=json[i].trailerSrc;
-               for(var j = 0; j < 10 ; j++){
-                   if( jsonLoadMovieNm == document.getElementById("movie_movieNm_"+j).value.trim() ){
-                      document.getElementById("movie_rank_poster_"+j+"_img").src=jsonLoadPoster;
-                      document.getElementById("movie_trailer_src_"+j).value=jsonLoadTrailer;
-                      continue outer;
-                   }               
-               }
-            }
-         }
-      }
-      
-      function detailRank( releaseDts, title ){
-         return location.href="movieInfoDetailRank?releaseDts="+releaseDts+"&title="+encodeURIComponent(title)+"&trailer="+trailer;
+      function detailRank( title ){
+         return location.href="movieInfoDetailRank?&title="+title;
       }
       //---------------------query---------------------------------------------------
       //쿠키 생성
@@ -503,7 +475,6 @@ body {
                            <img id="movie_release_poster_${n}_img">
                            <div class="poster_hover">
                               <div class="poster_hover_text">
-                                 <div class="poster_hover_text_2"><div id="movie_action_button_text_${n}"></div></div>      
                                  <div class="poster_hover_text_1"><a href="javascript:void(0);" onclick="detail(movie_release_movieId_${n}.value, movie_release_movieSeq_${n}.value, movie_release_title_data_${n}.value);">상세보기</a></div>
                               </div>
                            </div>
@@ -537,7 +508,6 @@ body {
                            <img id="movie_release_poster_${n}_img">
                            <div class="poster_hover">
                               <div class="poster_hover_text">
-                                 <div class="poster_hover_text_2"><div id="movie_action_button_text_${n}"></div></div>      
                                  <div class="poster_hover_text_1"><a href="javascript:void(0);" onclick="detail(movie_release_movieId_${n}.value, movie_release_movieSeq_${n}.value,  movie_release_title_data_${n}.value);">상세보기</a></div>
                               </div>
                            </div>
@@ -565,23 +535,19 @@ body {
                      <input type="hidden" id="movie_release_movieId_${n}">
                      <input type="hidden" id="movie_release_movieSeq_${n}">
                      <input type="hidden" id="movie_release_title_data_${n}">
-                     
                      <div id="movie_release_poster_${n}">
                         <div class="poster_box">
                            <img id="movie_release_poster_${n}_img">
                            <div class="poster_hover">
                               <div class="poster_hover_text">
-                                 <div class="poster_hover_text_2"><div id="movie_action_button_text_${n}"></div></div>      
                                  <div class="poster_hover_text_1"><a href="javascript:void(0);" onclick="detail(movie_release_movieId_${n}.value, movie_release_movieSeq_${n}.value,  movie_release_title_data_${n}.value);">상세보기</a></div>
                               </div>
                            </div>
                         </div>
                      </div>
-                     
                      <div class="movie_title_box">
                         <div id="movie_release_title_${n}"></div>
                      </div>
-                     
                      <div class="movie_infos">
                      	<div class="movie_release_rel">
 	                        <div id="movie_release_relDate_${n}"></div>
@@ -603,51 +569,27 @@ body {
 
 
 <!-- 현재 상영작 -->
+
       <div id="contents_rank">
          <div id="select_movie_list">
             <ul id="movie_list">
-              
                <c:forEach var="n" begin="0" end="5" step="1">
+ <!-- 	1위	 -->
+               <c:choose>
+	           	<c:when test="${n eq 0 }">
                   <li id="movie_list_${n}">
                      <div id="movie_rank_box_one">
                         <input type="hidden" id="movie_openDt_${n}">
                         <input type="hidden" id="movie_movieNm_${n}">
-                        
-                        
                         <div id="movie_rank_poster_${n}">
-                           <div class="poster_box">
-                              <img id="movie_rank_poster_${n}_img">
-                              <div class="poster_hover">
-                                 <div class="poster_hover_text">
-                                   <input type="hidden" id="ticket${n}" >   
-                                    <div class="poster_hover_text_1"><a href="javascript:void(0);" onclick="detailRank(movie_openDt_${n}.value, movie_movieNm_${n}.value, movie_trailer_src_${n}.value);">상세보기</a></div>
-                                 </div>   
-                              </div>
+                          <div class="poster_box">
+							<img id="movie_rank_poster_${n}_img" src="http://file.koreafilm.or.kr/poster/99/17/80/DPF025823_01.jpg" >
                            </div>
                         </div>
-                        
                         <div class="movie_title_box">
                         <div>
-                        <c:choose>
-	                        <c:when test="${n eq 0 }">
 	                        <div style="width:60px; float:left;" id="movie_rank_rank_${n}"></div>
 	                        <img style="width:25px; height:32px;" src="${ pageContext.request.contextPath }/resources/img/maedal_one.png"><br>
-	                        </c:when>
-	                        
-	                         <c:when test="${n eq 1 }">
-	                        <div style="width:60px; float:left;" id="movie_rank_rank_${n}"></div>
-	                        <img style="width:25px; height:32px;" src="${ pageContext.request.contextPath }/resources/img/maedal_two.png"><br>
-	                        </c:when>
-	                        
-	                         <c:when test="${n eq 2 }">
-	                        <div style="width:60px; float:left;" id="movie_rank_rank_${n}"></div>
-	                        <img style="width:25px; height:32px;" src="${ pageContext.request.contextPath }/resources/img/maedal_three.png"><br>
-	                        </c:when>
-	                        
-	                        <c:otherwise>
-	                        <div style="width:60px; float:left;" id="movie_rank_rank_${n}"></div><br>
-	                        </c:otherwise>
-	                    </c:choose>
                         </div>
                            <div id="movie_rank_movieNm_${n}"></div>
                         </div>
@@ -659,11 +601,186 @@ body {
                         <input type="hidden" id="movie_rank_openDt_${n}">
                         <input type="hidden" id="movie_trailer_src_${n}">
                      </div>
-                  </li>
+                 	 </li>
+                   </c:when>
+                </c:choose>
+  <!--     2  위 -->             
+                <c:choose>
+	           	<c:when test="${n eq 1 }">
+                  <li id="movie_list_${n}">
+                     <div id="movie_rank_box_one">
+                        <input type="hidden" id="movie_openDt_${n}">
+                        <input type="hidden" id="movie_movieNm_${n}">
+                        <div id="movie_rank_poster_${n}">
+                           <div class="poster_box">
+                              <img id="movie_rank_poster_${n}_img" src="http://file.koreafilm.or.kr/poster/99/17/90/DPF026474_01.jpg" >
+                              <div class="poster_hover">
+                                 <div class="poster_hover_text">
+                                   <input type="hidden" id="ticket${n}" >   
+			                    </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="movie_title_box">
+                        <div>
+	                        <div style="width:60px; float:left;" id="movie_rank_rank_${n}"></div>
+	                        <img style="width:25px; height:32px;" src="${ pageContext.request.contextPath }/resources/img/maedal_two.png"><br>
+                        </div>
+                           <div id="movie_rank_movieNm_${n}"></div>
+                        </div>
+                        
+                        <div class="movie_rank_infos">
+                           <div id="movie_rank_salesShare_${n}"></div>
+                           <div id="movie_rank_audiAcc_${n}"></div>
+                        </div>
+                        <input type="hidden" id="movie_rank_openDt_${n}">
+                        <input type="hidden" id="movie_trailer_src_${n}">
+                     </div>
+                 	 </li>
+                   </c:when>
+                </c:choose>
+ <!--     3  위 -->             
+                <c:choose>
+	           	<c:when test="${n eq 2 }">
+                  <li id="movie_list_${n}">
+                     <div id="movie_rank_box_one">
+                        <input type="hidden" id="movie_openDt_${n}">
+                        <input type="hidden" id="movie_movieNm_${n}">
+                        <div id="movie_rank_poster_${n}">
+                           <div class="poster_box">
+                              <img id="movie_rank_poster_${n}_img" src="http://file.koreafilm.or.kr/poster/99/17/95/DPK020222_01.jpg" >
+												 <div class="poster_hover">
+                                 <div class="poster_hover_text">
+                                   <input type="hidden" id="ticket${n}" >   
+			                    </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="movie_title_box">
+                        <div>
+	                        <div style="width:60px; float:left;" id="movie_rank_rank_${n}"></div>
+	                        <img style="width:25px; height:32px;" src="${ pageContext.request.contextPath }/resources/img/maedal_three.png"><br>
+                        </div>
+                           <div id="movie_rank_movieNm_${n}"></div>
+                        </div>
+                        
+                        <div class="movie_rank_infos">
+                           <div id="movie_rank_salesShare_${n}"></div>
+                           <div id="movie_rank_audiAcc_${n}"></div>
+                        </div>
+                        <input type="hidden" id="movie_rank_openDt_${n}">
+                        <input type="hidden" id="movie_trailer_src_${n}">
+                     </div>
+                 	 </li>
+                   </c:when>
+                </c:choose>              
+  <!--     4  위 -->             
+                <c:choose>
+	           	<c:when test="${n eq 3 }">
+                  <li id="movie_list_${n}">
+                     <div id="movie_rank_box_one">
+                        <input type="hidden" id="movie_openDt_${n}">
+                        <input type="hidden" id="movie_movieNm_${n}">
+                        <div id="movie_rank_poster_${n}">
+                           <div class="poster_box">
+                               <img id="movie_rank_poster_${n}_img" src="http://file.koreafilm.or.kr/poster/99/17/97/DPF026871_01.jpg" >
+							   <div class="poster_hover">
+                                 <div class="poster_hover_text">
+                                   <input type="hidden" id="ticket${n}" >   
+			                    </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="movie_title_box">
+                        <div>
+	                        <div style="width:60px; float:left;" id="movie_rank_rank_${n}"></div>
+                        </div>
+                           <div id="movie_rank_movieNm_${n}"></div>
+                        </div>
+                        
+                        <div class="movie_rank_infos">
+                           <div id="movie_rank_salesShare_${n}"></div>
+                           <div id="movie_rank_audiAcc_${n}"></div>
+                        </div>
+                        <input type="hidden" id="movie_rank_openDt_${n}">
+                        <input type="hidden" id="movie_trailer_src_${n}">
+                     </div>
+                 	 </li>
+                   </c:when>
+                </c:choose>             
+  <!--     5  위 -->             
+                <c:choose>
+	           	<c:when test="${n eq 4 }">
+                  <li id="movie_list_${n}">
+                     <div id="movie_rank_box_one">
+                        <input type="hidden" id="movie_openDt_${n}">
+                        <input type="hidden" id="movie_movieNm_${n}">
+                        <div id="movie_rank_poster_${n}">
+                           <div class="poster_box">
+                              <img id="movie_rank_poster_${n}_img" src="http://file.koreafilm.or.kr/poster/99/17/98/DPA001705_01.jpg" >
+                              <div class="poster_hover">
+                                 <div class="poster_hover_text">
+                                   <input type="hidden" id="ticket${n}" >   
+			                    </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="movie_title_box">
+                        <div>
+	                        <div style="width:60px; float:left;" id="movie_rank_rank_${n}"></div>
+                        </div>
+                           <div id="movie_rank_movieNm_${n}"></div>
+                        </div>
+                        
+                        <div class="movie_rank_infos">
+                           <div id="movie_rank_salesShare_${n}"></div>
+                           <div id="movie_rank_audiAcc_${n}"></div>
+                        </div>
+                        <input type="hidden" id="movie_rank_openDt_${n}">
+                        <input type="hidden" id="movie_trailer_src_${n}">
+                     </div>
+                 	 </li>
+                   </c:when>
+                </c:choose>             
+    <!--     6  위 -->             
+                <c:choose>
+	           	<c:when test="${n eq 5 }">
+                  <li id="movie_list_${n}">
+                     <div id="movie_rank_box_one">
+                        <input type="hidden" id="movie_openDt_${n}">
+                        <input type="hidden" id="movie_movieNm_${n}">
+                        <div id="movie_rank_poster_${n}">
+                           <div class="poster_box">
+                              <img id="movie_rank_poster_${n}_img" src="http://file.koreafilm.or.kr/poster/99/17/96/DPF026825_01.jpg" >
+                             	<div class="poster_hover">
+                                 <div class="poster_hover_text">
+                                   <input type="hidden" id="ticket${n}" >   
+			                    </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="movie_title_box">
+                        <div>
+	                        <div style="width:60px; float:left;" id="movie_rank_rank_${n}"></div>
+                        </div>
+                           <div id="movie_rank_movieNm_${n}"></div>
+                        </div>
+                        <div class="movie_rank_infos">
+                           <div id="movie_rank_salesShare_${n}"></div>
+                           <div id="movie_rank_audiAcc_${n}"></div>
+                        </div>
+                        <input type="hidden" id="movie_rank_openDt_${n}">
+                        <input type="hidden" id="movie_trailer_src_${n}">
+                     </div>
+                 	 </li>
+                   </c:when>
+                </c:choose>           
                </c:forEach>
             </ul>
          </div>
       </div>
+
+      
       
 <!--    현재상영작 끝    -->
       

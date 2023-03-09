@@ -121,8 +121,6 @@ public class ControlJson {
 	        		if(dto !=null) dtos.add(dto);
 	        		
 	        		
-	        		DAO dao = new DAO();
-	        		dao.insert(dtos);
 	        	}
 	        	
 	    	}catch(Exception e) {
