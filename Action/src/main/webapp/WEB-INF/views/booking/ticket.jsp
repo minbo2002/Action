@@ -7,7 +7,12 @@
 <html>
 <head>
 
-<link href="${path}/resources/css/booking/index.css" rel="stylesheet" type="text/css">
+<link href="<%=request.getContextPath() %>/resources/css/booking/index.css" rel="stylesheet" type="text/css">
+
+<!-- Modernizer Script for old Browsers -->
+<script
+	src="<%=request.getContextPath() %>/resources/js/vendor/modernizr-2.6.2.min.js"></script>
+
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <style type="text/css">
 body {
@@ -46,13 +51,11 @@ body {
 			}) 
 		}); //btn1loc 끝
 		
-		
-		
 		//영화관 클릭시 시간 출력
 		$(document).on("click",".btncity",function(){
 				let t = $(this).text();
 				$("#text2").val(t);
-				$("#text2").prop("disabled", false);	//수정 $("#text2").removeAttr("disabled");
+				$("#text2").removeAttr("disabled");
 			alert(t);
 			
 			 $.ajax({ //jquery ajax
@@ -68,11 +71,9 @@ body {
 				    	alert(jsonInfo); */
 				    	$("#timeList").empty();
 				    	
-				    	
 				    	if(data=='') {
 				    		var value = "<button type='button'><span class='movietime'>상영관이 없습니다.</span></button><br/>"
 				    			$("#timeList").append(value);
-				    		$(".tg").empty();
 				    	}
 				    	
 				    	
@@ -99,9 +100,13 @@ body {
 		$("#text3").removeAttr("disabled");
 		alert(t);
 		var cnt = 0;
+		//$("#person").removeAttr('disabled');
+		$("#person").prop('disabled', false);
+		$("#text4").removeAttr('disabled');
 		$.ajax({ //jquery ajax
 		    type:"get", //get방식으로 가져오기
 		    url:"getSeat", //값을 가져올 경로
+		    async : false,
 		    data: {
 		    	movie_title : $("#text1").val(),
 		    	cinema_name : $("#text2").val(),
@@ -113,25 +118,33 @@ body {
 		    		$(".tr"+i+"").empty();
 		    	}
 		    	$.each(data, function(index, item){
+		    		
 		    		console.log(item);
 		    		cnt++;
 		    		if(cnt<6) {
-		    			$(".tr1").append("<td class='tg-0pky'><button type='button' name='btnA' id='btn"+cnt+"' class='seatBtn'>"+item.r_seat_no+"</button></td>");			    			
+		    			$(".tr1").append("<td class='tg-0pky'><button type='button' name='btnA' id='btn"+cnt+"' class='seatBtn' disabled='disabled' value='"+item.seat_status+"'>"+item.r_seat_no+"</button></td>");			    			
 		    		}else if(cnt <11) {
-		    			$(".tr2").append("<td class='tg-0pky'><button type='button' name='btnA1' id='btn"+cnt+"' class='seatBtn'>"+item.r_seat_no+"</button></td>");
+		    			$(".tr2").append("<td class='tg-0pky'><button type='button' name='btnA1' id='btn"+cnt+"' class='seatBtn' disabled='disabled' value='"+item.seat_status+"'>"+item.r_seat_no+"</button></td>");
 		    		}else if(cnt <16) {
-		    			$(".tr3").append("<td class='tg-0pky'><button type='button' name='btnA1' id='btn"+cnt+"' class='seatBtn'>"+item.r_seat_no+"</button></td>");
+		    			$(".tr3").append("<td class='tg-0pky'><button type='button' name='btnA1' id='btn"+cnt+"' class='seatBtn' disabled='disabled' value='"+item.seat_status+"'>"+item.r_seat_no+"</button></td>");
 		    		}else if(cnt <21){
-		    			$(".tr4").append("<td class='tg-0pky'><button type='button' name='btnA1' id='btn"+cnt+"' class='seatBtn'>"+item.r_seat_no+"</button></td>");
+		    			$(".tr4").append("<td class='tg-0pky'><button type='button' name='btnA1' id='btn"+cnt+"' class='seatBtn' disabled='disabled' value='"+item.seat_status+"'>"+item.r_seat_no+"</button></td>");
 		    		}else {
-		    			$(".tr5").append("<td class='tg-0pky'><button type='button' name='btnA1' id='btn"+cnt+"' class='seatBtn'>"+item.r_seat_no+"</button></td>");
-		    		} 
-		    		if(item.seat_status==1 || item.seat_status!=0) {
-		    			$(".seatBtn").css("background-color", "gray");
-		    			
+		    			$(".tr5").append("<td class='tg-0pky'><button type='button' name='btnA1' id='btn"+cnt+"' class='seatBtn' disabled='disabled' value='"+item.seat_status+"'>"+item.r_seat_no+"</button></td>");
 		    		}
 		    		
+		    		//$("input[value=1]")
+		    		if(item.seat_status==1) {
+		    			$(".seatBtn[value=1]").css("background-color", "gray");
+		    			//$(this).css("background-color", "gray");
+		    			//$(".seatBtn").css("background-color", "gray");
+		    			//참고 $(".seatBtn:not([style*='gray'])").prop("disabled", false);	//버튼 활성
+		    		} 
+		    		
 		    	});
+		    	
+		   		 
+				
 		        console.log("통신성공");
 		    },
 		    error:function(){		 //요청 실패시 에러 확인을 위함
@@ -139,17 +152,16 @@ body {
 		    }
 		});	//ajax 끝 
 			
-	});// //영화시간 클릭시 좌석값 불러오기 .movietime끝
+	});//btn1time 
 		
-	
+		
 		
 		
 		$(document).on("click",".seatBtn",function(){
 			var t = $(this).text();
 			$("#text4").val(t);
-			$("#text4").prop("disabled", false); //수정$("#text4").removeAttr("disabled");
-			
-		});
+		}); 
+		
 		
 		
 		//경기도
@@ -190,16 +202,14 @@ body {
   overflow:hidden;padding:10px 5px;word-break:normal;}
 .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
   font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-0pky{
+border-color:inherit;text-align:left;vertical-align:top;
+font-size: 30px;
+}
 .tg button {background-color: rgba(0,0,0,0); border: none;}
 </style>
 
 </head>
-<%--
-mv.addObject("movieList", movieList);
-model.addAttribute("t_loc", list);
-model.addAttribute("loc", list);
- --%>
 <body>
 	
 	
@@ -237,7 +247,7 @@ model.addAttribute("loc", list);
 	 				<div class="seat">
 	 					<br/><p>상영관
 	 					<br/><br/>
-	 					<span class="screen" style="margin-left: 20%; margin-top: 100%;">SCREEN</span>
+	 					<span class="screen" style="margin-left: 26%; margin-top: 100%;">SCREEN</span>
 	 					<table class="tg" style="margin-left: 13%; margin-top: 3%;" >
 						<tr class="tr1" style="font-size: 20px;">
 						
@@ -256,21 +266,20 @@ model.addAttribute("loc", list);
 						  </tr>
 						</table>
 	 				</div> 
-	 			<form action="${path}/ticket?" method="get">
+	 			<form action="${path}/ticket" method="post">
 	 			<div class="chooseMovie">
 	 				<span>영화 : <input type="text" name="movie_title" id="text1"  style="width:100px; height: 30px; background: none;" disabled="disabled"/></span>
 	 				<span>극장 : <input type="text" name="cinema_name" id="text2"  style="width:110px; height: 30px; background: none;" disabled="disabled"/></span>
 	 				<span>관람시간 : <input type="text" name="movie_time" id="text3"  style="width:60px; height: 30px; background: none;" disabled="disabled"/></span>
 	 				<span class=spans>좌석 : <input type="text" name="seat_number" id="text4" style="width:40px; height: 30px; background: none;" disabled="disabled" /></span>
-	 				<span><input type="text" id="text5" style="width:40px; height: 30px; background: none;" disabled="disabled"/></span>
 	 				<span style="padding-top: 13px; padding-left: 5px; width: 200px;">인원수:</span>
 	 				  		<select id="person" name="person" style="background: none; font-size: 20px; height: 30px;" disabled="disabled">
 						        <option value="0">관람인원</option>
 						        <option value="1">1명</option>
-						        <option value="2">2명</option>
-						        <option value="3">3명</option>
+						        <option value="2">2명(미완)</option>
+						        <option value="3">3명(미완)</option>
 						    </select>
-	 				<span id="btnSubmit"><input type="submit" value="예약하기" style="width:80px; height: 30px; background: none; font-size: 15px; margin-left: 1%;" ></span> 
+	 				<span><input type="submit" value="예약하기" id="subBtn" disabled="disabled" style="width:80px; height: 30px; background: none; font-size: 15px; margin-left: 1%;"> </span> 
 	 			</div>
 	 			</form>
 	 			
@@ -283,7 +292,10 @@ model.addAttribute("loc", list);
 
 	</section>	
 	
+	
 	<script>
+	
+	
 	
 	$(document).ready(function(){
  		$(".btnmovie").click(function(){
@@ -293,46 +305,44 @@ model.addAttribute("loc", list);
  		});//.btnmovie
  	});
 	 	
-	//좌석 클릭시 색상 변경
- 	$(document).ready(function() {
- 		$(document).on("change","#person",function() {
- 			var count=0;
- 			$(".seatBtn:not([style*='gray'])").prop("disabled", false);	//버튼 활성
- 			//$(".seatBtn").prop("disabled", false); //활성
- 			var cnt = $("#person").val();
- 			alert("선택인원:"+cnt+"count:"+count);
- 			
- 		  // 버튼을 클릭할 때마다 실행되는 함수
- 		  $(document).on("click",".seatBtn",function() {
- 		    // 버튼이 현재 색상을 가지고 있는지 확인합니다.
- 		    if ($(this).css("background-color") === "rgb(255, 0, 0)") {
- 		    	//$("#person").prop('disabled', true);
- 		    	//빨간 버튼중에서 버튼이 활성인 버튼이면 다른 버튼들도 활성으로 변함
- 		    	if($(this).prop("disabled", false) ) {
- 		    		$(".seatBtn:not([style*='gray'])").prop("disabled", false);	//회색이 아닌 버튼 활성
- 		    	} 
- 		    	
- 		    	count--;
- 		    	alert("해제카운트:"+count);
- 		    	
- 		      // 현재 빨간색이면 원래 색상으로 변경합니다.
- 		      $("#text4").val('');
- 		      $(this).css("background-color","");
- 		    } else {
- 		    		count++;
- 		    		alert("클릭카운트:"+count);
- 		    		 $(this).css("background-color", "red");
- 		    		//만약 선택 인원가 클릭한 값이 동일하면 마지막 클릭한 버튼 외 버튼들 비활성
- 		    		if(cnt==count) {
-	 		    		$(".seatBtn").not(this).prop("disabled", true);	//비활성
-	 		    		
- 		    		}
- 		 		      // 그렇지 않으면 빨간색으로 변경합니다.
- 		    }
- 		  });
- 		});	//change
- 		
- 		});//ready
+	 	//좌석 클릭시 색상 변경
+	 	$(document).ready(function() {
+	 		$(document).on("change","#person",function() {
+	 			var count=0;
+	 			$(".seatBtn:not([style*='gray'])").prop("disabled", false);	//버튼 활성
+	 			//$(".seatBtn").prop("disabled", false); //활성
+	 			var cnt = $("#person").val();
+	 			alert("선택인원:"+cnt+"count:"+count);
+	 			
+	 		  // 버튼을 클릭할 때마다 실행되는 함수
+	 		  $(document).on("click",".seatBtn",function() {
+	 		    // 버튼이 현재 색상을 가지고 있는지 확인합니다.
+	 		    if ($(this).css("background-color") === "rgb(255, 0, 0)") {
+	 		    	//$("#person").prop('disabled', true);
+	 		    	//빨간 버튼중에서 버튼이 활성인 버튼이면 다른 버튼들도 활성으로 변함
+	 		    	if($(this).prop("disabled", false) ) {
+	 		    		$(".seatBtn:not([style*='gray'])").prop("disabled", false);	//회색이 아닌 버튼 활성
+	 		    	} 
+	 		    	count--;
+	 		    	alert("해제카운트:"+count);
+	 		      // 현재 빨간색이면 원래 색상으로 변경합니다.
+	 		      $("#text4").val('');
+	 		      $(this).css("background-color","");
+	 		    } else {
+	 		    		 count++;
+	 		    		 alert("클릭카운트:"+count);
+	 		    		 $(this).css("background-color", "red");
+	 		    		//만약 선택 인원가 클릭한 값이 동일하면 마지막 클릭한 버튼 외 버튼들 비활성
+	 		    		if(cnt==count) {
+		 		    		$(".seatBtn").not(this).prop("disabled", true);	//비활성
+		 		    		$("#subBtn").prop("disabled", false);
+	 		    		}
+	 		 		      // 그렇지 않으면 빨간색으로 변경합니다.
+	 		    }
+	 		  });
+	 		});	//change
+	 		
+	 		});//ready
 
 	 	</script>
 	

@@ -14,9 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.mycom.booking.domain.Cinema;
 import com.mycom.booking.domain.Movie;
@@ -29,30 +29,24 @@ import com.mycom.booking.service.BookingService;
 public class BookingController {
 	
 	private final Logger logger = LoggerFactory.getLogger( BookingController.class );
-	private HttpSession hSession;
-	
-	
 	@Autowired
 	BookingService bookingService;
 	
 	 //초기화면
-	//영화리스트 불러오기
+	//영화리스트폼 불러오기
 	@GetMapping("/booking")
-	public ModelAndView getMovieList(ModelAndView mv, HttpServletRequest request) throws Exception {
+	public String getMovieList(HttpServletRequest request, Model model) throws Exception {
 		HttpSession session = request.getSession();
-		
-		if(request.getAttribute("memNo")== null) {
-			mv.setViewName("redirect:/member/login.do");
-			return mv;
-		}
 		List<Movie> movieList = bookingService.getMovieList();
-		int memNo = (int) session.getAttribute("memNo");
-		System.out.println("회원번호:"+memNo);
+		//int memNo = (int) session.getAttribute("memNo");
+		//System.out.println("회원번호:"+memNo);
+		model.addAttribute("movieList", movieList);
+		//mv.setViewName("booking/ticket");
 		
-		mv.addObject("movieList", movieList);
-		mv.setViewName("booking/ticket");
-		return mv;
+			return "booking/ticket";
+		
 	}
+	
 	//영화관 지역 
 	@GetMapping(value="/theaterloc", produces = "application/json; charset=utf8")
 	public @ResponseBody List<String> getMovieLoc(@RequestParam("t_loc") String loc,Model model) throws Exception {
@@ -76,15 +70,7 @@ public class BookingController {
 		
 	}
 	
-//	//좌석 불러오기 
-//	@GetMapping(value="/getSeat", produces = "application/json;charset=utf8")
-//	public @ResponseBody Object getSeat(String time) throws Exception {
-//		System.out.println("time값:"+time);
-//		List<String> seatList = bookingService.selectSeat(time);
-//	
-//		
-//		return seatList;
-//	}
+
 	
 	//좌석 불러오기 
 		@GetMapping(value="/getSeat", produces = "application/json;charset=utf8")
@@ -97,9 +83,8 @@ public class BookingController {
 		}
 	
 	//예매 데이터 전송 
-	@GetMapping(value="/ticket")
+	@PostMapping(value="/ticket")
 	public String submitMovieInfo(Ticketing ticket, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		//int men_no = 1;
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset:utf-8");
@@ -110,26 +95,26 @@ public class BookingController {
 		ticket.setMon_no(memNo);
 		//데이터 추가
 		int cnt1 = bookingService.insertInfo(ticket);
-		int cnt2 = bookingService.updateSeat(ticket);
+		
 		System.out.println("cnt1:"+cnt1);
-		if(cnt1==1 && cnt2==2) {
-			out.println("<script language='javascript'>");
+		if(cnt1==1) {
+			bookingService.updateSeat(ticket);
+			out.println("<script>");
+			out.println("location.href='/'");
 			out.println("alert('예매 성공');");
-			out.println("location.href='/';");
 			out.println("</script>");
 			out.close();
+	
 		} else {
-			out.println("<script language='javascript'>");
+			out.println("<script>");
+			out.println("location.href='/'");
 			out.println("alert('예매실패 관리자 문의바람!!');");
-			out.println("location.href='/';");
 			out.println("</script>");
 			out.close();
 		}
-		//좌석 상태 변경 
 		
+		return "home";
 		
-		
-		System.out.println("ticket값:"+ticket);
-		return "redirect:/";
 	}
+	
 }

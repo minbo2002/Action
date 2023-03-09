@@ -152,10 +152,12 @@ body {
                </li>
                
                <li class="dropdown">
-                  <a href="#pricing">예매페이지</a>
+                  <a href="<%=request.getContextPath()%>/member/login.do">예매페이지</a>
+                  <c:if test="${not empty sessionScope.memId}">
                   <div class="dropdown-content">
                      <a href="${contextPath}/booking">영화예매</a><br><br>
                   </div>
+                  </c:if>
                </li>
                      <li class="dropdown"><a href="#service-bottom">공지사항</a>
                   <div class="dropdown-content">
