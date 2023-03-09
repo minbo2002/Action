@@ -49,7 +49,7 @@ public class MemberController {
 	
 	// 회원가입
 	@PostMapping("/member/insert.do")
-	public String insert(@ModelAttribute MemberDTO dto) {
+	public String insert(@ModelAttribute MemberDTO dto, Model model) {
 		
 		
 		int insertMember = memberService.insertMember(dto);
@@ -59,7 +59,7 @@ public class MemberController {
 			return "/member/addSuccess";
 		
 		} else {
-		
+			model.addAttribute("message", "회원가입 실패. 다시 시도해주세요.");
 			return "redirect:/addMemberFrm";
 		}
 		
