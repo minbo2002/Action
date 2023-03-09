@@ -27,16 +27,25 @@ import com.mycom.booking.service.BookingService;
 public class BookingController {
 	
 	private final Logger logger = LoggerFactory.getLogger( BookingController.class );
+	private HttpSession hSession;
+	
 	
 	@Autowired
 	BookingService bookingService;
 	
-	 
+	 //초기화면
 	//영화리스트 불러오기
 	@GetMapping("/booking")
-	public ModelAndView getMovieList(ModelAndView mv, HttpServletRequest requset) throws Exception {
-		List<Movie> movieList = bookingService.getMovieList();
+	public ModelAndView getMovieList(ModelAndView mv, HttpServletRequest request) throws Exception {
+		HttpSession session = request.getSession();
 		
+		if(request.getAttribute("memNo")== null) {
+			mv.setViewName("redirect:/member/login.do");
+			return mv;
+		}
+		List<Movie> movieList = bookingService.getMovieList();
+		int memNo = (int) session.getAttribute("memNo");
+		System.out.println("회원번호:"+memNo);
 		
 		mv.addObject("movieList", movieList);
 		mv.setViewName("booking/ticket");
@@ -88,15 +97,18 @@ public class BookingController {
 	//예매 데이터 전송 
 	@GetMapping(value="/ticket")
 	public String submitMovieInfo(Ticketing ticket, HttpServletRequest request) throws Exception {
-		int men_no = 1;
+		//int men_no = 1;
 		HttpSession session = request.getSession();
-		session.setAttribute("men_no", men_no);
+		int memNo = (int) session.getAttribute("memNo");
 		
+		ticket.setMon_no(memNo);
 		//데이터 추가
 		int cnt1 = bookingService.insertInfo(ticket);
 		System.out.println("cnt1:"+cnt1);
 		if(cnt1==1) {
 			int cnt2 = bookingService.updateSeat(ticket);
+		} else {
+			return "redirect:/";
 		}
 		//좌석 상태 변경 
 		

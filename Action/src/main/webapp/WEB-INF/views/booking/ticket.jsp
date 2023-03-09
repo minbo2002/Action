@@ -113,17 +113,11 @@ body {
 		    	for(var i=1; i<6; i++){
 		    		$(".tr"+i+"").empty();
 		    	}
-		    	
 		    	var jsonInfo = JSON.stringify(data);
 		    	alert(jsonInfo); //추후삭제
-		    	
-		    	
-    			
 		    	$.each(data, function(index, item){
 		    		console.log(item);
 		    		cnt++;
-		    		
-		    		
 		    		if(cnt>=0 && cnt<6) {
 		    			$(".tr1").append("<td class='tg-0pky'><button type='button' name='btnA' id='btn"+cnt+"' class='seatBtn'>"+item.r_seat_no+"</button></td>");			    			
 		    		}else if(cnt>=6 && cnt <11) {
@@ -137,7 +131,7 @@ body {
 		    		} 
 		    		if(item.seat_status==1 || item.seat_status!=0) {
 		    			$(".seatBtn").css("background-color", "grey");
-		    			return true;
+		    			
 		    		}
 		    		
 		    	});
@@ -157,7 +151,7 @@ body {
 			var t = $(this).text();
 			$("#text4").val(t);
 			$("#text4").removeAttr("disabled");
-			$(".btnSubmit").append('<input type="submit" value="예약하기" style="width:80px; height: 30px; background: none; font-size: 15px; margin-left: 1%;">');
+			
 		});
 		
 		
@@ -279,7 +273,7 @@ model.addAttribute("loc", list);
 						        <option value="2">2명</option>
 						        <option value="3">3명</option>
 						    </select>
-	 				<span id="btnSubmit"><!-- <input type="submit" value="예약하기" style="width:80px; height: 30px; background: none; font-size: 15px; margin-left: 1%;"> --> </span> 
+	 				<span id="btnSubmit"><input type="submit" value="예약하기" style="width:80px; height: 30px; background: none; font-size: 15px; margin-left: 1%;" ></span> 
 	 			</div>
 	 			</form>
 	 			
@@ -309,6 +303,7 @@ model.addAttribute("loc", list);
 	 	$(document).ready(function() {
 	 		var count =0;
 	 		$(document).on("change","#person",function() {
+	 			
 	 			var cnt = $("#person").val();
 	 			alert("선택인원:"+cnt);
 	 		//
@@ -317,6 +312,7 @@ model.addAttribute("loc", list);
 	 		  $(document).on("click",".seatBtn",function() {
 	 		    // 버튼이 현재 색상을 가지고 있는지 확인합니다.
 	 		    if ($(this).css("background-color") === "rgb(255, 0, 0)") {
+	 		    	
 	 		    	$(".seatBtn").removeAttr("disabled");
 	 		    	count--;
 	 		    	alert("해제카운트:"+count);
