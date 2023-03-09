@@ -48,7 +48,20 @@
 	</resultMap>
 
 <!-- 영화 상영시간 검색(현재시간 기준으로 지난 시간은 표시 x)
-	movie, -->
+		select t.time
+		from mtime t, schedule s, cinema c, movie m
+		where t.time_code=s.time_code
+		and 
+		s.movie_no=m.movie_no
+		and
+		s.cinema_no=c.cinema_no
+		and
+		movie_title='엔트맨1'
+		and 
+		cinema_name='수지'
+        and time  >  to_char(current_date, 'yyyy-mm-dd hh:mi:ss');
+	-->
+	
 <select id="getTimeList" parameterType="cinema" resultType="mtime">
 	<![CDATA[
 		select t.time
@@ -96,9 +109,9 @@
 	
 	<update id="updateSeat" parameterType="ticketing">
 		<![CDATA[
-			update seat
-set seat_status = 1
-where r_seat_no =(select r_seat_no
+		update seat
+		set seat_status = 1
+		where r_seat_no =(select r_seat_no
         from mtime t, movie m, cinema c, seat s, schedule h
         where t.time_code = h.time_code
         and 

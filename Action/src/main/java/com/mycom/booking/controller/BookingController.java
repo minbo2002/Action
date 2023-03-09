@@ -38,6 +38,7 @@ public class BookingController {
 	public String getMovieList(HttpServletRequest request, Model model) throws Exception {
 		HttpSession session = request.getSession();
 		List<Movie> movieList = bookingService.getMovieList();
+		logger.info("영화리스트 불러오기:"+ movieList);
 		//int memNo = (int) session.getAttribute("memNo");
 		//System.out.println("회원번호:"+memNo);
 		model.addAttribute("movieList", movieList);
@@ -51,8 +52,7 @@ public class BookingController {
 	@GetMapping(value="/theaterloc", produces = "application/json; charset=utf8")
 	public @ResponseBody List<String> getMovieLoc(@RequestParam("t_loc") String loc,Model model) throws Exception {
 		List<String> list = bookingService.getTheaterList(loc);
-		System.out.println(loc);
-		
+		logger.info("영화관리스트 불러오기:"+ list);
 		return list;
 		
 	}
@@ -60,8 +60,7 @@ public class BookingController {
 	@GetMapping(value="/getTime", produces = "application/json; charset=utf8")
 	public @ResponseBody Object getMovieTile(Cinema cinema, Model model) throws Exception {
 		List<String> cinemaList = bookingService.selectMovieTime(cinema);
-		System.out.println(cinemaList);
-		
+		logger.info("상영시간 불러오기:"+ cinemaList);
 		//JSON Object객체생성
 //		JSONObject jsonObject = new JSONObject();
 //		jsonObject.put("list", cinemaList);
@@ -75,10 +74,8 @@ public class BookingController {
 	//좌석 불러오기 
 		@GetMapping(value="/getSeat", produces = "application/json;charset=utf8")
 		public @ResponseBody Object getSeat(Ticketing ticketing) throws Exception {
-			System.out.println("ticketing값:"+ticketing);
 			List<String> seatList = bookingService.selectSeat(ticketing);
-		
-			
+			logger.info("좌석 불러오기:"+ seatList);
 			return seatList;
 		}
 	
