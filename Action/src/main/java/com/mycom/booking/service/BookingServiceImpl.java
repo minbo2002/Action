@@ -19,16 +19,15 @@ public class BookingServiceImpl implements BookingService{
 	@Autowired
 	BookingRepository bookingRepository;
 	
+	//영화목록 불러오기
 	@Override
 	public List<Movie> getMovieList() throws Exception{
 		return bookingRepository.getMovieList();
 	}
-
+	//영화관 불러오기
 	@Override
 	public List<String> getTheaterList(String loc) throws Exception {
-		System.out.println("ser:"+loc);
 		List<String> list = bookingRepository.getTheaterList(loc);
-		System.out.println("서비스리스트:"+list);
 		return list;
 	}
 	//영화상영시간 검색
@@ -41,12 +40,14 @@ public class BookingServiceImpl implements BookingService{
 	public List<String> selectSeat(Ticketing ticketing) throws Exception {
 		return bookingRepository.selectSeat(ticketing);
 	}
-	//데이터 삽입
+	
+	//예매 데이터 삽입
 	@Override
 	public int insertInfo(Ticketing ticket) throws Exception {
 		int cnt = bookingRepository.insertInfo(ticket);
 		return cnt;
 	}
+	
 	//좌석상태값변경
 	@Override
 	public int updateSeat(Ticketing ticket) throws Exception {
