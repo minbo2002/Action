@@ -1,9 +1,11 @@
 package com.mycom.booking.controller;
 
 
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -96,19 +98,32 @@ public class BookingController {
 	
 	//예매 데이터 전송 
 	@GetMapping(value="/ticket")
-	public String submitMovieInfo(Ticketing ticket, HttpServletRequest request) throws Exception {
+	public String submitMovieInfo(Ticketing ticket, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		//int men_no = 1;
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset:utf-8");
+		PrintWriter out = response.getWriter();
 		HttpSession session = request.getSession();
 		int memNo = (int) session.getAttribute("memNo");
 		
 		ticket.setMon_no(memNo);
 		//데이터 추가
 		int cnt1 = bookingService.insertInfo(ticket);
+		int cnt2 = bookingService.updateSeat(ticket);
 		System.out.println("cnt1:"+cnt1);
-		if(cnt1==1) {
-			int cnt2 = bookingService.updateSeat(ticket);
+		if(cnt1==1 && cnt2==2) {
+			out.println("<script language='javascript'>");
+			out.println("alert('예매 성공');");
+			out.println("location.href='/';");
+			out.println("</script>");
+			out.close();
 		} else {
-			return "redirect:/";
+			out.println("<script language='javascript'>");
+			out.println("alert('예매실패 관리자 문의바람!!');");
+			out.println("location.href='/';");
+			out.println("</script>");
+			out.close();
 		}
 		//좌석 상태 변경 
 		

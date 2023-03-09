@@ -52,7 +52,7 @@ body {
 		$(document).on("click",".btncity",function(){
 				let t = $(this).text();
 				$("#text2").val(t);
-				$("#text2").removeAttr("disabled");
+				$("#text2").prop("disabled", false);	//수정 $("#text2").removeAttr("disabled");
 			alert(t);
 			
 			 $.ajax({ //jquery ajax
@@ -99,7 +99,6 @@ body {
 		$("#text3").removeAttr("disabled");
 		alert(t);
 		var cnt = 0;
-		$("#person").removeAttr('disabled');
 		$.ajax({ //jquery ajax
 		    type:"get", //get방식으로 가져오기
 		    url:"getSeat", //값을 가져올 경로
@@ -113,24 +112,22 @@ body {
 		    	for(var i=1; i<6; i++){
 		    		$(".tr"+i+"").empty();
 		    	}
-		    	var jsonInfo = JSON.stringify(data);
-		    	alert(jsonInfo); //추후삭제
 		    	$.each(data, function(index, item){
 		    		console.log(item);
 		    		cnt++;
-		    		if(cnt>=0 && cnt<6) {
+		    		if(cnt<6) {
 		    			$(".tr1").append("<td class='tg-0pky'><button type='button' name='btnA' id='btn"+cnt+"' class='seatBtn'>"+item.r_seat_no+"</button></td>");			    			
-		    		}else if(cnt>=6 && cnt <11) {
+		    		}else if(cnt <11) {
 		    			$(".tr2").append("<td class='tg-0pky'><button type='button' name='btnA1' id='btn"+cnt+"' class='seatBtn'>"+item.r_seat_no+"</button></td>");
-		    		}else if(cnt>=11 && cnt <16) {
+		    		}else if(cnt <16) {
 		    			$(".tr3").append("<td class='tg-0pky'><button type='button' name='btnA1' id='btn"+cnt+"' class='seatBtn'>"+item.r_seat_no+"</button></td>");
-		    		}else if(cnt>=16 && cnt <21){
+		    		}else if(cnt <21){
 		    			$(".tr4").append("<td class='tg-0pky'><button type='button' name='btnA1' id='btn"+cnt+"' class='seatBtn'>"+item.r_seat_no+"</button></td>");
 		    		}else {
 		    			$(".tr5").append("<td class='tg-0pky'><button type='button' name='btnA1' id='btn"+cnt+"' class='seatBtn'>"+item.r_seat_no+"</button></td>");
 		    		} 
 		    		if(item.seat_status==1 || item.seat_status!=0) {
-		    			$(".seatBtn").css("background-color", "grey");
+		    			$(".seatBtn").css("background-color", "gray");
 		    			
 		    		}
 		    		
@@ -150,7 +147,7 @@ body {
 		$(document).on("click",".seatBtn",function(){
 			var t = $(this).text();
 			$("#text4").val(t);
-			$("#text4").removeAttr("disabled");
+			$("#text4").prop("disabled", false); //수정$("#text4").removeAttr("disabled");
 			
 		});
 		
@@ -287,9 +284,6 @@ model.addAttribute("loc", list);
 	</section>	
 	
 	<script>
-	function Btnreset() {
-		$(".seatBtn").removeAttr("disabled"); 
-	}
 	
 	$(document).ready(function(){
  		$(".btnmovie").click(function(){
@@ -299,43 +293,46 @@ model.addAttribute("loc", list);
  		});//.btnmovie
  	});
 	 	
-	 	//좌석 클릭시 색상 변경
-	 	$(document).ready(function() {
-	 		var count =0;
-	 		$(document).on("change","#person",function() {
-	 			
-	 			var cnt = $("#person").val();
-	 			alert("선택인원:"+cnt);
-	 		//
-	 		
-	 		  // 버튼을 클릭할 때마다 실행되는 함수
-	 		  $(document).on("click",".seatBtn",function() {
-	 		    // 버튼이 현재 색상을 가지고 있는지 확인합니다.
-	 		    if ($(this).css("background-color") === "rgb(255, 0, 0)") {
-	 		    	
-	 		    	$(".seatBtn").removeAttr("disabled");
-	 		    	count--;
-	 		    	alert("해제카운트:"+count);
-	 		    	
-	 		    	
-	 		      // 현재 빨간색이면 원래 색상으로 변경합니다.
-	 		     
-	 		      $("#text4").val('');
-	 		      $(this).css("background-color", "");
-	 		    } else {
-	 		    		count++;
-	 		    		alert("클릭카운트:"+count);
-	 		    		if(cnt==count) {
-		 		    		$(".seatBtn").attr("disabled", true);
-		 		    		//$(".seatBtn").removeAttr("disabled");
-		 		    		count++;
-	 		    		}
-	 		 		      // 그렇지 않으면 빨간색으로 변경합니다.
-	 		 		      $(this).css("background-color", "red");
-	 		    }
-	 		  });
-	 		});
-	 		});//ready
+	//좌석 클릭시 색상 변경
+ 	$(document).ready(function() {
+ 		$(document).on("change","#person",function() {
+ 			var count=0;
+ 			$(".seatBtn:not([style*='gray'])").prop("disabled", false);	//버튼 활성
+ 			//$(".seatBtn").prop("disabled", false); //활성
+ 			var cnt = $("#person").val();
+ 			alert("선택인원:"+cnt+"count:"+count);
+ 			
+ 		  // 버튼을 클릭할 때마다 실행되는 함수
+ 		  $(document).on("click",".seatBtn",function() {
+ 		    // 버튼이 현재 색상을 가지고 있는지 확인합니다.
+ 		    if ($(this).css("background-color") === "rgb(255, 0, 0)") {
+ 		    	//$("#person").prop('disabled', true);
+ 		    	//빨간 버튼중에서 버튼이 활성인 버튼이면 다른 버튼들도 활성으로 변함
+ 		    	if($(this).prop("disabled", false) ) {
+ 		    		$(".seatBtn:not([style*='gray'])").prop("disabled", false);	//회색이 아닌 버튼 활성
+ 		    	} 
+ 		    	
+ 		    	count--;
+ 		    	alert("해제카운트:"+count);
+ 		    	
+ 		      // 현재 빨간색이면 원래 색상으로 변경합니다.
+ 		      $("#text4").val('');
+ 		      $(this).css("background-color","");
+ 		    } else {
+ 		    		count++;
+ 		    		alert("클릭카운트:"+count);
+ 		    		 $(this).css("background-color", "red");
+ 		    		//만약 선택 인원가 클릭한 값이 동일하면 마지막 클릭한 버튼 외 버튼들 비활성
+ 		    		if(cnt==count) {
+	 		    		$(".seatBtn").not(this).prop("disabled", true);	//비활성
+	 		    		
+ 		    		}
+ 		 		      // 그렇지 않으면 빨간색으로 변경합니다.
+ 		    }
+ 		  });
+ 		});	//change
+ 		
+ 		});//ready
 
 	 	</script>
 	
