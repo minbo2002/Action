@@ -242,7 +242,7 @@ function detailRank( releaseDts, title, trailer ){
 											<div id="movie_rank_poster_${n}">
 												<div class="poster_box">
 												<img id="movie_rank_poster_${n}_img"
-														src="http://file.koreafilm.or.kr/poster/99/17/90/DPF026474_01.jpg" style="height: 400px;">
+														src="http://file.koreafilm.or.kr/poster/99/17/95/DPK020222_01.jpg" style="height: 400px;">
 												</div>
 											</div>
 											<div class="col-md-6 col-sm-6 col-xs-12 wow fadeInLeft"
@@ -259,7 +259,7 @@ function detailRank( releaseDts, title, trailer ){
 											<div id="movie_rank_poster_${n}">
 												<div class="poster_box">
 													<img id="movie_rank_poster_${n}_img"
-														src="http://file.koreafilm.or.kr/poster/99/17/95/DPK020222_01.jpg" style="height: 400px;">
+														src="http://file.koreafilm.or.kr/poster/99/17/90/DPF026474_01.jpg" style="height: 400px;">
 												</div>
 											</div>
 											<div class="col-md-6 col-sm-6 col-xs-12 wow fadeInLeft"

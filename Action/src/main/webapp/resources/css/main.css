@@ -282,8 +282,8 @@ width: 11px;
 }
 
 #nav-arrows > a {
-  border: 2px solid #000000;
-  color: #000000;
+  border: 1px solid #fff;
+  color: #ffffff;
   display: block;
   height: 60px;
   line-height: 76px;

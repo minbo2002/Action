@@ -82,6 +82,42 @@
 	width: 200px;
 	border-radius: 10px;
 		}
+
+
+
+
+.filebox input[type="file"] {
+  position: absolute;
+  width: 0;
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+}
+
+.filebox label {
+  display: inline-block;
+  padding: 10px 20px;
+  color: #999;
+  vertical-align: middle;
+  background-color: #fdfdfd;
+  cursor: pointer;
+  border: 1px solid #ebebeb;
+  border-radius: 5px;
+}
+
+/* named upload */
+.filebox .upload-name {
+  display: inline-block;
+  height: 35px;
+  font-size:18px; 
+  padding: 0 10px;
+  vertical-align: middle;
+  background-color: #f5f5f5;
+  border: 1px solid #ebebeb;
+  border-radius: 5px;
+
+}
 </style>
 
 	<meta charset="UTF-8">
@@ -112,8 +148,20 @@
 				return; //함수종료
 			}
    			let tr = "<tr><th>첨부파일"+count+"</th><td>";
-    			tr+= "<input type='file' name='file"+count+"' id='files"+count+"'/></td></tr>";
+   				tr+= "<div class='filebox'>";
+   				tr+= "<label for='files"+count+"'>업로드</label>";
+   				tr+= "<input type='file' name='file"+count+"'id='files"+count+"'/></div></td></tr>";
    
+   				
+   				
+   				
+//    			<div class="filebox"> 
+// 				  <label for="file">업로드</label> 
+// 				  <input type="file" id="file"> 
+// 				  <input class="upload-name" value="파일선택">
+// 				</div>
+
+
 			//id가 "i1"요소의 바로 앞에 위치한 형제(자매)붙인다
 			//$(기준요소).before(추가할요소);	
 			$("#i1").before(tr);	
@@ -193,7 +241,11 @@
 			<tr>
 				<th>첨부파일</th>
 				<td>
-	     			<input type="file" name="file1" id="files1" alt="이미지없음" />
+					<div class="filebox"> 
+					  <label for="file">업로드</label> 
+					  <input type="file" id="file"> 
+					  <input class="upload-name" value="파일선택">
+					</div>
 	     		</td>
 			</tr>	
 			<tr id="i1">

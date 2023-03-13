@@ -642,7 +642,7 @@ body {
                         <input type="hidden" id="movie_movieNm_${n}">
                         <div id="movie_rank_poster_${n}">
                            <div class="poster_box">
-                              <img id="movie_rank_poster_${n}_img" src="http://file.koreafilm.or.kr/poster/99/17/90/DPF026474_01.jpg" >
+                              <img id="movie_rank_poster_${n}_img" src="http://file.koreafilm.or.kr/poster/99/17/95/DPK020222_01.jpg" >
                               <div class="poster_hover">
                                  <div class="poster_hover_text">
                                    <input type="hidden" id="ticket${n}" >   
@@ -677,7 +677,7 @@ body {
                         <input type="hidden" id="movie_movieNm_${n}">
                         <div id="movie_rank_poster_${n}">
                            <div class="poster_box">
-                              <img id="movie_rank_poster_${n}_img" src="http://file.koreafilm.or.kr/poster/99/17/95/DPK020222_01.jpg" >
+                              <img id="movie_rank_poster_${n}_img" src="http://file.koreafilm.or.kr/poster/99/17/90/DPF026474_01.jpg" >
 												 <div class="poster_hover">
                                  <div class="poster_hover_text">
                                    <input type="hidden" id="ticket${n}" >   
@@ -780,7 +780,7 @@ body {
                         <input type="hidden" id="movie_movieNm_${n}">
                         <div id="movie_rank_poster_${n}">
                            <div class="poster_box">
-                              <img id="movie_rank_poster_${n}_img" src="http://file.koreafilm.or.kr/poster/99/17/96/DPF026825_01.jpg" >
+                              <img id="movie_rank_poster_${n}_img" src="http://file.koreafilm.or.kr/poster/99/17/96/DPK020250_01.jpg" >
                              	<div class="poster_hover">
                                  <div class="poster_hover_text">
                                    <input type="hidden" id="ticket${n}" >   

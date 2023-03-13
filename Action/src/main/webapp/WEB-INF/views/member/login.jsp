@@ -165,24 +165,49 @@ input {
 	margin-top: -250px;
 }
 </style>
-
+	<script>
+		$(function() {
+			$("#btnLogin").click(function() {
+				var memId=$("#memId").val();
+				var passwd=$("#passwd").val();
+				if(memId=="") {
+					alert('아이디를 입력하세요.');
+					$("#memId").focus();
+					return;
+				}
+				if(passwd=="") {
+					alert('비밀번호를 입력하세요.');
+					$("#passwd").focus();
+					return;
+				}
+				document.form1.action="${path}/member/login_check.do";
+				document.form1.submit();
+			});
+		});
+	</script>
 </head>
 <body>
 <section style="margin-top: 5%;margin-left: 30%;">
 	<div class="container2" id="container2">
 		<div class="form-container log-in-container">
-			<form action="/member/login_check.do" method="post">
+			<form name= form1 method="post">
 				<h1 class="headH1"><a class="ak" href="/"><strong>Action</strong></a></h1><br><br><br>
 				
-				<input type="text" placeholder="ID" name="memId" /> 
-				<input type="password" placeholder="Password" name="passwd" style="    color: black;"/> 
+				<input type="text" placeholder="ID" name="memId" id="memId"> 
+				<input type="password" placeholder="Password" name="passwd" id="passwd"style="    color: black;"/> 
+			<c:if test="${message == 'error'}">
+				<div style="color: red; font-size: 13px;">
+				아이디 또는 비밀번호가 일치하지 않습니다.
+				</div>
+			</c:if>
 				<p>
 				<a class="ak"href="/member/write.do" > 회원가입 /</a>
-				<a class="ak"href="/member/findIdFrm" > 아이디찾기 /</a>
-				<a class="ak"href="/member/findPasswdFrm">비밀번호찾기</a>
+				<a class="ak"href="/member/findId" > 아이디찾기 /</a>
+				<a class="ak"href="/member/findPasswd">비밀번호찾기</a>
 				</p>
-				
-				<button style="cursor: pointer;" id="btnLogin">Log In</button>
+			<button type ="button" style="cursor: pointer;" id="btnLogin">Log In</button>
+
+
 			</form>
 		</div>
 		<div class="overlay-container">
